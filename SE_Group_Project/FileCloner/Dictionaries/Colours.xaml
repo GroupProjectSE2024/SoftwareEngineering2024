@@ -1,0 +1,42 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- App Accent Dark -->
+    <SolidColorBrush x:Key="AccentDark" Color="#FF164863" />
+
+    <!-- Task List Background -->
+    <SolidColorBrush x:Key="TaskListBackground" Color="#FFECECEC" />
+
+    <!-- Task View Background -->
+    <SolidColorBrush x:Key="WindowBackground" Color="#FFFFFFFF" />
+
+    <!-- Task Status Background -->
+    <SolidColorBrush x:Key="TaskStatusBackground" Color="#FFF6F6F6" />
+
+    <!-- Default Text Colour -->
+    <SolidColorBrush x:Key="DefaultText" Color="#FF474747" />
+
+    <!-- Importance Colours -->
+
+    <!-- Low Importance -->
+    <SolidColorBrush x:Key="Importance-Low" Color="#FF0CAFF4" />
+
+    <!-- Medium Importance -->
+    <SolidColorBrush x:Key="Importance-Med" Color="#FF2AD985" />
+
+    <!-- High Importance -->
+    <SolidColorBrush x:Key="Importance-High" Color="#FFCA2C2C" />
+
+    <!-- Critical Importance -->
+    <SolidColorBrush x:Key="Importance-Crit" Color="#FFF4B30C" />
+
+    <!-- Task Progress -->
+    <SolidColorBrush x:Key="Progress-InProgress" Color="#FF518657" />
+    <SolidColorBrush x:Key="Progress-Completed" Color="#FF4187AC" />
+    <SolidColorBrush x:Key="Progress-NotStarted" Color="#FFB1B1B1" />
+    <SolidColorBrush x:Key="Progress-Late" Color="#FFB46161" />
+    <SolidColorBrush x:Key="Progress-Archived" Color="#FFC8A36C" />
+    <SolidColorBrush x:Key="Progress-Deleted" Color="#FF606060" />
+
+
+</ResourceDictionary>
