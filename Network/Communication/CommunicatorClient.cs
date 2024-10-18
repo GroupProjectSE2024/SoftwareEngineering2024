@@ -1,5 +1,5 @@
-using Network.Queues;
-using Network.Sockets;
+using Networking.Queues;
+using Networking.Sockets;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 
-namespace Network.Communication
+namespace Networking.Communication
 {
     public class CommunicatorClient : ICommunicator
     {

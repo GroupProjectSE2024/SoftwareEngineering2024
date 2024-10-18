@@ -1,4 +1,4 @@
-﻿namespace Network.Queues
+﻿namespace Networking.Queues
 {
     public class Packet
     {

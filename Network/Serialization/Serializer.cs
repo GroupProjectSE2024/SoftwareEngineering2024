@@ -4,7 +4,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Network.Serialization
+namespace Networking.Serialization
 {
     public class Serializer : ISerializer
     {

@@ -1,4 +1,4 @@
-using Network.Queues;
+using Networking.Queues;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Network.Sockets
+namespace Networking.Sockets
 {
     public class SendQueueListenerServer
     {

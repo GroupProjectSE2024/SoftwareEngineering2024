@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 
-namespace Network.Queues
+namespace Networking.Queues
 {
     public class Queue : IQueue
     {

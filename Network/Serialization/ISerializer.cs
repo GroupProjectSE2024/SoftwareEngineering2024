@@ -1,4 +1,4 @@
-﻿namespace Network.Serialization
+﻿namespace Networking.Serialization
 {
     public interface ISerializer
     {

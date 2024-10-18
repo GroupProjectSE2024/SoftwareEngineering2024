@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Threading;
 
-namespace Network.Queues
+namespace Networking.Queues
 {
     public class ReceiveQueueListener
     {

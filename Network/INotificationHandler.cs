@@ -1,6 +1,6 @@
 ﻿using System.Net.Sockets;
 
-namespace Network
+namespace Networking
 {
     public interface INotificationHandler
     {

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Network.Queues
+namespace Networking.Queues
 {
     public class ReceivingQueue
     {

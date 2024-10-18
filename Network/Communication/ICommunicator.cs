@@ -1,6 +1,6 @@
 using System.Net.Sockets;
 
-namespace Network.Communication
+namespace Networking.Communication
 {
     public interface ICommunicator
     {

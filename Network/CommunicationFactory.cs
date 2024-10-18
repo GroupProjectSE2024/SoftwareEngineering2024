@@ -1,8 +1,8 @@
-﻿using Network.Communication;
+﻿using Networking.Communication;
 using System;
 using System.Diagnostics;
 
-namespace Network
+namespace Networking
 {
     public static class CommunicationFactory
     {

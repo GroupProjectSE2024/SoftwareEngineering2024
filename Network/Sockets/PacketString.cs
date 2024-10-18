@@ -1,9 +1,9 @@
-﻿using Network.Queues;
-using Network.Serialization;
+﻿using Networking.Queues;
+using Networking.Serialization;
 using System;
 using System.Diagnostics;
 
-namespace Network.Sockets
+namespace Networking.Sockets
 {
     public static class PacketString
     {
