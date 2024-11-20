@@ -7,7 +7,7 @@
  * 
  * Project     = Rendering shapes
  *
- * Description = Helps in rendering shapes sent over the network on the whiteboard
+ * Description = Helps in local rendering of shapes and broadcasts shape data over the network to other users.
  *************************************************************************************************/
 
 
