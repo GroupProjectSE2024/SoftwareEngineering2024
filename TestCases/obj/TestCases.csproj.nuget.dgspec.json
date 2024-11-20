@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Asus\\OneDrive\\Desktop\\SE\\SoftwareEngineering2024\\TestCases\\TestCases.csproj": {}
+    "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\TestCases\\TestCases.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Asus\\OneDrive\\Desktop\\SE\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+    "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE\\SoftwareEngineering2024\\Networking\\Networking.csproj",
+        "projectUniqueName": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj",
         "projectName": "Networking",
-        "projectPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE\\SoftwareEngineering2024\\Networking\\Networking.csproj",
-        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE\\SoftwareEngineering2024\\Networking\\obj\\",
+        "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj",
+        "packagesPath": "C:\\Users\\sabar\\.nuget\\packages\\",
+        "outputPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\sabar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,9 +38,8 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+          "auditMode": "direct"
+        }
       },
       "frameworks": {
         "net8.0-windows7.0": {
@@ -90,25 +84,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Asus\\OneDrive\\Desktop\\SE\\SoftwareEngineering2024\\TestCases\\TestCases.csproj": {
+    "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\TestCases\\TestCases.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE\\SoftwareEngineering2024\\TestCases\\TestCases.csproj",
+        "projectUniqueName": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\TestCases\\TestCases.csproj",
         "projectName": "TestCases",
-        "projectPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE\\SoftwareEngineering2024\\TestCases\\TestCases.csproj",
-        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE\\SoftwareEngineering2024\\TestCases\\obj\\",
+        "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\TestCases\\TestCases.csproj",
+        "packagesPath": "C:\\Users\\sabar\\.nuget\\packages\\",
+        "outputPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\TestCases\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\sabar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -116,15 +106,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0-windows7.0": {
             "targetAlias": "net8.0-windows",
             "projectReferences": {
-              "C:\\Users\\Asus\\OneDrive\\Desktop\\SE\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
-                "projectPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE\\SoftwareEngineering2024\\Networking\\Networking.csproj"
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj"
               }
             }
           }
@@ -137,9 +126,8 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+          "auditMode": "direct"
+        }
       },
       "frameworks": {
         "net8.0-windows7.0": {
@@ -178,7 +166,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

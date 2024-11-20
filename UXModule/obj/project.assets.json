@@ -3338,7 +3338,8 @@
           "Screenshare": "1.0.0",
           "SharpDX.Direct3D11": "4.2.0",
           "System.Drawing.Common": "9.0.0",
-          "Updater": "1.0.0"
+          "Updater": "1.0.0",
+          "WhiteboardGUI": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Dashboard.dll": {}
@@ -3404,9 +3405,6 @@
       "ToolInterface/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "Newtonsoft.Json": "13.0.3"
-        },
         "compile": {
           "bin/placeholder/ToolInterface.dll": {}
         },
@@ -9954,8 +9952,8 @@
     },
     "ToolInterface/1.0.0": {
       "type": "project",
-      "path": "../SoftwareEngineering2024-UpdaterNew/ToolInterface/ToolInterface.csproj",
-      "msbuildProject": "../SoftwareEngineering2024-UpdaterNew/ToolInterface/ToolInterface.csproj"
+      "path": "../ToolInterface/ToolInterface.csproj",
+      "msbuildProject": "../ToolInterface/ToolInterface.csproj"
     },
     "Updater/1.0.0": {
       "type": "project",
@@ -9998,24 +9996,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Asus\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\sabar\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE-Final version\\SoftwareEngineering2024\\UXModule\\UXModule.csproj",
+      "projectUniqueName": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\UXModule\\UXModule.csproj",
       "projectName": "UXModule",
-      "projectPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE-Final version\\SoftwareEngineering2024\\UXModule\\UXModule.csproj",
-      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE-Final version\\SoftwareEngineering2024\\UXModule\\obj\\",
+      "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\UXModule\\UXModule.csproj",
+      "packagesPath": "C:\\Users\\sabar\\.nuget\\packages\\",
+      "outputPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\UXModule\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\sabar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10023,36 +10016,35 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\Asus\\OneDrive\\Desktop\\SE-Final version\\SoftwareEngineering2024\\Content\\Content.csproj": {
-              "projectPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE-Final version\\SoftwareEngineering2024\\Content\\Content.csproj"
+            "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Content\\Content.csproj": {
+              "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Content\\Content.csproj"
             },
-            "C:\\Users\\Asus\\OneDrive\\Desktop\\SE-Final version\\SoftwareEngineering2024\\Dashboard\\Dashboard.csproj": {
-              "projectPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE-Final version\\SoftwareEngineering2024\\Dashboard\\Dashboard.csproj"
+            "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Dashboard\\Dashboard.csproj": {
+              "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Dashboard\\Dashboard.csproj"
             },
-            "C:\\Users\\Asus\\OneDrive\\Desktop\\SE-Final version\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj": {
-              "projectPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE-Final version\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj"
+            "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj": {
+              "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj"
             },
-            "C:\\Users\\Asus\\OneDrive\\Desktop\\SE-Final version\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
-              "projectPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE-Final version\\SoftwareEngineering2024\\Networking\\Networking.csproj"
+            "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+              "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj"
             },
-            "C:\\Users\\Asus\\OneDrive\\Desktop\\SE-Final version\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj": {
-              "projectPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE-Final version\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj"
+            "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj": {
+              "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj"
             },
-            "C:\\Users\\Asus\\OneDrive\\Desktop\\SE-Final version\\SoftwareEngineering2024\\Updater\\Updater.csproj": {
-              "projectPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE-Final version\\SoftwareEngineering2024\\Updater\\Updater.csproj"
+            "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Updater\\Updater.csproj": {
+              "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Updater\\Updater.csproj"
             },
-            "C:\\Users\\Asus\\OneDrive\\Desktop\\SE-Final version\\SoftwareEngineering2024\\ViewModel\\ViewModel.csproj": {
-              "projectPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE-Final version\\SoftwareEngineering2024\\ViewModel\\ViewModel.csproj"
+            "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\ViewModel\\ViewModel.csproj": {
+              "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\ViewModel\\ViewModel.csproj"
             },
-            "C:\\Users\\Asus\\OneDrive\\Desktop\\SE-Final version\\SoftwareEngineering2024\\WhiteboardGUI\\WhiteboardGUI.csproj": {
-              "projectPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE-Final version\\SoftwareEngineering2024\\WhiteboardGUI\\WhiteboardGUI.csproj"
+            "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\WhiteboardGUI\\WhiteboardGUI.csproj": {
+              "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\WhiteboardGUI\\WhiteboardGUI.csproj"
             }
           }
         }
@@ -10065,9 +10057,8 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+        "auditMode": "direct"
+      }
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -10141,61 +10132,11 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
   "logs": [
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.NETCore.App' 1.0.5 has a known high severity vulnerability, https://github.com/advisories/GHSA-7mfr-774f-w5r9",
-      "libraryId": "Microsoft.NETCore.App",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.NETCore.App' 1.0.5 has a known high severity vulnerability, https://github.com/advisories/GHSA-8884-xcr4-r68p",
-      "libraryId": "Microsoft.NETCore.App",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.NETCore.Jit' 1.0.7 has a known high severity vulnerability, https://github.com/advisories/GHSA-xcvr-qv8h-m7xw",
-      "libraryId": "Microsoft.NETCore.Jit",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.Formats.Asn1' 6.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-447r-wph3-92pm",
-      "libraryId": "System.Formats.Asn1",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.Security.Cryptography.Pkcs' 6.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-555c-2p6r-68mm",
-      "libraryId": "System.Security.Cryptography.Pkcs",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    },
     {
       "code": "NU1701",
       "level": "Warning",

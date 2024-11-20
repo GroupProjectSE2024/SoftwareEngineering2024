@@ -1,0 +1,1020 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\TestProject\\TestProject.csproj": {}
+  },
+  "projects": {
+    "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Content\\Content.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Content\\Content.csproj",
+        "projectName": "Content",
+        "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Content\\Content.csproj",
+        "packagesPath": "C:\\Users\\sabar\\.nuget\\packages\\",
+        "outputPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Content\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sabar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
+            "projectReferences": {
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "System.Security.Cryptography.ProtectedData": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "System.Windows.Extensions": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "UKSIVTSOSAT": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Dashboard\\Dashboard.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Dashboard\\Dashboard.csproj",
+        "projectName": "Dashboard",
+        "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Dashboard\\Dashboard.csproj",
+        "packagesPath": "C:\\Users\\sabar\\.nuget\\packages\\",
+        "outputPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Dashboard\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sabar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
+            "projectReferences": {
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Updater\\Updater.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Updater\\Updater.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\WhiteboardGUI\\WhiteboardGUI.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\WhiteboardGUI\\WhiteboardGUI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "Google.Apis": {
+              "target": "Package",
+              "version": "[1.68.0, )"
+            },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.68.0, )"
+            },
+            "LiveCharts.Wpf": {
+              "target": "Package",
+              "version": "[0.9.7, )"
+            },
+            "NETStandard.Library": {
+              "target": "Package",
+              "version": "[2.0.3, )"
+            },
+            "SharpDX.Direct3D11": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj",
+        "projectName": "FileCloner",
+        "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj",
+        "packagesPath": "C:\\Users\\sabar\\.nuget\\packages\\",
+        "outputPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\FileCloner\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sabar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
+            "projectReferences": {
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "Microsoft-WindowsAPICodePack-Shell": {
+              "target": "Package",
+              "version": "[1.1.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj",
+        "projectName": "Networking",
+        "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj",
+        "packagesPath": "C:\\Users\\sabar\\.nuget\\packages\\",
+        "outputPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sabar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "Google.Protobuf": {
+              "target": "Package",
+              "version": "[3.28.3, )"
+            },
+            "Grpc.AspNetCore": {
+              "target": "Package",
+              "version": "[2.66.0, )"
+            },
+            "Grpc.Net.Client": {
+              "target": "Package",
+              "version": "[2.66.0, )"
+            },
+            "Grpc.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.67.0, )"
+            },
+            "System.ServiceModel.Primitives": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj",
+        "projectName": "Screenshare",
+        "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj",
+        "packagesPath": "C:\\Users\\sabar\\.nuget\\packages\\",
+        "outputPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Screenshare\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sabar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
+            "projectReferences": {
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "SharpDX": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "SharpDX.DXGI": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "SharpDX.Direct3D11": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "System.Net.Http": {
+              "target": "Package",
+              "version": "[4.3.4, )"
+            },
+            "System.Text.RegularExpressions": {
+              "target": "Package",
+              "version": "[4.3.1, )"
+            },
+            "System.Windows.Extensions": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "UKSIVTSOSAT": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\TestProject\\TestProject.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\TestProject\\TestProject.csproj",
+        "projectName": "TestProject",
+        "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\TestProject\\TestProject.csproj",
+        "packagesPath": "C:\\Users\\sabar\\.nuget\\packages\\",
+        "outputPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\TestProject\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sabar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
+            "projectReferences": {
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Content\\Content.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Content\\Content.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Dashboard\\Dashboard.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Dashboard\\Dashboard.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Updater\\Updater.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Updater\\Updater.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\UXModule\\UXModule.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\UXModule\\UXModule.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\ViewModel\\ViewModel.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\ViewModel\\ViewModel.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\WhiteboardGUI\\WhiteboardGUI.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\WhiteboardGUI\\WhiteboardGUI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "MSTest": {
+              "target": "Package",
+              "version": "[3.6.1, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.11.1, )"
+            },
+            "Microsoft.Testing.Extensions.CodeCoverage": {
+              "target": "Package",
+              "version": "[17.12.6, )"
+            },
+            "Microsoft.Testing.Extensions.TrxReport": {
+              "target": "Package",
+              "version": "[1.4.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.72, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.9.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\ToolInterface\\ToolInterface.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\ToolInterface\\ToolInterface.csproj",
+        "projectName": "ToolInterface",
+        "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\ToolInterface\\ToolInterface.csproj",
+        "packagesPath": "C:\\Users\\sabar\\.nuget\\packages\\",
+        "outputPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\ToolInterface\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sabar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Updater\\Updater.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Updater\\Updater.csproj",
+        "projectName": "Updater",
+        "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Updater\\Updater.csproj",
+        "packagesPath": "C:\\Users\\sabar\\.nuget\\packages\\",
+        "outputPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Updater\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sabar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
+            "projectReferences": {
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\ToolInterface\\ToolInterface.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\ToolInterface\\ToolInterface.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\UXModule\\UXModule.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\UXModule\\UXModule.csproj",
+        "projectName": "UXModule",
+        "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\UXModule\\UXModule.csproj",
+        "packagesPath": "C:\\Users\\sabar\\.nuget\\packages\\",
+        "outputPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\UXModule\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sabar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
+            "projectReferences": {
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Content\\Content.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Content\\Content.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Dashboard\\Dashboard.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Dashboard\\Dashboard.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Updater\\Updater.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Updater\\Updater.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\ViewModel\\ViewModel.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\ViewModel\\ViewModel.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\WhiteboardGUI\\WhiteboardGUI.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\WhiteboardGUI\\WhiteboardGUI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "Google.Apis": {
+              "target": "Package",
+              "version": "[1.68.0, )"
+            },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.68.0, )"
+            },
+            "Google.Apis.Oauth2.v2": {
+              "target": "Package",
+              "version": "[1.68.0.1869, )"
+            },
+            "LiveCharts.Wpf": {
+              "target": "Package",
+              "version": "[0.9.7, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "NETStandard.Library": {
+              "target": "Package",
+              "version": "[2.0.3, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "SharpDX": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "SharpDX.Direct3D11": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "System.Text.RegularExpressions": {
+              "target": "Package",
+              "version": "[4.3.1, )"
+            },
+            "UKSIVTSOSAT": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\ViewModel\\ViewModel.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\ViewModel\\ViewModel.csproj",
+        "projectName": "ViewModel",
+        "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\ViewModel\\ViewModel.csproj",
+        "packagesPath": "C:\\Users\\sabar\\.nuget\\packages\\",
+        "outputPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\ViewModel\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sabar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
+            "projectReferences": {
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Dashboard\\Dashboard.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Dashboard\\Dashboard.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj"
+              },
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Updater\\Updater.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Updater\\Updater.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "Google.Apis": {
+              "target": "Package",
+              "version": "[1.68.0, )"
+            },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.68.0, )"
+            },
+            "LiveCharts.Wpf": {
+              "target": "Package",
+              "version": "[0.9.7, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "SharpDX": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "SharpDX.Direct3D11": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "System.Text.RegularExpressions": {
+              "target": "Package",
+              "version": "[4.3.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\WhiteboardGUI\\WhiteboardGUI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\WhiteboardGUI\\WhiteboardGUI.csproj",
+        "projectName": "WhiteboardGUI",
+        "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\WhiteboardGUI\\WhiteboardGUI.csproj",
+        "packagesPath": "C:\\Users\\sabar\\.nuget\\packages\\",
+        "outputPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\WhiteboardGUI\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sabar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
+            "projectReferences": {
+              "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+                "projectPath": "C:\\SoftwareEnGG\\fckdashboard\\SoftwareEngineering2024\\Networking\\Networking.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.Xaml.Behaviors.Wpf": {
+              "target": "Package",
+              "version": "[1.1.135, )"
+            },
+            "MvvmLightLibs": {
+              "target": "Package",
+              "version": "[5.4.1.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

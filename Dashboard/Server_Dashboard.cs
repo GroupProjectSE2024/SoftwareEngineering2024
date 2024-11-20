@@ -323,6 +323,8 @@ namespace Dashboard
             string jsonMessage = JsonSerializer.Serialize(dashboardMessage);
             BroadcastMessage(jsonMessage);
             ServerUserList.Clear();
+            System.Threading.Thread.Sleep(8000);
+            _communicator.Stop();
             return true;
         }
 

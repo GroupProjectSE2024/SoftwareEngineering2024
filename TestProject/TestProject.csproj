@@ -21,13 +21,16 @@
     <PackageReference Include="Microsoft.Testing.Extensions.TrxReport" Version="1.4.0" />
     <PackageReference Include="Moq" Version="4.20.72" />
     <PackageReference Include="MSTest" Version="3.6.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Content\Content.csproj" />
+    <ProjectReference Include="..\Dashboard\Dashboard.csproj" />
     <ProjectReference Include="..\FileCloner\FileCloner.csproj" />
     <ProjectReference Include="..\Screenshare\Screenshare.csproj" />
     <ProjectReference Include="..\Updater\Updater.csproj" />
+    <ProjectReference Include="..\UXModule\UXModule.csproj" />
     <ProjectReference Include="..\ViewModel\ViewModel.csproj" />
     <ProjectReference Include="..\WhiteboardGUI\WhiteboardGUI.csproj" />
   </ItemGroup>

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Asus\OneDrive\Desktop\SE-Final version\SoftwareEngineering2024\UXModule\obj\Debug\net8.0-windows\
+C:\SoftwareEnGG\fckdashboard\SoftwareEngineering2024\UXModule\obj\Debug\net8.0-windows\
 UXModule
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-C:\Users\Asus\OneDrive\Desktop\SE-Final version\SoftwareEngineering2024\UXModule\App.xaml
+C:\SoftwareEnGG\fckdashboard\SoftwareEngineering2024\UXModule\App.xaml
 16-1473168137
 
 23-336741129
-3811685337094
+382-688727717
 SplashScreen.xaml;Views\AnalyserPage.xaml;Views\ChatPage.xaml;Views\ClientHomePage.xaml;Views\DashboardPage.xaml;Views\HomePage.xaml;Views\LoginPage.xaml;Views\MainPage.xaml;Views\MainWindow.xaml;Views\ScreenShareClient.xaml;Views\ScreensharePage.xaml;Views\ScreenShareServer.xaml;Views\ServerHomePage.xaml;Views\UpdaterPage.xaml;Views\UploadPage.xaml;Views\WhiteboardPage.xaml;
 
-False
+True
 

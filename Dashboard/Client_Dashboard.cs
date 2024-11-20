@@ -168,6 +168,8 @@ namespace Dashboard
             {
                 Trace.WriteLine($"{ex.Message}");
             }
+            System.Threading.Thread.Sleep(5000);
+            _communicator.Stop();
             return true;
         }
 
@@ -256,13 +258,16 @@ namespace Dashboard
 
                 Trace.WriteLine($"[Dash client] User Connected: {userData.UserName}");
 
-                if (ClientUserList.Count >= int.Parse(newuserid))
+                if (newuserid != UserID)
                 {
-                    ClientUserList[int.Parse(newuserid) - 1] = userData;
-                }
-                else
-                {
-                    ClientUserList.Add(userData);
+                    if (ClientUserList.Count >= int.Parse(newuserid))
+                    {
+                        ClientUserList[int.Parse(newuserid) - 1] = userData;
+                    }
+                    else
+                    {
+                        ClientUserList.Add(userData);
+                    }
                 }
                 CurrentUserCount++;
                 OnPropertyChanged(nameof(ClientUserList));
