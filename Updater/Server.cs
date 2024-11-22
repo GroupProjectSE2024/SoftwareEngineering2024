@@ -61,7 +61,7 @@ public class Server : INotificationHandler
         return s_instance;
     }
 
-    private void Broadcasting(string serializedPacket)
+    public void Broadcasting(string serializedPacket)
     {
         _semaphore.Wait();
 
@@ -139,20 +139,6 @@ public class Server : INotificationHandler
             UpdateUILogs($"Error in RequestSyncUp: {ex.Message}");
         }
     }
-
-    // private static void InvalidSyncUp(DataPacket dataPacket, ICommunicator communicator, string clientId, DirectoryMetadataComparer comparerInstance)
-    // {
-    //     try
-    //     {
-    //         UpdateUILogs("Invalid SyncUp request received");
-    //         Trace.WriteLine("[Updater] Invalid SyncUp request received");
-    //     }
-    //     catch (Exception ex)
-    //     {
-    //         Trace.WriteLine($"[Updater] Error in InvalidSyncUp: {ex.Message}");
-    //     }
-    // }
-
 
     /// <summary>
     /// Complete the sync by Signalling _semaphore

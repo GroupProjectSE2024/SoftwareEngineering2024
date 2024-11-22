@@ -109,7 +109,6 @@ public class ToolAssemblyLoader : IToolAssemblyLoader
                                                     {
                                                         toolPropertyMap[property.Name] = [valueAsString]; // creating a new list for values for new key
                                                     }
-                                                    Trace.WriteLine($"{property.Name}: {valueAsString}");
                                                 }
                                             }
                                         }

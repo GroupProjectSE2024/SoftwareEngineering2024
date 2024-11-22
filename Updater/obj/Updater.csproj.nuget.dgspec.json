@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SoftwareEngineering2024\\Updater\\Updater.csproj": {}
+    "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\Updater\\Updater.csproj": {}
   },
   "projects": {
-    "D:\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+    "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SoftwareEngineering2024\\Networking\\Networking.csproj",
+        "projectUniqueName": "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\Networking\\Networking.csproj",
         "projectName": "Networking",
-        "projectPath": "D:\\SoftwareEngineering2024\\Networking\\Networking.csproj",
-        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "D:\\SoftwareEngineering2024\\Networking\\obj\\",
+        "projectPath": "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\Networking\\Networking.csproj",
+        "packagesPath": "C:\\Users\\Garima Ranjan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\Networking\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Garima Ranjan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -88,29 +88,29 @@
         }
       }
     },
-    "D:\\SoftwareEngineering2024\\SoftwareEngineering2024-UpdaterNew\\ToolInterface\\ToolInterface.csproj": {
+    "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\ToolInterface\\ToolInterface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SoftwareEngineering2024\\SoftwareEngineering2024-UpdaterNew\\ToolInterface\\ToolInterface.csproj",
+        "projectUniqueName": "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\ToolInterface\\ToolInterface.csproj",
         "projectName": "ToolInterface",
-        "projectPath": "D:\\SoftwareEngineering2024\\SoftwareEngineering2024-UpdaterNew\\ToolInterface\\ToolInterface.csproj",
-        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "D:\\SoftwareEngineering2024\\SoftwareEngineering2024-UpdaterNew\\ToolInterface\\obj\\",
+        "projectPath": "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\ToolInterface\\ToolInterface.csproj",
+        "packagesPath": "C:\\Users\\Garima Ranjan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\ToolInterface\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Garima Ranjan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net8.0-windows"
+          "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0-windows7.0": {
-            "targetAlias": "net8.0-windows",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -126,14 +126,8 @@
         }
       },
       "frameworks": {
-        "net8.0-windows7.0": {
-          "targetAlias": "net8.0-windows",
-          "dependencies": {
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.3, )"
-            }
-          },
+        "net8.0": {
+          "targetAlias": "net8.0",
           "imports": [
             "net461",
             "net462",
@@ -154,17 +148,17 @@
         }
       }
     },
-    "D:\\SoftwareEngineering2024\\Updater\\Updater.csproj": {
+    "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\Updater\\Updater.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SoftwareEngineering2024\\Updater\\Updater.csproj",
+        "projectUniqueName": "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\Updater\\Updater.csproj",
         "projectName": "Updater",
-        "projectPath": "D:\\SoftwareEngineering2024\\Updater\\Updater.csproj",
-        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "D:\\SoftwareEngineering2024\\Updater\\obj\\",
+        "projectPath": "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\Updater\\Updater.csproj",
+        "packagesPath": "C:\\Users\\Garima Ranjan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\Updater\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Garima Ranjan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -178,11 +172,11 @@
           "net8.0-windows7.0": {
             "targetAlias": "net8.0-windows",
             "projectReferences": {
-              "D:\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
-                "projectPath": "D:\\SoftwareEngineering2024\\Networking\\Networking.csproj"
+              "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+                "projectPath": "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\Networking\\Networking.csproj"
               },
-              "D:\\SoftwareEngineering2024\\SoftwareEngineering2024-UpdaterNew\\ToolInterface\\ToolInterface.csproj": {
-                "projectPath": "D:\\SoftwareEngineering2024\\SoftwareEngineering2024-UpdaterNew\\ToolInterface\\ToolInterface.csproj"
+              "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\ToolInterface\\ToolInterface.csproj": {
+                "projectPath": "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\ToolInterface\\ToolInterface.csproj"
               }
             }
           }

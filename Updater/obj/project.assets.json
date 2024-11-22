@@ -271,19 +271,6 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
-      "Newtonsoft.Json/13.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/Newtonsoft.Json.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/Newtonsoft.Json.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "System.Diagnostics.DiagnosticSource/6.0.0": {
         "type": "package",
         "dependencies": {
@@ -477,9 +464,6 @@
       "ToolInterface/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "Newtonsoft.Json": "13.0.3"
-        },
         "compile": {
           "bin/placeholder/ToolInterface.dll": {}
         },
@@ -894,36 +878,6 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Newtonsoft.Json/13.0.3": {
-      "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
-      "type": "package",
-      "path": "newtonsoft.json/13.0.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.md",
-        "README.md",
-        "lib/net20/Newtonsoft.Json.dll",
-        "lib/net20/Newtonsoft.Json.xml",
-        "lib/net35/Newtonsoft.Json.dll",
-        "lib/net35/Newtonsoft.Json.xml",
-        "lib/net40/Newtonsoft.Json.dll",
-        "lib/net40/Newtonsoft.Json.xml",
-        "lib/net45/Newtonsoft.Json.dll",
-        "lib/net45/Newtonsoft.Json.xml",
-        "lib/net6.0/Newtonsoft.Json.dll",
-        "lib/net6.0/Newtonsoft.Json.xml",
-        "lib/netstandard1.0/Newtonsoft.Json.dll",
-        "lib/netstandard1.0/Newtonsoft.Json.xml",
-        "lib/netstandard1.3/Newtonsoft.Json.dll",
-        "lib/netstandard1.3/Newtonsoft.Json.xml",
-        "lib/netstandard2.0/Newtonsoft.Json.dll",
-        "lib/netstandard2.0/Newtonsoft.Json.xml",
-        "newtonsoft.json.13.0.3.nupkg.sha512",
-        "newtonsoft.json.nuspec",
-        "packageIcon.png"
-      ]
-    },
     "System.Diagnostics.DiagnosticSource/6.0.0": {
       "sha512": "frQDfv0rl209cKm1lnwTgFPzNigy2EKk1BS3uAvHvlBVKe5cymGyHO+Sj+NLv5VF/AhHsqPIUUwya5oV4CHMUw==",
       "type": "package",
@@ -1125,8 +1079,8 @@
     },
     "ToolInterface/1.0.0": {
       "type": "project",
-      "path": "../SoftwareEngineering2024-UpdaterNew/ToolInterface/ToolInterface.csproj",
-      "msbuildProject": "../SoftwareEngineering2024-UpdaterNew/ToolInterface/ToolInterface.csproj"
+      "path": "../ToolInterface/ToolInterface.csproj",
+      "msbuildProject": "../ToolInterface/ToolInterface.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -1136,19 +1090,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hp\\.nuget\\packages\\": {}
+    "C:\\Users\\Garima Ranjan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SoftwareEngineering2024\\Updater\\Updater.csproj",
+      "projectUniqueName": "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\Updater\\Updater.csproj",
       "projectName": "Updater",
-      "projectPath": "D:\\SoftwareEngineering2024\\Updater\\Updater.csproj",
-      "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "D:\\SoftwareEngineering2024\\Updater\\obj\\",
+      "projectPath": "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\Updater\\Updater.csproj",
+      "packagesPath": "C:\\Users\\Garima Ranjan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\Updater\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Garima Ranjan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1162,11 +1116,11 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "D:\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
-              "projectPath": "D:\\SoftwareEngineering2024\\Networking\\Networking.csproj"
+            "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+              "projectPath": "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\Networking\\Networking.csproj"
             },
-            "D:\\SoftwareEngineering2024\\SoftwareEngineering2024-UpdaterNew\\ToolInterface\\ToolInterface.csproj": {
-              "projectPath": "D:\\SoftwareEngineering2024\\SoftwareEngineering2024-UpdaterNew\\ToolInterface\\ToolInterface.csproj"
+            "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\ToolInterface\\ToolInterface.csproj": {
+              "projectPath": "C:\\Users\\Garima Ranjan\\Downloads\\Updtaer\\SoftwareEngineering2024\\ToolInterface\\ToolInterface.csproj"
             }
           }
         }
