@@ -17,7 +17,7 @@ using System.Windows.Navigation;
 using SECloud.Interfaces;
 using SECloud.Models;
 using SECloud.Services;
-using Dashboard;        
+using Dashboard;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Oauth2.v2;
 using Google.Apis.Oauth2.v2.Data;
@@ -51,8 +51,7 @@ namespace UXModule.Views
             ""client_secret"":""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"",
             ""redirect_uris"":[""http://localhost:5041/signin-google""]
            }
-        }"
-        ;
+        }";
 
         private readonly ICloud _cloudService;
         private string? _userEmail;
@@ -60,7 +59,6 @@ namespace UXModule.Views
         public LoginPage(MainPageViewModel viewModel)
         {
             InitializeComponent();
-
             _viewModel = viewModel;
 
             var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
@@ -76,6 +74,10 @@ namespace UXModule.Views
             StatusText = new TextBlock();
         }
 
+        /// <summary>
+        /// Handles the click event of the SignIn button.
+        /// Initiates the Google OAuth sign-in process and navigates to the HomePage upon success.
+        /// </summary>
         private async void SignInButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -86,11 +88,6 @@ namespace UXModule.Views
                 {
                     File.Delete("token.json");
                 }
-
-                // Clear the stored credentials in the FileDataStore
-                var credPath = "token.json";
-                var fileDataStore = new FileDataStore(credPath, true);
-                await fileDataStore.ClearAsync();
 
                 var credential = await GetGoogleOAuthCredentialAsync();
                 if (credential == null)
@@ -124,6 +121,10 @@ namespace UXModule.Views
             }
         }
 
+        /// <summary>
+        /// Handles the click event of the SignOut button.
+        /// Signs out the user by clearing stored credentials and deleting user data from the cloud.
+        /// </summary>
         private async void SignOutButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -156,6 +157,10 @@ namespace UXModule.Views
             }
         }
 
+        /// <summary>
+        /// Obtains Google OAuth credentials.
+        /// </summary>
+        /// <returns>The user credential or null if failed.</returns>
         private async Task<UserCredential?> GetGoogleOAuthCredentialAsync()
         {
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(client_secret_json)))
@@ -172,6 +177,11 @@ namespace UXModule.Views
             }
         }
 
+        /// <summary>
+        /// Retrieves user information from Google OAuth service.
+        /// </summary>
+        /// <param name="credential">The user credential.</param>
+        /// <returns>The user information or null if failed.</returns>
         private async Task<Userinfo?> GetUserInfoAsync(UserCredential credential)
         {
             var service = new Oauth2Service(new BaseClientService.Initializer
@@ -184,6 +194,11 @@ namespace UXModule.Views
             return await userInfoRequest.ExecuteAsync();
         }
 
+        /// <summary>
+        /// Uploads user information to the cloud service.
+        /// </summary>
+        /// <param name="userInfo">The user information.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
         private async Task UploadUserInfoToCloud(Userinfo userInfo)
         {
             var userData = new
@@ -206,6 +221,11 @@ namespace UXModule.Views
             }
         }
 
+        /// <summary>
+        /// Deletes user information from the cloud service.
+        /// </summary>
+        /// <param name="userEmail">The user's email address.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
         private async Task DeleteUserInfoFromCloud(string userEmail)
         {
             var response = await _cloudService.DeleteAsync($"{userEmail}_user_data.json");

@@ -10,14 +10,18 @@ using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 
-namespace ViewModel.DashboardViewModel 
+namespace ViewModel.DashboardViewModel
 {
+    /// <summary>
+    /// Model representing data for the graph.
+    /// </summary>
     public class GraphDataModel
     {
         public DateTime Time { get; set; }
         public int UserCount { get; set; }
     }
-    public class MainPageViewModel : INotifyPropertyChanged  
+
+    public class MainPageViewModel : INotifyPropertyChanged
     {
         private ICommunicator _communicator;
         private ServerDashboard _serverSessionManager;
@@ -27,7 +31,7 @@ namespace ViewModel.DashboardViewModel
         private ObservableCollection<UserDetails> _userDetailsList = new ObservableCollection<UserDetails>();
         public ObservableCollection<UserDetails> UserDetailsList
         {
-            get { return _userDetailsList; }
+            get => _userDetailsList;
             set
             {
                 if (_userDetailsList != value)
@@ -37,6 +41,7 @@ namespace ViewModel.DashboardViewModel
                 }
             }
         }
+
         private ObservableCollection<GraphDataModel> _userCountData;
         public ObservableCollection<GraphDataModel> UserCountData
         {
@@ -49,6 +54,7 @@ namespace ViewModel.DashboardViewModel
         }
 
         public SeriesCollection SeriesCollection { get; private set; }
+
         private List<string> _timeLabels;
         public List<string> TimeLabels
         {
@@ -109,7 +115,6 @@ namespace ViewModel.DashboardViewModel
             }
         }
 
-
         public MainPageViewModel()
         {
             _serverPort = string.Empty;
@@ -123,11 +128,11 @@ namespace ViewModel.DashboardViewModel
         private string _serverPort;
         private string _serverIP;
         private string _userName;
-        private string _profilepicurl;
+        private string _profilePicUrl;
 
         public string? UserName
         {
-            get { return _userName; }
+            get => _userName;
             set
             {
                 _userName = value;
@@ -135,13 +140,13 @@ namespace ViewModel.DashboardViewModel
             }
         }
 
-        public string? ProfilePicURL
+        public string? ProfilePicUrl
         {
-            get { return _profilepicurl; }
+            get => _profilePicUrl;
             set
             {
-                _profilepicurl = value;
-                OnPropertyChanged(nameof(ProfilePicURL));
+                _profilePicUrl = value;
+                OnPropertyChanged(nameof(ProfilePicUrl));
             }
         }
 
@@ -149,7 +154,7 @@ namespace ViewModel.DashboardViewModel
 
         public string? ServerIP
         {
-            get { return _serverIP; }
+            get => _serverIP;
             set
             {
                 _serverIP = value;
@@ -159,7 +164,7 @@ namespace ViewModel.DashboardViewModel
 
         public string ServerPort
         {
-            get { return _serverPort; }
+            get => _serverPort;
             set
             {
                 if (_serverPort != value)
@@ -172,14 +177,20 @@ namespace ViewModel.DashboardViewModel
 
         public bool IsHost { get; private set; } = false;
 
-        // Method to create a session as host
-        public string CreateSession(string username, string useremail, string profilePictureUrl)
+        /// <summary>
+        /// Method to create a session as host.
+        /// </summary>
+        /// <param name="userName">The user's name.</param>
+        /// <param name="userEmail">The user's email.</param>
+        /// <param name="profilePictureUrl">The URL of the user's profile picture.</param>
+        /// <returns>Returns "success" if the session is created successfully, otherwise "failure".</returns>
+        public string CreateSession(string userName, string userEmail, string profilePictureUrl)
         {
             IsHost = true;
-            UserName = username;
-            ProfilePicURL = profilePictureUrl ?? string.Empty;
+            UserName = userName;
+            ProfilePicUrl = profilePictureUrl ?? string.Empty;
             _communicator = CommunicationFactory.GetCommunicator(isClientSide: false);
-            _serverSessionManager = new ServerDashboard(_communicator, username, useremail, profilePictureUrl);
+            _serverSessionManager = new ServerDashboard(_communicator, userName, userEmail, profilePictureUrl);
             _serverSessionManager.PropertyChanged += UpdateUserListOnPropertyChanged; // Subscribe to PropertyChanged
             string serverCredentials = _serverSessionManager.Initialize();
 
@@ -193,31 +204,47 @@ namespace ViewModel.DashboardViewModel
             return "failure";
         }
 
-        // Method to join a session as client
-        public string JoinSession(string username, string useremail, string serverip, string serverport, string profilePictureUrl)
+        /// <summary>
+        /// Method to join a session as client.
+        /// </summary>
+        /// <param name="userName">The user's name.</param>
+        /// <param name="userEmail">The user's email.</param>
+        /// <param name="serverIP">The server IP address.</param>
+        /// <param name="serverPort">The server port.</param>
+        /// <param name="profilePictureUrl">The URL of the user's profile picture.</param>
+        /// <returns>Returns "success" if the session is joined successfully, otherwise "failure".</returns>
+        public string JoinSession(string userName, string userEmail, string serverIP, string serverPort, string profilePictureUrl)
         {
             IsHost = false;
-            UserName = username;
-            ProfilePicURL = profilePictureUrl ?? string.Empty;
+            UserName = userName;
+            ProfilePicUrl = profilePictureUrl ?? string.Empty;
             _communicator = CommunicationFactory.GetCommunicator();
-            _clientSessionManager = new ClientDashboard(_communicator, username, useremail,profilePictureUrl);
+            _clientSessionManager = new ClientDashboard(_communicator, userName, userEmail, profilePictureUrl);
             _clientSessionManager.PropertyChanged += UpdateUserListOnPropertyChanged; // Subscribe to PropertyChanged
-            string serverResponse = _clientSessionManager.Initialize(serverip, serverport);
+            string serverResponse = _clientSessionManager.Initialize(serverIP, serverPort);
 
             if (serverResponse == "success")
             {
-                UserName = username;
-                UserEmail = useremail;
+                UserName = userName;
+                UserEmail = userEmail;
                 UpdateUserListOnPropertyChanged(this, new PropertyChangedEventArgs(nameof(ClientDashboard.ClientUserList)));
             }
             return serverResponse;
         }
 
+        /// <summary>
+        /// Stops the server session.
+        /// </summary>
+        /// <returns>Returns true if the session is stopped successfully, otherwise false.</returns>
         public bool ServerStopSession()
         {
             return _serverSessionManager.ServerStop();
         }
 
+        /// <summary>
+        /// Leaves the client session.
+        /// </summary>
+        /// <returns>Returns true if the client leaves the session successfully, otherwise false.</returns>
         public bool ClientLeaveSession()
         {
             return _clientSessionManager.ClientLeft();
@@ -230,12 +257,11 @@ namespace ViewModel.DashboardViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
-        private void UpdateUserListOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        public void UpdateUserListOnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(ServerDashboard.ServerUserList) || e.PropertyName == nameof(ClientDashboard.ClientUserList))
             {
                 var users = _serverSessionManager?.ServerUserList ?? _clientSessionManager?.ClientUserList;
-                
 
                 if (users != null)
                 {
@@ -248,32 +274,35 @@ namespace ViewModel.DashboardViewModel
                         }
                     });
                 }
-
-                
             }
         }
+
+        /// <summary>
+        /// Initializes the graph.
+        /// </summary>
         private void InitializeGraph()
         {
             _userCountData = new ObservableCollection<GraphDataModel>();
             _timeLabels = new List<string>();
 
             SeriesCollection = new SeriesCollection
-    {
-        new LineSeries
-        {
-            Title = "Users",
-            Values = new ChartValues<ObservableValue>(), // Ensure ChartValues<ObservableValue>
-            PointGeometry = null,
-            LineSmoothness = 0
-        }
-    };
+            {
+                new LineSeries
+                {
+                    Title = "Users",
+                    Values = new ChartValues<ObservableValue>(), // Ensure ChartValues<ObservableValue>
+                    PointGeometry = null,
+                    LineSmoothness = 0
+                }
+            };
 
             AxisMax = DateTime.Now.Ticks + TimeSpan.FromSeconds(1).Ticks;
             AxisMin = DateTime.Now.Ticks;
         }
 
-
-        //added
+        /// <summary>
+        /// Updates the user count graph.
+        /// </summary>
         private void UpdateUserCountGraph()
         {
             Application.Current.Dispatcher.Invoke(() =>
@@ -292,19 +321,15 @@ namespace ViewModel.DashboardViewModel
                     MaxYValue = currentCount + 2;
                 }
 
-                // Remove the limit on points if you want to keep all the data points
-                // if (SeriesCollection[0].Values.Count > 20)
-                // {
-                //     SeriesCollection[0].Values.RemoveAt(0);
-                //     TimeLabels.RemoveAt(0);
-                // }
-
                 OnPropertyChanged(nameof(SeriesCollection));
                 OnPropertyChanged(nameof(TimeLabels));
             });
         }
-        //added
-        private void SetupTimer()
+
+        /// <summary>
+        /// Sets up the timer for updating the graph.
+        /// </summary>
+        public void SetupTimer()
         {
             _timer = new DispatcherTimer
             {
@@ -313,13 +338,18 @@ namespace ViewModel.DashboardViewModel
             _timer.Tick += TimerOnTick;
             _timer.Start();
         }
-        //added
-        private void TimerOnTick(object sender, EventArgs e)
+
+        /// <summary>
+        /// Tick event handler for the timer.
+        /// </summary>
+        public void TimerOnTick(object sender, EventArgs e)
         {
             UpdateUserCountGraph();
         }
-        //added
-        // Add cleanup method
+
+        /// <summary>
+        /// Cleans up resources.
+        /// </summary>
         public void Cleanup()
         {
             _timer?.Stop();

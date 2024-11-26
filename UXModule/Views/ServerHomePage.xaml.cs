@@ -23,20 +23,29 @@ namespace UXModule.Views
     {
         private readonly MainPageViewModel _viewModel;
 
+        /// <summary>
+        /// Initializes a new instance of the ServerHomePage class.
+        /// </summary>
+        /// <param name="viewModel">The view model for the main page.</param>
         public ServerHomePage(MainPageViewModel viewModel)
         {
             InitializeComponent();
             _viewModel = viewModel;
-            this.DataContext = _viewModel;
+            DataContext = _viewModel;
         }
 
+        /// <summary>
+        /// Handles the click event of the button to stop the server session.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             bool response = _viewModel.ServerStopSession();
-            if (response) {
-            this.NavigationService.Navigate(new HomePage(_viewModel));
+            if (response)
+            {
+                NavigationService.GoBack();
             }
-
         }
     }
 }
