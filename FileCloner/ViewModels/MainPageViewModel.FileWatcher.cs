@@ -16,6 +16,7 @@ namespace FileCloner.ViewModels;
 
 partial class MainPageViewModel : ViewModelBase
 {
+    private readonly FileSystemWatcher _watcher = new();
     /// <summary>
     /// Watches the file present at the given path.
     /// </summary>
@@ -23,11 +24,10 @@ partial class MainPageViewModel : ViewModelBase
     public void WatchFile(string path)
     {
         Trace.WriteLine($"Started watching at {path}");
-        using FileSystemWatcher watcher = new();
-        watcher.Path = path;
+        _watcher.Path = path;
 
         //The following changes are notified to the watcher
-        watcher.NotifyFilter = NotifyFilters.Attributes |
+        _watcher.NotifyFilter = NotifyFilters.Attributes |
         NotifyFilters.DirectoryName |
         NotifyFilters.FileName |
         NotifyFilters.LastWrite |
@@ -35,20 +35,15 @@ partial class MainPageViewModel : ViewModelBase
 
         //Watching all kinds of files. * is a wildcard which means changes in all files
         //with all extensions are watched upon.
-        watcher.Filter = "*.*";
+        _watcher.Filter = "*.*";
 
         //Setting event handlers for the changes
-        watcher.Created += new FileSystemEventHandler(OnChanged);
-        watcher.Deleted += new FileSystemEventHandler(OnChanged);
-        watcher.Changed += new FileSystemEventHandler(OnChanged);
-        watcher.Renamed += new RenamedEventHandler(OnRenamed);
+        _watcher.Created += new FileSystemEventHandler(OnChanged);
+        _watcher.Deleted += new FileSystemEventHandler(OnChanged);
+        _watcher.Changed += new FileSystemEventHandler(OnChanged);
+        _watcher.Renamed += new RenamedEventHandler(OnRenamed);
 
-        watcher.EnableRaisingEvents = true;
-        //Watch for as long as the UI is kept running
-        while (true)
-        {
-            ;
-        }
+        _watcher.EnableRaisingEvents = true;
     }
 
     //Update the UI as and when the name of an object is changed.

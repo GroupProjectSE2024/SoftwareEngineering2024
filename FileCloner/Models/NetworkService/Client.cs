@@ -18,6 +18,7 @@ using System.IO;
 using System.Text;
 using System.Diagnostics.CodeAnalysis;
 using FileCloner.FileClonerLogging;
+using GrpcClient;
 
 namespace FileCloner.Models.NetworkService;
 
@@ -100,9 +101,9 @@ public class Client : INotificationHandler
     [ExcludeFromCodeCoverage]
     public void SendSummary()
     {
-        foreach (string responder in _responders)
+        try
         {
-            try
+            foreach (string responder in _responders)
             {
                 // Generate path for the summary file specific to each responder
                 string filePath = Path.Combine(Constants.SenderFilesFolderPath, $"{responder}.txt");
@@ -128,11 +129,11 @@ public class Client : INotificationHandler
                 _logAction?.Invoke($"[Client] Summary Sent to {responder}");
                 _logger.Log($"Summary sent to {responder}");
             }
-            catch (Exception ex)
-            {
-                _logAction?.Invoke($"[Client] Summary not sent to {responder} : {ex.Message}");
-                _logger.Log($"[Client] Failed to send summary to {responder} : {ex.Message}", isErrorMessage: true);
-            }
+        }
+        catch (Exception ex)
+        {
+            _logAction?.Invoke($"[Client] Summary not sent: {ex.Message}");
+            _logger.Log($"[Client] Failed to send summary to: {ex.Message}", isErrorMessage: true);
         }
     }
 
@@ -264,31 +265,39 @@ public class Client : INotificationHandler
     [ExcludeFromCodeCoverage]
     public void OnDataReceived(string serializedData)
     {
-        Message data = _serializer.Deserialize<Message>(serializedData);
-        string subject = data.Subject;
-        string from = data.From;
-        _logger.Log($"Data received from {data.From} with subject {data.Subject}");
-
-        // Prevent processing self-sent messages
-        if (from != Constants.IPAddress || s_requestID != data.RequestID)
+        try
         {
-            //logAction?.Invoke($"[Client] Received {subject} from {from}");
+            Message data = _serializer.Deserialize<Message>(serializedData);
+            string subject = data.Subject;
+            string from = data.From;
+            _logger.Log($"Data received from {data.From} with subject {data.Subject}");
 
-            switch (subject)
+            // Prevent processing self-sent messages
+            if (from != Constants.IPAddress || s_requestID != data.RequestID)
             {
-                case Constants.Request:
-                    SendResponse(data);
-                    break;
-                case Constants.Response:
-                    OnResponseReceived(data);
-                    break;
-                case Constants.Summary:
-                    OnSummaryReceived(data);
-                    break;
-                case Constants.Cloning:
-                    OnFileForCloningReceived(data);
-                    break;
+                //logAction?.Invoke($"[Client] Received {subject} from {from}");
+
+                switch (subject)
+                {
+                    case Constants.Request:
+                        SendResponse(data);
+                        break;
+                    case Constants.Response:
+                        OnResponseReceived(data);
+                        break;
+                    case Constants.Summary:
+                        OnSummaryReceived(data);
+                        break;
+                    case Constants.Cloning:
+                        OnFileForCloningReceived(data);
+                        break;
+                }
             }
+        }
+        catch (Exception ex)
+        {
+            _logAction?.Invoke($"[Client] Exception occured while receiving data: {ex.Message}");
+            _logger.Log($"[Client] Exception occured while receiving data: {ex.Message}", isErrorMessage: true);
         }
     }
 
