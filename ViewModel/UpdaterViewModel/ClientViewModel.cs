@@ -34,7 +34,9 @@ public class ClientViewModel : INotifyPropertyChanged
 
     public async Task SyncUpAsync()
     {
-        await Task.Run(_client.SyncUp); // Call the SyncUp method on the client asynchronously
+#pragma warning disable IDE0200 // Remove unnecessary lambda expression (Required for functionality)
+        await Task.Run(() => _client.SyncUp()); // Call the SyncUp method on the client asynchronously
+#pragma warning restore IDE0200 // Remove unnecessary lambda expression
 
         UpdateLog("Sync completed.");
     }

@@ -38,7 +38,7 @@ public class DataPacket
 
     [XmlArray("FileContents")]
     [XmlArrayItem("FileContent")]
-    public List<FileContent> FileContentList { get; set; } = new List<FileContent>();
+    public List<FileContent> FileContentList { get; set; } = [];
 
     /// <summary>
     /// Parameterless constructor for serialization
