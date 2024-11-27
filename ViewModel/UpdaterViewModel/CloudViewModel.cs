@@ -17,10 +17,7 @@ using SECloud.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Text;
-using System.Reflection.Metadata;
 using SECloud.Models;
-using System.Diagnostics;
-using Networking.Communication;
 
 
 namespace ViewModel.UpdaterViewModel;
@@ -150,7 +147,9 @@ public class CloudViewModel
         {
             _logServiceViewModel.UpdateLogDetails("Cloud has more Data than server. Sending JSON file to server....");
             UpdateServerWithCloudData(jsonCloudFiles);
-            _logServiceViewModel.UpdateLogDetails("A file from cloud is received. Please check the directory");
+            string dataFromCloud = NotificationOfCloudData(onlyCloudFiles);
+            _logServiceViewModel.ShowNotification(dataFromCloud);
+            _logServiceViewModel.UpdateLogDetails(dataFromCloud);
         }
 
         //send the files to cloud using upload function.
@@ -166,7 +165,7 @@ public class CloudViewModel
 
     public async Task<ServiceResponse<string>> ResponseMethod(MemoryStream stream)
     {
-        return await _cloudService.UploadAsync("ServerFiles.json", stream, "file/json");
+        return await _cloudService.UploadAsync("ServerFiles.json", stream, "application/json");
     }
 
     private static List<FileData> OnlyServerFileMethod(string cloudData, string serverData)
@@ -236,26 +235,26 @@ public class CloudViewModel
                 {
                     newFilesToCloud.Add(new FileData {
                         Id = serverFile.Id != null && serverFile.Id.Count > index
-                            ? new List<string> { serverFile.Id[index] }
-                            : new List<string> { "N/A" },
+                            ? [serverFile.Id[index]]
+                            : ["N/A"],
                         Name = serverFile.Name != null && serverFile.Name.Count > index
-                            ? new List<string> { serverFile.Name[index] }
-                            : new List<string> { "N/A" },
+                            ? [serverFile.Name[index]]
+                            : ["N/A"],
                         Description = serverFile.Description != null && serverFile.Description.Count > index
-                            ? new List<string> { serverFile.Description[index] }
-                            : new List<string> { "N/A" },
+                            ? [serverFile.Description[index]]
+                            : ["N/A"],
                         FileVersion = serverFile.FileVersion != null && serverFile.FileVersion.Count > index
-                            ? new List<string> { serverFile.FileVersion[index] }
-                            : new List<string> { "N/A" },
+                            ? [serverFile.FileVersion[index]]
+                            : ["N/A"],
                         LastModified = serverFile.LastModified != null && serverFile.LastModified.Count > index
-                            ? new List<string> { serverFile.LastModified[index] }
-                            : new List<string> { "N/A" },
+                            ? [serverFile.LastModified[index]]
+                            : ["N/A"],
                         CreatorName = serverFile.CreatorName != null && serverFile.CreatorName.Count > index
-                            ? new List<string> { serverFile.CreatorName[index] }
-                            : new List<string> { "N/A" },
+                            ? [serverFile.CreatorName[index]]
+                            : ["N/A"],
                         CreatorMail = serverFile.CreatorMail != null && serverFile.CreatorMail.Count > index
-                            ? new List<string> { serverFile.CreatorMail[index] }
-                            : new List<string> { "N/A" }
+                            ? [serverFile.CreatorMail[index]]
+                            : ["N/A"]
                     });
                 }
 
@@ -275,8 +274,8 @@ public class CloudViewModel
         List<FileData>? serverFiles = JsonSerializer.Deserialize<List<FileData>>(serverData);
 
         // Remove entries with "N/A" values from both cloud and server files
-        cloudFiles = RemoveNAEntries(cloudFiles ?? new List<FileData>());
-        serverFiles = RemoveNAEntries(serverFiles ?? new List<FileData>());
+        cloudFiles = RemoveNAEntries(cloudFiles ?? []);
+        serverFiles = RemoveNAEntries(serverFiles ?? []);
 
         // Ensure both lists are not null
         cloudFiles ??= [];
@@ -291,7 +290,7 @@ public class CloudViewModel
                 .Any(serverFile => serverFile.Name != null && serverFile.Name.Contains(item.name) &&
                                     serverFile.FileVersion != null && serverFile.FileVersion.Contains(cloudFile.FileVersion?[item.index] ?? "")))
             .Select(item => item.index)
-            .ToList() ?? new List<int>();
+            .ToList() ?? [];
 
             // Remove the items at these indices across all fields in cloudFile
             foreach (int index in indicesToRemove.OrderByDescending(i => i))
@@ -330,7 +329,7 @@ public class CloudViewModel
         }
 
         // Return only cloud files with remaining unique entries
-        return cloudFiles.Where(file => file.Name != null && file.Name.Any()).ToList();
+        return cloudFiles.Where(file => file.Name != null && file.Name.Count != 0).ToList();
 
     }
 
@@ -350,19 +349,36 @@ public class CloudViewModel
 
         string? content = Utils.ReadBinaryFile(destinationPath) ?? throw new Exception("Failed to read file");
         string? serializedContent = Utils.SerializeObject(content) ?? throw new Exception("Failed to serialize content");
-        var fileContentToSend = new FileContent("Cloud.json", serializedContent);
+        var fileContentToSend = new FileContent("CloudFiles.json", serializedContent);
 
         var fileContentsToSend = new List<FileContent>();
         fileContentsToSend?.Add(fileContentToSend);
 
         var dataPacketToSend = new DataPacket(
                         DataPacket.PacketType.Broadcast,
-                        new List<FileContent> { fileContentToSend }
+                        [fileContentToSend]
                         );
 
         // Serialize packet
-        string serializedPacket = Utils.SerializeObject(dataPacketToSend);
-        _serverViewModel.GetServer().Broadcast(serializedPacket);
+        string? serializedPacket = Utils.SerializeObject(dataPacketToSend);
+        if (serializedPacket != null)
+        {
+            _serverViewModel.GetServer().Broadcast(serializedPacket);
+        }
+    }
+    private string NotificationOfCloudData(List<FileData> cloudFiles)
+    {
+        // Create the combined message for all files
+        string combinedMessage = "";
+        foreach (FileData cloudFile in cloudFiles)
+        {
+            combinedMessage += $"A new tool {cloudFile.Name?[0]} " +
+                               $"of version: {cloudFile.FileVersion?[0]} " +
+                               $"is available! Contact this mail id: {cloudFile.CreatorMail?[0]} for more info\n";
+        }
+
+        // Log the combined message
+        return combinedMessage;
     }
 
     private static string SaveFileToServerMethod()

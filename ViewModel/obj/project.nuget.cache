@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "MpnxGO4jvhU=",
+  "dgSpecHash": "xm7fs5RKH9k=",
   "success": true,
   "projectFilePath": "C:\\Users\\Garima Ranjan\\Desktop\\FinalSE\\SoftwareEngineering2024\\ViewModel\\ViewModel.csproj",
   "expectedPackageFiles": [
@@ -160,6 +160,7 @@
     "C:\\Users\\Garima Ranjan\\.nuget\\packages\\system.security.cryptography.openssl\\4.3.0\\system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Garima Ranjan\\.nuget\\packages\\system.security.cryptography.pkcs\\6.0.1\\system.security.cryptography.pkcs.6.0.1.nupkg.sha512",
     "C:\\Users\\Garima Ranjan\\.nuget\\packages\\system.security.cryptography.primitives\\4.3.0\\system.security.cryptography.primitives.4.3.0.nupkg.sha512",
+    "C:\\Users\\Garima Ranjan\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.0\\system.security.cryptography.protecteddata.9.0.0.nupkg.sha512",
     "C:\\Users\\Garima Ranjan\\.nuget\\packages\\system.security.cryptography.x509certificates\\4.3.0\\system.security.cryptography.x509certificates.4.3.0.nupkg.sha512",
     "C:\\Users\\Garima Ranjan\\.nuget\\packages\\system.security.cryptography.xml\\6.0.1\\system.security.cryptography.xml.6.0.1.nupkg.sha512",
     "C:\\Users\\Garima Ranjan\\.nuget\\packages\\system.security.principal\\4.0.1\\system.security.principal.4.0.1.nupkg.sha512",
