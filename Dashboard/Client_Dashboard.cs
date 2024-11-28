@@ -138,6 +138,8 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
     private readonly Screenshare.ScreenShareClient.ScreenshareClient _screenShareClient = Screenshare.ScreenShareClient.ScreenshareClient.GetInstance();
 
     private readonly Updater.Client _updaterClient = Updater.Client.GetClientInstance();
+    private readonly FileCloner.Models.Singleton _fileClonerInstance = FileCloner.Models.Singleton.Instance;
+
     /// <summary>
     /// Initializes a new instance of the Client_Dashboard class.
     /// </summary>
@@ -153,6 +155,7 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
         UserName = username;
         UserEmail = useremail;
         UserProfileUrl = pictureURL;
+        _fileClonerInstance.UserName = UserName;
         UserID = string.Empty; // Initialize UserID
         ClientUserList.CollectionChanged += (s, e) => OnPropertyChanged(nameof(ClientUserList));
     }
@@ -230,7 +233,6 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
 
             serverOrClient.SetUserDetails(UserName, UserID, UserEmail, UserProfileUrl);
             _contentInstance.SetUserDetails_client(UserName, UserID, UserProfileUrl);
-
 
 
             Trace.WriteLine("[DashboardServer] sent info to whiteboard client");

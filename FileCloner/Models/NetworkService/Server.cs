@@ -1,7 +1,7 @@
 ﻿/******************************************************************************
  * Filename    = Server.cs
  *
- * Author      = Sai Hemanth Reddy
+ * Author      = Sai Hemanth Reddy & Neeraj Krishna N
  *
  * Project     = FileCloner
  *
