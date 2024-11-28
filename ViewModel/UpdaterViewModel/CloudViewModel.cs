@@ -17,10 +17,7 @@ using SECloud.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Text;
-using System.Reflection.Metadata;
 using SECloud.Models;
-using System.Diagnostics;
-using Networking.Communication;
 
 
 namespace ViewModel.UpdaterViewModel;
@@ -150,7 +147,9 @@ public class CloudViewModel
         {
             _logServiceViewModel.UpdateLogDetails("Cloud has more Data than server. Sending JSON file to server....");
             UpdateServerWithCloudData(jsonCloudFiles);
-            _logServiceViewModel.UpdateLogDetails("A file from cloud is received. Please check the directory");
+            string dataFromCloud = NotificationOfCloudData(onlyCloudFiles);
+            _logServiceViewModel.ShowNotification(dataFromCloud);
+            _logServiceViewModel.UpdateLogDetails(dataFromCloud);
         }
 
         //send the files to cloud using upload function.
@@ -350,7 +349,7 @@ public class CloudViewModel
 
         string? content = Utils.ReadBinaryFile(destinationPath) ?? throw new Exception("Failed to read file");
         string? serializedContent = Utils.SerializeObject(content) ?? throw new Exception("Failed to serialize content");
-        var fileContentToSend = new FileContent("Cloud.json", serializedContent);
+        var fileContentToSend = new FileContent("CloudFiles.json", serializedContent);
 
         var fileContentsToSend = new List<FileContent>();
         fileContentsToSend?.Add(fileContentToSend);
@@ -366,6 +365,22 @@ public class CloudViewModel
         {
             _serverViewModel.GetServer().Broadcast(serializedPacket);
         }
+
+    }
+    private string NotificationOfCloudData(List<FileData> cloudFiles)
+    {
+        // Create the combined message for all files
+        string combinedMessage = "";
+        foreach (FileData cloudFile in cloudFiles)
+        {
+            combinedMessage += $"A new tool {cloudFile.Name?[0]} " +
+                               $"of version: {cloudFile.FileVersion?[0]} " +
+                               $"is available! Contact this mail id: {cloudFile.CreatorMail?[0]} for more info\n";
+        }
+
+        // Log the combined message
+        return combinedMessage;
+
     }
 
     private static string SaveFileToServerMethod()

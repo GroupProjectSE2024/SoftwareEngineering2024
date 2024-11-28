@@ -99,7 +99,7 @@
                         <GridView AllowsColumnReorder="False">
                             <!-- Prevent column drag/drop -->
                             <!-- Adjust the column widths to match the total ListView width -->
-                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="150" />
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="250" />
                             <GridViewColumn Header="Version" DisplayMemberBinding="{Binding Version}" Width="100" />
                             <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="200" />
                             <GridViewColumn Header="Deprecated" DisplayMemberBinding="{Binding Deprecated}" Width="100" />
