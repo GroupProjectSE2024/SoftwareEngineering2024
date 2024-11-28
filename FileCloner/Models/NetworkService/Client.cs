@@ -237,10 +237,10 @@ public class Client : INotificationHandler
         catch (Exception ex)
         {
             _logAction?.Invoke(
-                $"[Client] Exception occured while sending {indexOfChunkBeingSent} : {ex.Message}"
+                $"[Client] Exception occured while sending chunk : {ex.Message}"
             );
             _logger.Log(
-                $"[Client] Exception occured while sending {indexOfChunkBeingSent} : {ex.Message}",
+                $"[Client] Exception occured while sending chunk : {ex.Message}",
                 isErrorMessage: true
             );
         }
