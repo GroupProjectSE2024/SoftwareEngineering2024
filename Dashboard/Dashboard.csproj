@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Content\Content.csproj" />
+    <ProjectReference Include="..\FileCloner\FileCloner.csproj" />
     <ProjectReference Include="..\Networking\Networking.csproj" />
     <ProjectReference Include="..\Screenshare\Screenshare.csproj" />
     <ProjectReference Include="..\Updater\Updater.csproj" />

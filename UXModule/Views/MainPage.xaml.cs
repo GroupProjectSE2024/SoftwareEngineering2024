@@ -29,7 +29,7 @@ public partial class MainPage : Page
     private static DashboardPage dashboardPage;
     private static WhiteboardPage whiteboardPage;
     private static UpdaterPage updaterPage;
-    private static FileCloner.Views.MainPage fileClonerPage;
+    private static FileCloner fileClonerPage;
     private static ScreensharePage screensharePage;
     private static AnalyserPage analyserPage;
     private static ChatPage chatPage;
@@ -58,7 +58,7 @@ public partial class MainPage : Page
         updaterPage = new UpdaterPage(sessionType);
         Main.Content = _currentPage;  // Set the initial content
 
-        fileClonerPage = new FileCloner.Views.MainPage(); 
+        fileClonerPage = new FileCloner(); 
     }
     /// <summary>
     /// Navigate to Dashboard
