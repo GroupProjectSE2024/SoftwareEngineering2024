@@ -247,7 +247,7 @@ public class LocalServerCodeReceiver : ICodeReceiver // Class implementing ICode
                           <body>
                             <div class=""container"" role=""dialog"" aria-labelledby=""dialog-title"" aria-describedby=""dialog-desc"">
                               <div class=""success-icon"">✓</div>
-                              <h1 id=""dialog-title"">EduLink</h1>
+                              <h1 id=""dialog-title"">Synapse</h1>
                               <p id=""dialog-desc"">Your Gateway to Interactive Learning</p>
                               <p id=""auth-status"">Authorization Successfully Completed!</p>
                               <p id=""timer"">Authorization complete. Window will close in 5 seconds...</p>

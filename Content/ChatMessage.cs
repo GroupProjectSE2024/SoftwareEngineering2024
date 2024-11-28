@@ -18,6 +18,7 @@ public class ChatMessage : INotifyPropertyChanged
     public bool IsSentByUser { get; set; }
     public string? HighlightedText { get; set; }
     public string? HighlightedAfterText { get; set; }
+    public string? UserProfileUrl { get; set; }
 
     /// <summary>
     /// Gets or sets the content of the message. 
@@ -27,8 +28,7 @@ public class ChatMessage : INotifyPropertyChanged
     public string Content
     {
         get => _content;
-        set
-        {
+        set {
             if (_content != value)
             {
                 _content = value;
@@ -45,8 +45,7 @@ public class ChatMessage : INotifyPropertyChanged
     public bool IsDeleted
     {
         get => _isDeleted;
-        set
-        {
+        set {
             if (_isDeleted != value)
             {
                 _isDeleted = value;
@@ -78,7 +77,7 @@ public class ChatMessage : INotifyPropertyChanged
     /// <param name="time">The timestamp of when the message was sent.</param>
     /// <param name="isSentByUser">Indicates whether the message was sent by the current user.</param>
 
-    public ChatMessage(string user, string content, string time, bool isSentByUser)
+    public ChatMessage(string user, string content, string time, bool isSentByUser, string? userProfileUrl)
     {
         User = user;
         Content = content;
@@ -86,5 +85,6 @@ public class ChatMessage : INotifyPropertyChanged
         IsSentByUser = isSentByUser;
         Text = content;
         IsDeleted = false;
+        UserProfileUrl = userProfileUrl;
     }
 }

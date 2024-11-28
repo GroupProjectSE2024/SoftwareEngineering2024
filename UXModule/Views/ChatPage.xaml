@@ -116,7 +116,7 @@
             <!-- Chat Messages -->
             <ListView x:Name="MessagesListView"                      
           ItemsSource="{Binding Messages}" 
-          Margin="0,50,0,50"
+          Margin="0,50,0,50" BorderBrush="Transparent"
           Background="Transparent"
           HorizontalContentAlignment="Stretch"
           ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -128,7 +128,6 @@
                             <Ellipse Width="40" Height="40" Visibility="{Binding IsSentByUser, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=False}">
                                 <Ellipse.Fill>
                                     <ImageBrush ImageSource="{Binding UserProfileUrl}" />
-
                                 </Ellipse.Fill>
                             </Ellipse>
 
@@ -136,7 +135,7 @@
                             <Border 
                     CornerRadius="10"
                     Background="{Binding IsSentByUser, Converter={StaticResource BoolToBrushConverter}}"
-                    Padding="10" Margin="5" MaxWidth="300" Height="Auto" 
+                    Padding="10" Margin="5" MaxWidth="200" Height="Auto" 
                     >
                                 <StackPanel Orientation="Horizontal" >
                                     <StackPanel Orientation="Vertical">
@@ -203,7 +202,7 @@
         <!-- Private Message Section -->
         <DockPanel VerticalAlignment="Bottom" Height="50" Background="Transparent" Margin="7,0,7,2" >
             <Grid>
-                <ComboBox x:Name="ClientDropdown"  Width="62" ItemsSource="{Binding Clientte}"  Margin="1,5,0,5" Height="36" Background="Teal"  SelectedItem="{Binding Recipientt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+                <ComboBox x:Name="ClientDropdown"  Width="62" ItemsSource="{Binding Clientte, UpdateSourceTrigger=PropertyChanged}"  Margin="1,5,0,5" Height="36" Background="Teal"  SelectedItem="{Binding Recipientt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
                 <TextBlock Text="Members" Foreground="Gray" VerticalAlignment="Center" Margin="5,0,0,0" IsHitTestVisible="False" FontSize="10.4"
                 Visibility="{Binding SelectedItem, ElementName=ClientDropdown, Converter={StaticResource NullToVisibilityConverter}}"/>
             </Grid>
@@ -218,7 +217,7 @@
                 <TextBox Grid.Column="0" Name="MessageTextBox" 
              Style="{StaticResource CornerRadiusStyle}" 
              Margin="7,10,5,10" BorderBrush="#190019" FontSize="12"
-             FontFamily="segoe ui" MinWidth="182" MaxWidth="210" Background="#F0F0F0" 
+             FontFamily="segoe ui" MinWidth="100" MaxWidth="120" Background="#F0F0F0" 
              Text="{Binding MessageTextBox_Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
              GotFocus="MessageTextBox_GotFocus">
                     <TextBox.InputBindings>
