@@ -15,6 +15,7 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using Screenshare;
 using WhiteboardGUI;
+using Content.ChatViewModel;
 
 namespace Dashboard;
 
@@ -65,6 +66,7 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
     /// <param name="username">User name.</param>
     /// <param name="useremail">User email.</param>
     /// <param name="pictureURL">User profile picture URL.</param>
+    MainViewModel _contentInstance = MainViewModel.GetInstance;
     public ClientDashboard(ICommunicator communicator, string username, string useremail, string pictureURL)
     {
         _communicator = communicator;
@@ -141,11 +143,10 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
         _updaterClient.GetClientId(UserID);
         WhiteboardGUI.Models.ServerOrClient serverOrClient = WhiteboardGUI.Models.ServerOrClient.ServerOrClientInstance;
 
-            serverOrClient.SetUserDetails(UserName, UserID, UserEmail, UserProfileUrl);
+        serverOrClient.SetUserDetails(UserName, UserID, "", "");
+        _contentInstance.SetUserDetails_client(UserName, UserID, UserProfileUrl);
 
-        WhiteboardGUI.Models.ServerOrClient serverOrClient = WhiteboardGUI.Models.ServerOrClient.ServerOrClientInstance;
-        serverOrClient.SetUserDetails(UserName, UserID);
-        
+
 
         Trace.WriteLine("[DashboardServer] sent info to whiteboard client");
     }
