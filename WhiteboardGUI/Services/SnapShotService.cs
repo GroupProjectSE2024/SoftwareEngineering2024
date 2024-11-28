@@ -26,10 +26,6 @@ namespace WhiteboardGUI.Services;
 /// </summary>
 public class SnapShotService
 {
-    /// <summary>
-    /// Path for saving snapshots in the cloud.
-    /// </summary>
-    private String CloudSave;
 
     /// <summary>
     /// Networking service used to manage client-related network operations.
@@ -49,17 +45,12 @@ public class SnapShotService
     /// <summary>
     /// Observable collection of shapes currently on the whiteboard.
     /// </summary>
-    private ObservableCollection<IShape> Shapes;
-
-    /// <summary>
-    /// Dictionary containing snapshots and their associated shapes.
-    /// </summary>
-    private Dictionary<string, ObservableCollection<IShape>> Snaps = new();
+    private ObservableCollection<IShape> _shapes;
 
     /// <summary>
     /// List of snapshot download items available to the user.
     /// </summary>
-    private List<SnapShotDownloadItem> SnapShotDownloadItems = new();
+    private List<SnapShotDownloadItem> _snapShotDownloadItems = new();
 
     /// <summary>
     /// Event triggered when a snapshot is uploaded successfully.
@@ -69,12 +60,17 @@ public class SnapShotService
     /// <summary>
     /// Cloud service for interacting with the backend snapshot storage.
     /// </summary>
-    private ICloud cloudService;
+    private ICloud _cloudService;
 
     /// <summary>
     /// Maximum number of snapshots allowed to be stored.
     /// </summary>
-    int limit = 5;
+    int _limit = 5;
+
+    /// <summary>
+    /// The user id of the current user
+    /// </summary>
+    string _userEmail;
 
     /// <summary>
     /// Initializes a new instance of the SnapShotService class.
@@ -83,22 +79,24 @@ public class SnapShotService
     /// <param name="renderingService">Rendering service for managing whiteboard shapes.</param>
     /// <param name="shapes">Observable collection of shapes on the whiteboard.</param>
     /// <param name="undoRedoService">Undo/redo service for managing user operations.</param>
-    public SnapShotService(NetworkingService networkingService, RenderingService renderingService, ObservableCollection<IShape> shapes, UndoRedoService undoRedoService)
+    /// <param name="UserID">The unique identifier of the user.</param>
+    public SnapShotService(NetworkingService networkingService, RenderingService renderingService, ObservableCollection<IShape> shapes, UndoRedoService undoRedoService, string userEmail)
     {
         _networkingService = networkingService;
         _renderingService = renderingService;
         _undoRedoService = undoRedoService;
-        Shapes = shapes;
-        initializeCloudService();
+        _shapes = shapes;
+        _userEmail = userEmail;
+        InitializeCloudService();
     }
 
     /// <summary>
     /// Initializes the cloud service for managing snapshot uploads and downloads.
     /// </summary>
-    private void initializeCloudService()
+    private void InitializeCloudService()
     {
         // Dependency injection setup for logging and HTTP client
-        var serviceProvider = new ServiceCollection()
+        ServiceProvider serviceProvider = new ServiceCollection()
         .AddLogging(builder =>
         {
             builder.AddConsole();
@@ -107,15 +105,15 @@ public class SnapShotService
         .AddHttpClient()
         .BuildServiceProvider();
 
-        var logger = serviceProvider.GetRequiredService<ILogger<CloudService>>();
+        ILogger<CloudService> logger = serviceProvider.GetRequiredService<ILogger<CloudService>>();
         var httpClient = new HttpClient(); // Simplified for testing
 
         // Configuration for the cloud service
-        var baseUrl = "https://secloudapp-2024.azurewebsites.net/api";
-        var team = "whiteboard";
-        var sasToken = "sp=racwdli&st=2024-11-14T21:02:09Z&se=2024-11-30T05:02:09Z&spr=https&sv=2022-11-02&sr=c&sig=tSw6pO8%2FgqiG2MgU%2FoepmRkFuuJrTerVy%2BDn91Y0WH8%3D";
+        string baseUrl = "https://secloudapp-2024.azurewebsites.net/api";
+        string team = "whiteboard";
+        string sasToken = "sp=racwdli&st=2024-11-14T21:02:09Z&se=2024-11-30T05:02:09Z&spr=https&sv=2022-11-02&sr=c&sig=tSw6pO8%2FgqiG2MgU%2FoepmRkFuuJrTerVy%2BDn91Y0WH8%3D";
 
-        cloudService = new CloudService(baseUrl, team, sasToken, httpClient, logger);
+        _cloudService = new CloudService(baseUrl, team, sasToken, httpClient, logger);
     }
 
     /// <summary>
@@ -129,21 +127,23 @@ public class SnapShotService
         await Task.Run(async () =>
         {
             // Create and parse snapshot details
-            var SnapShot = new SnapShot();
-            snapShotFileName = parseSnapShotName(snapShotFileName, SnapShot);
+            var snapShot = new SnapShot();
+            snapShotFileName = ParseSnapShotName(snapShotFileName, snapShot);
             Debug.WriteLine($"Uploading snapshot '{snapShotFileName}' with {shapes.Count} shapes.");
 
             // Upload snapshot to cloud
-            sendToCloud(snapShotFileName, SnapShot, shapes);
+            SendToCloud(snapShotFileName, snapShot, shapes);
 
             // Show confirmation message if not in test mode
-            if (!isTest)
+            if (!isTest){
                 MessageBox.Show($"Filename '{snapShotFileName}' has been set.", "Filename Set", MessageBoxButton.OK);
+            }
         });
 
         // Trigger upload completed event
-        if (!isTest)
+        if (!isTest){
             System.Windows.Application.Current.Dispatcher.Invoke(() => OnSnapShotUploaded?.Invoke());
+        }
         Debug.WriteLine("Upload completed.");
     }
 
@@ -153,19 +153,16 @@ public class SnapShotService
     /// <param name="snapShotFileName">Snapshot file name.</param>
     /// <param name="snapShot">Snapshot object containing shapes and metadata.</param>
     /// <param name="shapes">Shapes to be serialized and uploaded.</param>
-    private async void sendToCloud(string snapShotFileName, SnapShot snapShot, ObservableCollection<IShape> shapes)
+    private async void SendToCloud(string snapShotFileName, SnapShot snapShot, ObservableCollection<IShape> shapes)
     {
         CheckLimit(); // Ensure storage limit is respected
-        snapShot.userID = _networkingService._clientID.ToString();
-        snapShot.Shapes = new ObservableCollection<IShape>(shapes);
-        String SnapShotSerialized = SerializationService.SerializeSnapShot(snapShot);
+        snapShot._userID = _userEmail.ToString();
+        snapShot._shapes = new ObservableCollection<IShape>(shapes);
+        string snapShotSerialized = SerializationService.SerializeSnapShot(snapShot);
 
-        using var stream = new MemoryStream(Encoding.UTF8.GetBytes(SnapShotSerialized));
-        var response = await cloudService.UploadAsync(snapShotFileName + ".json", stream, "application/json");
+        using var stream = new MemoryStream(Encoding.UTF8.GetBytes(snapShotSerialized));
+        ServiceResponse<string> response = await _cloudService.UploadAsync(snapShotFileName + ".json", stream, "application/json");
         Debug.WriteLine("RESPONSE:" + response.ToString());
-
-        // Add the snapshot to the local dictionary
-        Snaps.Add(snapShotFileName, snapShot.Shapes);
     }
 
     /// <summary>
@@ -173,10 +170,10 @@ public class SnapShotService
     /// </summary>
     private void CheckLimit()
     {
-        while (Snaps.Count >= limit)
+        while (_snapShotDownloadItems.Count >= _limit)
         {
-            SnapShotDownloadItem lastSnapName = findLastSnap();
-            deleteSnap(lastSnapName);
+            SnapShotDownloadItem lastSnapName = FindLastSnap();
+            DeleteSnap(lastSnapName);
         }
     }
 
@@ -184,22 +181,21 @@ public class SnapShotService
     /// Deletes a snapshot from both cloud and local storage.
     /// </summary>
     /// <param name="lastSnap">Snapshot to delete.</param>
-    private void deleteSnap(SnapShotDownloadItem lastSnap)
+    private void DeleteSnap(SnapShotDownloadItem lastSnap)
     {
-        SnapShotDownloadItems.RemoveAll(item => item.FileName == lastSnap.FileName && item.Time == lastSnap.Time);
-        var SnapName = $"{_networkingService._clientID}_{lastSnap.FileName}_{((DateTimeOffset)lastSnap.Time.ToUniversalTime()).ToUnixTimeSeconds()}";
+        _snapShotDownloadItems.RemoveAll(item => item.FileName == lastSnap.FileName && item.Time == lastSnap.Time);
+        string snapName = $"{lastSnap.FileName}_{((DateTimeOffset)lastSnap.Time.ToUniversalTime()).ToUnixTimeSeconds()}";
 
-        cloudService.DeleteAsync(SnapName + ".json");
-        Snaps.Remove(SnapName);
+        _cloudService.DeleteAsync(snapName + ".json");
     }
 
     /// <summary>
     /// Finds the oldest snapshot in the list based on its timestamp.
     /// </summary>
     /// <returns>The oldest snapshot download item.</returns>
-    private SnapShotDownloadItem findLastSnap()
+    private SnapShotDownloadItem FindLastSnap()
     {
-        return SnapShotDownloadItems
+        return _snapShotDownloadItems
             .OrderBy(item => item.Time)
             .FirstOrDefault();
     }
@@ -210,7 +206,7 @@ public class SnapShotService
     /// <param name="snapShotFileName">Name of the snapshot file.</param>
     /// <param name="snapShot">Snapshot object to populate metadata.</param>
     /// <returns>The parsed snapshot file name.</returns>
-    private string parseSnapShotName(string snapShotFileName, SnapShot snapShot)
+    private string ParseSnapShotName(string snapShotFileName, SnapShot snapShot)
     {
         if (string.IsNullOrWhiteSpace(snapShotFileName))
         {
@@ -218,13 +214,13 @@ public class SnapShotService
             snapShotFileName = currentDateTime.ToString("yyyyMMdd-HHmmss");
         }
         DateTimeOffset currentDateTimeEpoch = DateTimeOffset.UtcNow;
-        snapShot.dateTime = currentDateTimeEpoch.LocalDateTime;
+        snapShot._dateTime = currentDateTimeEpoch.LocalDateTime;
         long epochTime = currentDateTimeEpoch.ToUnixTimeSeconds();
-        var newSnapShotFileName = $"{_networkingService._clientID}_{snapShotFileName}_{epochTime}";
-        snapShot.fileName = snapShotFileName;
+        string newSnapShotFileName = $"{snapShotFileName}_{epochTime}";
+        snapShot._fileName = snapShotFileName;
 
         // Add to the list of downloadable snapshots
-        SnapShotDownloadItems.Add(new SnapShotDownloadItem(snapShotFileName, snapShot.dateTime));
+        _snapShotDownloadItems.Add(new SnapShotDownloadItem(snapShotFileName, snapShot._dateTime));
         return newSnapShotFileName;
     }
 
@@ -234,30 +230,18 @@ public class SnapShotService
     /// <param name="v">Not used in the current implementation.</param>
     /// <param name="isInit">Indicates whether this is an initialization request.</param>
     /// <returns>A list of <see cref="SnapShotDownloadItem"/> objects.</returns>
-    public async Task<List<SnapShotDownloadItem>> getSnaps(string v, bool isInit)
+    public async Task<List<SnapShotDownloadItem>> GetSnaps(string v, bool isInit)
     {
         if (isInit)
         {
             // Search for JSON files in the cloud matching the user ID
-            var response = await cloudService.SearchJsonFilesAsync("userID", _networkingService._clientID.ToString());
+            ServiceResponse<JsonSearchResponse> response = await _cloudService.SearchJsonFilesAsync("_userID", _userEmail.ToString());
             if (response != null && response.Data != null && response.Data.Matches != null)
             {
-                // Map each match to a dictionary of snapshots and shapes
-                Snaps = response.Data.Matches
-                    .ToDictionary(
-                        match => match.FileName.Substring(0, match.FileName.Length - 5),
-                        match => SerializationService.DeserializeSnapShot(match.Content.ToString()).Shapes
-                    );
-
                 // Populate the local list of SnapShotDownloadItems
                 PopulateSnapShotDownloadItems(response);
-
-                // Extract the file names from the response
-                var fileNames = response.Data.Matches
-                    .Select(match => match.FileName.Substring(0, match.FileName.Length - 5))
-                    .ToList();
-
-                return SnapShotDownloadItems;
+        
+                return _snapShotDownloadItems;
             }
 
             // Return an empty list if the response or data is null
@@ -265,38 +249,38 @@ public class SnapShotService
         }
 
         // Return the current list of SnapShotDownloadItems
-        return SnapShotDownloadItems;
+        return _snapShotDownloadItems;
     }
 
     /// <summary>
     /// Downloads a snapshot and renders its shapes on the whiteboard.
     /// </summary>
     /// <param name="selectedDownloadItem">The snapshot item to be downloaded.</param>
-    public void DownloadSnapShot(SnapShotDownloadItem selectedDownloadItem)
+    public async void DownloadSnapShot(SnapShotDownloadItem selectedDownloadItem)
     {
         // Retrieve the snapshot from local storage
-        ObservableCollection<IShape> snapShot = getSnapShot(selectedDownloadItem);
+        ObservableCollection<IShape> snapShot = await GetSnapShot(selectedDownloadItem);
 
         // Clear the whiteboard before adding new shapes
         _renderingService.RenderShape(null, "CLEAR");
 
         // Add shapes to the whiteboard
-        addShapes(snapShot);
+        AddShapes(snapShot);
 
         // Clear undo and redo lists
-        _undoRedoService.RedoList.Clear();
-        _undoRedoService.UndoList.Clear();
+        _undoRedoService._redoList.Clear();
+        _undoRedoService._undoList.Clear();
     }
 
     /// <summary>
     /// Adds a collection of shapes to the whiteboard and renders them.
     /// </summary>
     /// <param name="snapShot">The collection of shapes to be added.</param>
-    private void addShapes(ObservableCollection<IShape> snapShot)
+    private void AddShapes(ObservableCollection<IShape> snapShot)
     {
         foreach (IShape shape in snapShot)
         {
-            Shapes.Add(shape);
+            _shapes.Add(shape);
             _renderingService.RenderShape(shape, "DOWNLOAD");
             Debug.WriteLine($"Added Shape {shape.GetType()}");
         }
@@ -309,7 +293,7 @@ public class SnapShotService
     /// <returns><c>true</c> if the filename is valid; otherwise, <c>false</c>.</returns>
     public bool IsValidFilename(string filename)
     {
-        return !SnapShotDownloadItems.Any(item => item.FileName == filename);
+        return !_snapShotDownloadItems.Any(item => item.FileName == filename);
     }
 
     /// <summary>
@@ -317,10 +301,17 @@ public class SnapShotService
     /// </summary>
     /// <param name="selectedDownloadItem">The snapshot item to retrieve.</param>
     /// <returns>An <see cref="ObservableCollection{IShape}"/> containing the shapes.</returns>
-    private ObservableCollection<IShape> getSnapShot(SnapShotDownloadItem selectedDownloadItem)
+    private async Task<ObservableCollection<IShape>> GetSnapShot(SnapShotDownloadItem selectedDownloadItem)
     {
-        var SnapName = $"{_networkingService._clientID}_{selectedDownloadItem.FileName}_{((DateTimeOffset)selectedDownloadItem.Time.ToUniversalTime()).ToUnixTimeSeconds()}";
-        return Snaps[SnapName];
+        string snapName = $"{selectedDownloadItem.FileName}_{((DateTimeOffset)selectedDownloadItem.Time.ToUniversalTime()).ToUnixTimeSeconds()}.json";
+        ServiceResponse<Stream> snapdownload = await _cloudService.DownloadAsync(snapName);
+        if (snapdownload.Success && snapdownload.Data!=null)
+        {
+            var sr = new StreamReader(snapdownload.Data);
+            string snapData = sr.ReadToEnd();
+            return SerializationService.DeserializeSnapShot(snapData)._shapes;
+        }
+        return new ObservableCollection<IShape>(_shapes);
     }
 
     /// <summary>
@@ -329,12 +320,12 @@ public class SnapShotService
     /// <param name="response">The cloud service response containing snapshot metadata.</param>
     private void PopulateSnapShotDownloadItems(ServiceResponse<JsonSearchResponse> response)
     {
-        SnapShotDownloadItems = response.Data.Matches
+        _snapShotDownloadItems = response.Data.Matches
             .Select(match =>
             {
                 // Deserialize snapshot details
-                var fileName = SerializationService.DeserializeSnapShot(match.Content.ToString()).fileName;
-                var time = SerializationService.DeserializeSnapShot(match.Content.ToString()).dateTime;
+                string fileName = SerializationService.DeserializeSnapShot(match.Content.ToString())._fileName;
+                DateTime time = SerializationService.DeserializeSnapShot(match.Content.ToString())._dateTime;
 
                 // Create a new SnapShotDownloadItem
                 return new SnapShotDownloadItem(fileName, time);

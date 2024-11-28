@@ -20,7 +20,7 @@ public class MoveShapeZIndexing
     /// <summary>
     /// Collection of shapes managed for Z-indexing.
     /// </summary>
-    private ObservableCollection<IShape> Shapes;
+    private ObservableCollection<IShape> _shapes;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="MoveShapeZIndexing"/> class.
@@ -28,7 +28,7 @@ public class MoveShapeZIndexing
     /// <param name="shapes">The collection of shapes to manage.</param>
     public MoveShapeZIndexing(ObservableCollection<IShape> shapes)
     {
-        Shapes = shapes;
+        _shapes = shapes;
     }
 
     /// <summary>
@@ -39,10 +39,13 @@ public class MoveShapeZIndexing
     {
         Application.Current.Dispatcher.Invoke(() =>
         {
-            if (shape == null || !(bool)Shapes.Any(s => (s as dynamic).ShapeId.Equals(shape.ShapeId))) return;
+            if (shape == null || !(bool)_shapes.Any(s => (s as dynamic).ShapeId.Equals(shape.ShapeId)))
+            {
+                return;
+            }
 
-            Shapes.Remove(Shapes.FirstOrDefault(s => (s as dynamic).ShapeId == shape.ShapeId));
-            Shapes.Insert(0, shape);
+            _shapes.Remove(_shapes.FirstOrDefault(s => (s as dynamic).ShapeId == shape.ShapeId));
+            _shapes.Insert(0, shape);
             UpdateZIndices();
         });
     }
@@ -52,9 +55,9 @@ public class MoveShapeZIndexing
     /// </summary>
     public void UpdateZIndices()
     {
-        for (int i = 0; i < Shapes.Count; i++)
+        for (int i = 0; i < _shapes.Count; i++)
         {
-            Shapes[i].ZIndex = i;
+            _shapes[i].ZIndex = i;
         }
     }
 
@@ -66,21 +69,26 @@ public class MoveShapeZIndexing
     {
         Application.Current.Dispatcher.Invoke(() =>
         {
-            if (shape == null || !(bool)Shapes.Any(s => (s as dynamic).ShapeId.Equals(shape.ShapeId))) return;
+            if (shape == null || !(bool)_shapes.Any(s => (s as dynamic).ShapeId.Equals(shape.ShapeId)))
+            {
+                return;
+            }
 
-            int currentIndex = Shapes.Select((s, index) => new { s, index })
+            int currentIndex = _shapes.Select((s, index) => new { s, index })
                              .FirstOrDefault(item => (item.s as dynamic).ShapeId.Equals(shape.ShapeId))?.index ?? -1;
             if (currentIndex <= 0)
+            {
                 return; // Already at the bottom
+            }
 
             // Iterate backward to find the first overlapping shape based on stroke
             for (int i = currentIndex - 1; i >= 0; i--)
             {
-                var otherShape = Shapes[i];
+                IShape otherShape = _shapes[i];
                 if (AreShapesOverlapping(shape, otherShape))
                 {
                     // Swap shape with otherShape
-                    Shapes.Move(currentIndex, i);
+                    _shapes.Move(currentIndex, i);
                     UpdateZIndices();
                     break;
                 }
@@ -100,11 +108,13 @@ public class MoveShapeZIndexing
         Geometry strokeGeometry2 = GetShapeStrokeGeometry(shape2);
 
         if (strokeGeometry1 == null || strokeGeometry2 == null)
+        {
             return false;
+        }
 
         // Combine the two stroke geometries to find their intersection
         // If the intersection is not empty, then the strokes overlap
-        var combinedGeometry = Geometry.Combine(
+        PathGeometry combinedGeometry = Geometry.Combine(
             strokeGeometry1,
             strokeGeometry2,
             GeometryCombineMode.Intersect,
@@ -121,7 +131,9 @@ public class MoveShapeZIndexing
     private Geometry GetShapeStrokeGeometry(IShape shape)
     {
         if (shape == null)
+        {
             return null;
+        }
 
         Geometry geometry = null;
 
@@ -146,8 +158,9 @@ public class MoveShapeZIndexing
             case ScribbleShape scribble:
                 {
                     if (scribble.PointCollection == null || !scribble.PointCollection.Any())
+                    {
                         return null;
-
+                    }
                     StreamGeometry streamGeometry = new StreamGeometry();
                     using (StreamGeometryContext ctx = streamGeometry.Open())
                     {

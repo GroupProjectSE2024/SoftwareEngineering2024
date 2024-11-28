@@ -44,23 +44,23 @@ public class SnapShot
     /// <summary>
     /// The user ID associated with the snapshot.
     /// </summary>
-    public string userID;
+    public string _userID;
 
     /// <summary>
     /// The file name of the snapshot.
     /// </summary>
-    public string fileName;
+    public string _fileName;
 
     /// <summary>
     /// The date and time when the snapshot was created.
     /// </summary>
-    public DateTime dateTime;
+    public DateTime _dateTime;
 
     /// <summary>
     /// A collection of shapes in the snapshot.
     /// </summary>
     [JsonConverter(typeof(ShapeConverter))]
-    public ObservableCollection<IShape> Shapes;
+    public ObservableCollection<IShape> _shapes;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SnapShot"/> class.

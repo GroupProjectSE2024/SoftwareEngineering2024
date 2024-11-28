@@ -49,23 +49,28 @@ public class RelayCommand : ICommand
     /// <param name="parameter">Data used by the command. Ignored in this implementation.</param>
     /// <returns>true if the command can execute; otherwise, false.</returns>
     [DebuggerStepThrough]
-    public bool CanExecute(object parameter) =>
-        _canExecute == null || _canExecute();
+    public bool CanExecute(object parameter)
+    {
+        return _canExecute == null || _canExecute();
+    }
 
     /// <summary>
     /// Occurs when changes occur that affect whether the command should execute.
     /// </summary>
     public event EventHandler CanExecuteChanged
     {
-        add { CommandManager.RequerySuggested += value; }
-        remove { CommandManager.RequerySuggested -= value; }
+        add => CommandManager.RequerySuggested += value;
+        remove => CommandManager.RequerySuggested -= value;
     }
 
     /// <summary>
     /// Executes the command's action.
     /// </summary>
     /// <param name="parameter">Data used by the command. Ignored in this implementation.</param>
-    public void Execute(object parameter) => _execute();
+    public void Execute(object parameter)
+    {
+        _execute();
+    }
 }
 
 /// <summary>
@@ -104,21 +109,26 @@ public class RelayCommand<T> : ICommand
     /// <param name="parameter">Data used by the command.</param>
     /// <returns>true if the command can execute; otherwise, false.</returns>
     [DebuggerStepThrough]
-    public bool CanExecute(object parameter) =>
-        _canExecute == null || _canExecute((T)parameter);
+    public bool CanExecute(object parameter)
+    {
+        return _canExecute == null || _canExecute((T)parameter);
+    }
 
     /// <summary>
     /// Occurs when changes occur that affect whether the command should execute.
     /// </summary>
     public event EventHandler CanExecuteChanged
     {
-        add { CommandManager.RequerySuggested += value; }
-        remove { CommandManager.RequerySuggested -= value; }
+        add => CommandManager.RequerySuggested += value;
+        remove => CommandManager.RequerySuggested -= value;
     }
 
     /// <summary>
     /// Executes the command's action with the provided parameter.
     /// </summary>
     /// <param name="parameter">Data used by the command.</param>
-    public void Execute(object parameter) => _execute((T)parameter);
+    public void Execute(object parameter)
+    {
+        _execute((T)parameter);
+    }
 }

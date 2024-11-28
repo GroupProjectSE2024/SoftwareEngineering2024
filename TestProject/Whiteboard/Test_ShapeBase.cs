@@ -12,17 +12,23 @@ public class Test_ShapeBase
     public class TestShape : ShapeBase
     {
         public override string ShapeType => "TestShape";
-        public override Rect GetBounds() => new Rect(0, 0, 100, 100);
-        public override IShape Clone() => new TestShape
+        public override Rect GetBounds()
         {
-            ShapeId = this.ShapeId,
-            Color = this.Color,
-            StrokeThickness = this.StrokeThickness,
-            UserID = this.UserID,
-            LastModifierID = this.LastModifierID,
-            ZIndex = this.ZIndex,
-            IsSelected = this.IsSelected
-        };
+            return new Rect(0, 0, 100, 100);
+        }
+
+        public override IShape Clone()
+        {
+            return new TestShape {
+                ShapeId = this.ShapeId,
+                Color = this.Color,
+                StrokeThickness = this.StrokeThickness,
+                UserID = this.UserID,
+                LastModifierID = this.LastModifierID,
+                ZIndex = this.ZIndex,
+                IsSelected = this.IsSelected
+            };
+        }
     }
 
     [TestMethod]
@@ -120,7 +126,7 @@ public class Test_ShapeBase
         };
 
         // Act
-        var clonedShape = originalShape.Clone();
+        IShape clonedShape = originalShape.Clone();
 
         // Assert
         Assert.AreNotSame(originalShape, clonedShape);

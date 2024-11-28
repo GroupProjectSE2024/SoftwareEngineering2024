@@ -196,7 +196,12 @@ public class LineShape : ShapeBase
             StartY = this.StartY,
             EndX = this.EndX,
             EndY = this.EndY,
-            ZIndex = this.ZIndex
+            ZIndex = this.ZIndex,
+            UserName = this.UserName,
+            ProfilePictureURL = this.ProfilePictureURL,
+            LastModifiedBy = this.LastModifiedBy,
+            BoundingBoxColor = this.BoundingBoxColor
+            
         };
     }
 }

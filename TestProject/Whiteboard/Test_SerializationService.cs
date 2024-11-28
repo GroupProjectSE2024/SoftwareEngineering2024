@@ -1,4 +1,4 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -70,9 +70,9 @@ public class Test_SerializationService
 
         _snapShot = new SnapShot
         {
-            userID = "1234",
-            fileName = "testSnapshot",
-            Shapes = _shapes
+            _userID = "1234",
+            _fileName = "testSnapshot",
+            _shapes = _shapes
         };
     }
 
@@ -176,7 +176,7 @@ public class Test_SerializationService
         string serializedSnapShot = SerializationService.SerializeSnapShot(_snapShot);
 
         Assert.IsNotNull(serializedSnapShot);
-        Assert.IsTrue(serializedSnapShot.Contains("\"fileName\":\"testSnapshot\""));
+        Assert.IsTrue(serializedSnapShot.Contains("\"_fileName\":\"testSnapshot\""));
     }
 
     [TestMethod]
@@ -186,8 +186,8 @@ public class Test_SerializationService
         SnapShot deserializedSnapShot = SerializationService.DeserializeSnapShot(serializedSnapShot);
 
         Assert.IsNotNull(deserializedSnapShot);
-        Assert.AreEqual(_snapShot.fileName, deserializedSnapShot.fileName);
-        Assert.AreEqual(_snapShot.userID, deserializedSnapShot.userID);
+        Assert.AreEqual(_snapShot._fileName, deserializedSnapShot._fileName);
+        Assert.AreEqual(_snapShot._userID, deserializedSnapShot._userID);
     }
 
     [TestMethod]

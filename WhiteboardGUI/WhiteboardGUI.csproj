@@ -11,7 +11,6 @@
 
   <ItemGroup>
     <None Remove="Views\assets\circleicon.png" />
-    <None Remove="Views\assets\clienticon.png" />
     <None Remove="Views\assets\cloud-download.png" />
     <None Remove="Views\assets\cloud-upload.png" />
     <None Remove="Views\assets\deleteicon.png" />
@@ -22,7 +21,6 @@
     <None Remove="Views\assets\pencilicon.png" />
     <None Remove="Views\assets\redo-circle.png" />
     <None Remove="Views\assets\selecticon.png" />
-    <None Remove="Views\assets\servericon.png" />
     <None Remove="Views\assets\sirPhoto.png" />
     <None Remove="Views\assets\texticon.png" />
     <None Remove="Views\assets\thickness.png" />
@@ -58,7 +56,6 @@
 
   <ItemGroup>
     <Resource Include="Views\assets\circleicon.png" />
-    <Resource Include="Views\assets\clienticon.png" />
     <Resource Include="Views\assets\cloud-download.png" />
     <Resource Include="Views\assets\cloud-upload.png" />
     <Resource Include="Views\assets\deleteicon.png" />
@@ -69,7 +66,6 @@
     <Resource Include="Views\assets\pencilicon.png" />
     <Resource Include="Views\assets\redo-circle.png" />
     <Resource Include="Views\assets\selecticon.png" />
-    <Resource Include="Views\assets\servericon.png" />
     <Resource Include="Views\assets\sirphoto.png" />
     <Resource Include="Views\assets\texticon.png" />
     <Resource Include="Views\assets\thickness.png" />

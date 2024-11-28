@@ -47,19 +47,23 @@ public class NetworkingService : INotificationHandler
     /// </summary>
     public List<IShape> _synchronizedShapes;
 
+
     /// <summary>
     /// Module identifier for communication purposes.
     /// </summary>
     private string _moduleIdentifier = "WhiteBoard";
 
+    private int _userId;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="NetworkingService"/> class.
     /// </summary>
     /// <param name="dataTransferService">Service responsible for data synchronization.</param>
-    public NetworkingService(ReceivedDataService dataTransferService)
+    public NetworkingService(ReceivedDataService dataTransferService, int userId)
     {
         _receivedDataService = dataTransferService;
         _synchronizedShapes = dataTransferService._synchronizedShapes;
+        _userId = userId;
     }
 
     /// <summary>
@@ -107,6 +111,8 @@ public class NetworkingService : INotificationHandler
             _communicator.Subscribe(_moduleIdentifier, this, false);
             _communicator.Start();
             _isHost = false;
+            string serializedMessage = $"ID{_userId}ENDNEWCLIENT";
+            BroadcastShapeData(serializedMessage);
         }
         catch (Exception ex)
         {
@@ -123,7 +129,10 @@ public class NetworkingService : INotificationHandler
         if (_isHost)
         {
             int id = _receivedDataService.DataReceived(serializedData);
-            if (id == -1) return;
+            if (id == -1)
+            {
+                return;
+            }
             BroadcastShapeData(serializedData);
         }
         else
@@ -136,9 +145,9 @@ public class NetworkingService : INotificationHandler
     /// Broadcasts serialized shape data to all connected clients.
     /// </summary>
     /// <param name="serializedData">The serialized shape data to broadcast.</param>
-    public void BroadcastShapeData(string serializedData)
+    public void BroadcastShapeData(string serializedData, string newUserId=null)
     {
-        _communicator.Send(serializedData, _moduleIdentifier, null);
+        _communicator.Send(serializedData, _moduleIdentifier, newUserId);
     }
 
     /// <summary>
