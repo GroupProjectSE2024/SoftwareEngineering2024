@@ -50,7 +50,7 @@ public static class SerializationService
     /// </summary>
     /// <param name="data">The JSON string to deserialize.</param>
     /// <returns>A <see cref="SnapShot"/> object represented by the JSON string.</returns>
-    public static SnapShot DeserializeSnapShot(String data)
+    public static SnapShot DeserializeSnapShot(string data)
     {
 
         return JsonConvert.DeserializeObject<SnapShot>(data, new JsonSerializerSettings
@@ -67,7 +67,7 @@ public static class SerializationService
     /// <exception cref="NotSupportedException">Thrown when the shape type is not supported.</exception>
     public static IShape DeserializeShape(string data)
     {
-        var shapeDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(data);
+        Dictionary<string, object>? shapeDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(data);
         string shapeType = shapeDict["ShapeType"].ToString();
         Debug.WriteLine(shapeType);
 
@@ -100,10 +100,10 @@ public static class SerializationService
     /// <exception cref="NotSupportedException">Thrown when a shape type in the JSON is not supported.</exception>
     public static ObservableCollection<IShape> DeserializeShapes(string data)
     {
-        var shapeList = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(data);
+        List<Dictionary<string, object>>? shapeList = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(data);
         var shapes = new ObservableCollection<IShape>();
 
-        foreach (var shapeDict in shapeList)
+        foreach (Dictionary<string, object> shapeDict in shapeList)
         {
             string shapeType = shapeDict["ShapeType"].ToString();
             Debug.WriteLine($"Deserializing shape of type: {shapeType}");

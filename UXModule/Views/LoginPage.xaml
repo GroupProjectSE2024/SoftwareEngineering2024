@@ -10,7 +10,7 @@
 
     <Grid>
 
-        <Border Background="#190019">
+        <Border Background="#FBE4D8">
             <Grid>
                 <!--grey background-->
 
@@ -29,7 +29,7 @@
                             <StackPanel>
 
                                 <!-- Sign Up header -->
-                                <TextBlock Text="EduLink" Margin="10 0 0 0" FontWeight="Bold" FontSize="40" />
+                                <TextBlock Text="Synapse" Margin="10 0 0 0" FontWeight="Bold" FontSize="40" />
 
                                 <!-- Sign up subtext-->
                                 <TextBlock Text="Your Gateway to Interactive Learning" Margin="0 0 0 20" FontSize="15" />

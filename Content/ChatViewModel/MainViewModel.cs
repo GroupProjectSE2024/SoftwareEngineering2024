@@ -12,6 +12,7 @@ using System.Windows.Threading;
 using Content;
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Net.WebRequestMethods;
 
 //using Dashboard;
 
@@ -270,7 +271,9 @@ public class MainViewModel : INotifyPropertyChanged
         string[] parts = message.Split(new[] { " :.: " }, StringSplitOptions.None);
         if (parts.Length == 2)
         {
-            string user = parts[0].Trim();          // senderUsername
+            string userAndUrl = parts[0].Trim();
+            string user = userAndUrl.Split(".url.")[0];
+            string profilepicUrl = userAndUrl.Split(".url.")[1];
             string[] msg = parts[1].Split('|');
             string messageContent = msg[0].Trim();
             bool isSent = false;
@@ -301,7 +304,8 @@ public class MainViewModel : INotifyPropertyChanged
                     user,
                     messageContent,
                     DateTime.Now.ToString("HH:mm"),
-                    isSent
+                    isSent,
+                    profilepicUrl
                 );
                 Messages.Add(chatMessage);
                 MessageAdded?.Invoke(chatMessage);
@@ -367,7 +371,7 @@ public class MainViewModel : INotifyPropertyChanged
         {
             message.Content = message.Text;
 
-            if (message.Content.ToLower().Contains(lowerCaseQuery))
+            if (message.Content.ToLower().Contains(lowerCaseQuery) && message.Content != "[Message deleted]")
             {
                 int startIndex = message.Content.ToLower().IndexOf(lowerCaseQuery);
                 string highlightedText = message.Content.Substring(startIndex, lowerCaseQuery.Length);
@@ -380,7 +384,7 @@ public class MainViewModel : INotifyPropertyChanged
                 message.HighlightedAfterText = afterText;
                 Debug.WriteLine($"Search Query: {query}");
                 Debug.WriteLine($"Found Messages: {foundMessages.Count}");
-
+                SearchResults.Add(message);
 
             }
             else
@@ -389,7 +393,7 @@ public class MainViewModel : INotifyPropertyChanged
                 message.HighlightedText = string.Empty;
                 message.HighlightedAfterText = string.Empty;
             }
-            SearchResults.Add(message);
+
         }
         OnPropertyChanged(nameof(SearchResults)); // Notify the view
     }
@@ -409,7 +413,7 @@ public class MainViewModel : INotifyPropertyChanged
         OnPropertyChanged(nameof(Messages));
     }
 
-    private readonly object clientLock = new object();
+    private readonly object _clientLock = new object();
     /// <summary>
     /// Synchronizes the client list with the server and updates the ObservableCollection for UI binding.
     /// </summary>
@@ -424,7 +428,7 @@ public class MainViewModel : INotifyPropertyChanged
         _client._client_dict = dict_sent;
         foreach (KeyValuePair<int, string> kvp in _client._client_dict)
         {
-            lock (clientLock)
+            lock (_clientLock)
             {
                 if (!Clientte.Contains(kvp.Value))
                 {

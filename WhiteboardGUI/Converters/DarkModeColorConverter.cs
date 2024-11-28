@@ -44,7 +44,7 @@ public class DarkModeColorConverter : IMultiValueConverter
     /// </returns>
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
     {
-        var colorString = values[0] as string;
+        string? colorString = values[0] as string;
         bool isDarkMode = (bool)values[1];
         try
         {

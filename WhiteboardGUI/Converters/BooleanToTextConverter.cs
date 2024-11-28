@@ -49,11 +49,14 @@ public class BooleanToTextConverter : IValueConverter
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         if (parameter == null)
+        {
             return DependencyProperty.UnsetValue;
-
-        var parameters = parameter.ToString().Split('|');
+        }
+        string[] parameters = parameter.ToString().Split('|');
         if (parameters.Length != 2)
+        {
             return DependencyProperty.UnsetValue;
+        }
 
         if (value is bool boolValue)
         {

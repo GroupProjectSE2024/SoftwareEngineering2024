@@ -1,5 +1,6 @@
 <!--
 /**************************************************************************************************
+
  * Filename    : MainPage.xaml
  *
  * Author      : Rachit Jain and Kshitij Ghodake
@@ -429,6 +430,7 @@
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <Canvas
+                            ClipToBounds="True"
                             Background="{Binding CanvasBackground}"
                             MouseLeftButtonDown="Canvas_LeftMouseButtonDown"
                             MouseLeftButtonUp="Canvas_MouseLeftButtonUp"
@@ -471,7 +473,7 @@
                                             Canvas.Top="{Binding Top}"
                                             Width="{Binding Width}"
                                             Height="{Binding Height}"
-                                            Fill="Transparent"
+                                            
                                             MouseRightButtonDown="Shape_MouseRightButtonDown"
                                             StrokeDashArray="2"
                                             StrokeThickness="1"
@@ -576,7 +578,7 @@
                                             Canvas.Top="{Binding Top}"
                                             Width="{Binding Width}"
                                             Height="{Binding Height}"
-                                            Fill="Transparent"
+                                           
                                             MouseRightButtonDown="Shape_MouseRightButtonDown"
                                             StrokeDashArray="2"
                                             StrokeThickness="1"
@@ -643,7 +645,7 @@
                                             Canvas.Top="{Binding Top}"
                                             Width="{Binding Width}"
                                             Height="{Binding Height}"
-                                            Fill="Transparent"
+                                           
                                             MouseRightButtonDown="Shape_MouseRightButtonDown"
                                             StrokeDashArray="2"
                                             StrokeThickness="1"
@@ -987,39 +989,6 @@
                                         Text="Redo" />
                                 </StackPanel>
                             </Button>
-                            <!--  Toggle Buttons for Server and Client Modes  -->
-                            <ToggleButton
-                                Command="{Binding StartHostCommand}"
-                                IsChecked="{Binding IsHost, Mode=TwoWay}"
-                                Style="{StaticResource ToolBarToggleStyle}"
-                                ToolTip="Server Mode">
-                                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
-                                    <Image
-                                        Width="20"
-                                        Height="20"
-                                        Source="Assets/servericon.png" />
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        FontSize="12"
-                                        Text="Server" />
-                                </StackPanel>
-                            </ToggleButton>
-                            <ToggleButton
-                                Command="{Binding StartClientCommand}"
-                                IsChecked="{Binding IsClient, Mode=TwoWay}"
-                                Style="{StaticResource ToolBarToggleStyle}"
-                                ToolTip="Client Mode">
-                                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
-                                    <Image
-                                        Width="20"
-                                        Height="20"
-                                        Source="Assets/clienticon.png" />
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        FontSize="12"
-                                        Text="Client" />
-                                </StackPanel>
-                            </ToggleButton>
                             <!--  start  -->
                             <ToggleButton
                                 x:Name="PaletteToggleButton"

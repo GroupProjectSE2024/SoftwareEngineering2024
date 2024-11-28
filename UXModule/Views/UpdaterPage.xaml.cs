@@ -57,6 +57,7 @@ public partial class UpdaterPage : Page
         if (sessionType != "server")
         {
             s_clientViewModel = new ClientViewModel(LogServiceViewModel); // Initialize the client view model 
+            CloudSyncButton.Visibility = Visibility.Hidden;
         }
         else
         {
@@ -70,8 +71,7 @@ public partial class UpdaterPage : Page
 
     private void OnMessageReceived(string message)
     {
-        Dispatcher.Invoke(() =>
-        {
+        Dispatcher.Invoke(() => {
             _toolListViewModel.LoadAvailableTools(); // Refresh the tool list on message receipt 
             LogServiceViewModel.ShowNotification(message); // Show received message as a notification 
             LogServiceViewModel.UpdateLogDetails(message); // Update log with received message 
@@ -98,8 +98,7 @@ public partial class UpdaterPage : Page
         else
         {
             // Open File Dialog
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
+            OpenFileDialog openFileDialog = new OpenFileDialog {
                 Title = "Select a File to Upload",
                 Filter = "All Files (*.*)|*.*",
                 Multiselect = false // Allow selecting only one file

@@ -101,7 +101,12 @@ public class TextShape : ShapeBase
             X = this.X,
             Y = this.Y,
             FontSize = this.FontSize,
-            ZIndex = this.ZIndex
+            ZIndex = this.ZIndex,
+            UserName = this.UserName,
+            ProfilePictureURL = this.ProfilePictureURL,
+            LastModifiedBy = this.LastModifiedBy,
+            BoundingBoxColor = this.BoundingBoxColor
+            
         };
     }
 }

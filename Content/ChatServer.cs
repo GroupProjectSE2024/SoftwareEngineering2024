@@ -81,9 +81,10 @@ public class ChatServer : INotificationHandler
         }
 
         string messageType = dataParts[0];
-        string senderUsername = dataParts[2];
+        string senderUsername = dataParts[2] + ".url." + dataParts[4];
         string senderId = dataParts[3];
-        string recipientId = dataParts.Length > 4 ? dataParts[4] : null;
+        string recipientId = dataParts.Length > 5 ? dataParts[5] : null;
+        //string userProfileUrl = dataParts[4];
 
 
 
@@ -114,7 +115,7 @@ public class ChatServer : INotificationHandler
         else
         {
 
-            _communicator.Send($"{senderUsername} :.: {messageContent} |abc", "ChatModule", destination: null);
+            _communicator.Send($"{senderUsername} :.: {messageContent} |abc|", "ChatModule", destination: null);
         }
 
     }

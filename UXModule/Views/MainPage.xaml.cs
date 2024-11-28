@@ -74,7 +74,7 @@ namespace UXModule.Views
         /// </summary>
         private void WhiteboardClick(object sender, RoutedEventArgs e)
         {
-            whiteboardPage = new WhiteboardGUI.Views.MainPage(); // Create new instance of WhiteboardPage
+            whiteboardPage ??= new WhiteboardGUI.Views.MainPage(); // Create new instance of WhiteboardPage
             Main.Content = whiteboardPage; // Set WhiteboardPage as content
         }
 

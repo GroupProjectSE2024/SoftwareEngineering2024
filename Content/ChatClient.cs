@@ -69,7 +69,7 @@ public class ChatClient : INotificationHandler
         //    x = x - 1;
         //    recipientId = x.ToString();
         //}
-        string formattedMessage = $"{messageType}|{message}|{Username}|{ClientId}|{recipientId}";
+        string formattedMessage = $"{messageType}|{message}|{Username}|{ClientId}|{UserProfileUrl}|{recipientId}";
 
         _communicator.Send(formattedMessage, "ChatModule", null);
         if (messageType == "private")
@@ -78,7 +78,7 @@ public class ChatClient : INotificationHandler
             //x = x - 1;
             //string recipee = x.ToString();
 
-            string formattedMessage2 = $"{messageType}|{message}|{Username}|{ClientId}|{ClientId}";
+            string formattedMessage2 = $"{messageType}|{message}|{Username}|{ClientId}|{UserProfileUrl}|{ClientId}";
             _communicator.Send(formattedMessage2, "ChatModule", null);
         }
     }
@@ -111,6 +111,7 @@ public class ChatClient : INotificationHandler
             });
 
             OnPropertyChanged(nameof(_clientListobs));
+
 
         }
         else if (dataParts[1] == "private")

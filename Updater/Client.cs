@@ -235,7 +235,7 @@ public class Client : INotificationHandler
             // Process additional files in the list
             foreach (FileContent fileContent in fileContentList)
             {
-                if (fileContent == differenceFile)
+                if (fileContent.FileName == differenceFileName)
                 {
                     continue;
                 }

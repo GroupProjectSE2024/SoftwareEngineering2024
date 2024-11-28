@@ -364,3 +364,5 @@ FodyWeavers.xsd
 
 # ds-store files
 **/.DS_Store
+bin/
+obj/

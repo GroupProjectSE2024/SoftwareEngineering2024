@@ -98,8 +98,7 @@ public class ToolAssemblyLoader : IToolAssemblyLoader
                                                     {
                                                         // converting all values to strings
                                                         object? value = property.GetValue(instance);
-                                                        string valueAsString = value switch
-                                                        {
+                                                        string? valueAsString = value switch {
                                                             Version version => version.ToString(),
                                                             DateTime dateTime => dateTime.ToString("yyyy-MM-dd"),
                                                             _ => value?.ToString() ?? "null",
@@ -107,11 +106,11 @@ public class ToolAssemblyLoader : IToolAssemblyLoader
 
                                                         if (toolPropertyMap.ContainsKey(property.Name))
                                                         {
-                                                            if(property.Name == "Name")
+                                                            if (property.Name == "Name")
                                                             {
                                                                 valueAsString = type.FullName;
                                                             }
-                                                            toolPropertyMap[property.Name].Add(valueAsString); // appending to the map values if key exists
+                                                            toolPropertyMap[property.Name].Add(valueAsString ?? ""); // appending to the map values if key exists
                                                         }
                                                         else
                                                         {

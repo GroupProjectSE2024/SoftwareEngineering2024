@@ -365,6 +365,7 @@ public class CloudViewModel
         {
             _serverViewModel.GetServer().Broadcast(serializedPacket);
         }
+
     }
     private string NotificationOfCloudData(List<FileData> cloudFiles)
     {
@@ -379,6 +380,7 @@ public class CloudViewModel
 
         // Log the combined message
         return combinedMessage;
+
     }
 
     private static string SaveFileToServerMethod()

@@ -27,11 +27,16 @@ public interface IShape : INotifyPropertyChanged
     /// <summary>
     /// Gets the type of the shape.
     /// </summary>
-    string ShapeType { get; }       
+    string ShapeType { get; }
     string Color { get; set; }
     double StrokeThickness { get; set; }
     double UserID { get; set; }
     double LastModifierID { get; set; }
+    string UserName { get; set; }
+    string LastModifiedBy { get; set; }
+
+    
+    string ProfilePictureURL { get; set; }
 
     /// <summary>
     /// Gets or sets the Z-index of the shape.

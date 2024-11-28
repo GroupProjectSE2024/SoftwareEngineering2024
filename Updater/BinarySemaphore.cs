@@ -17,7 +17,7 @@ namespace Updater;
 /// </summary>
 public class BinarySemaphore
 {
-    private SemaphoreSlim _semaphore;
+    private readonly SemaphoreSlim _semaphore;
 
     /// <summary>
     /// Constructor
