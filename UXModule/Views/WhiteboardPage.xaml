@@ -1180,11 +1180,16 @@
                                                     <StackPanel Orientation="Horizontal" Margin="5">
                                                         <TextBlock Text="{Binding FileName}" FontSize="14" />
                                                         <TextBlock Text="{Binding Time, StringFormat=' \{0:MM/dd/yyyy HH:mm\}'}" 
-                                                            FontSize="12" Foreground="Gray" Margin="10,0,0,0" />
+                                                            FontSize="12" Foreground="Gray" Margin="10,10,0,0" />
                                                     </StackPanel>
+                                                    
                                                 </DataTemplate>
                                             </ListBox.ItemTemplate>
                                         </ListBox>
+                                        <TextBlock
+                                            Margin="0,0,0,10"
+                                            FontWeight="Bold"
+                                            Text="Loading snaps will clear&#x0a;the canvas(Irreversible command)" />
 
                                         <!--  Download Button  -->
                                         <Button
