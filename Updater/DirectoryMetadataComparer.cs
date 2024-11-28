@@ -69,7 +69,12 @@ public class DirectoryMetadataComparer
     /// <returns>List of key-value pairs containing the mapping.</returns>
     private static List<KeyValuePair<string, string>> CreateHashToFileDictionary(List<FileMetadata> metadata)
     {
-        return metadata.Select(file => new KeyValuePair<string, string>(file.FileHash, file.FileName)).ToList();
+        return metadata
+    .Where(file => file.FileHash != null && file.FileName != null) // Filter out nulls
+    .Select(file => new KeyValuePair<string, string>(
+        file.FileHash ?? string.Empty,
+        file.FileName ?? string.Empty))
+    .ToList();
     }
 
     /// <summary>
@@ -99,7 +104,10 @@ public class DirectoryMetadataComparer
                     FileName = fileB.FileName,
                     FileHash = fileB.FileHash
                 });
-                UniqueClientFiles.Add(fileB.FileName);
+                if (!string.IsNullOrEmpty(fileB.FileName))
+                {
+                    UniqueClientFiles.Add(fileB.FileName);
+                }
             }
         }
     }
@@ -119,7 +127,10 @@ public class DirectoryMetadataComparer
                     FileName = fileA.FileName,
                     FileHash = fileA.FileHash
                 });
-                UniqueServerFiles.Add(fileA.FileName);
+                if (!string.IsNullOrEmpty(fileA.FileName))
+                {
+                    UniqueServerFiles.Add(fileA.FileName);
+                }
             }
         }
     }
@@ -140,7 +151,10 @@ public class DirectoryMetadataComparer
             if (fileB != null && fileA.FileHash != fileB.FileHash)
             {
                 // Found files with the same name but different hashes
-                InvalidSyncUpFiles?.Add(fileA.FileName);
+                if (!string.IsNullOrEmpty(fileA.FileName))
+                {
+                    InvalidSyncUpFiles?.Add(fileA.FileName);
+                }
             }
         }
     }
