@@ -140,6 +140,8 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
     private readonly Updater.Client _updaterClient = Updater.Client.GetClientInstance();
     private readonly FileCloner.Models.Singleton _fileClonerInstance = FileCloner.Models.Singleton.Instance;
 
+    private static ClientDashboard s_dashClientInstance;
+
     /// <summary>
     /// Initializes a new instance of the Client_Dashboard class.
     /// </summary>
@@ -148,7 +150,7 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
     /// <param name="useremail">User email.</param>
     /// <param name="pictureURL">User profile picture URL.</param>
     MainViewModel _contentInstance = MainViewModel.GetInstance;
-    public ClientDashboard(ICommunicator communicator, string username, string useremail, string pictureURL)
+    private ClientDashboard(ICommunicator communicator, string username, string useremail, string pictureURL)
     {
         _communicator = communicator;
         _communicator.Subscribe("Dashboard", this, isHighPriority: true);
@@ -158,6 +160,15 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
         _fileClonerInstance.UserName = UserName;
         UserID = string.Empty; // Initialize UserID
         ClientUserList.CollectionChanged += (s, e) => OnPropertyChanged(nameof(ClientUserList));
+    }
+
+    public static ClientDashboard GetClientInstance(ICommunicator icommunicator,string username , string useremail,string pictureURL)
+    {
+        if(s_dashClientInstance == null)
+        {
+            s_dashClientInstance = new ClientDashboard(icommunicator, username, useremail, pictureURL);
+        }
+        return s_dashClientInstance;
     }
 
     /// <summary>
