@@ -87,7 +87,7 @@ public class FileExplorerServiceProvider
             ["FULL_PATH"] = dirInfo.FullName,
             ["RELATIVE_PATH"] = relativePath,
             ["COLOR"] = "WHITE",
-            ["ADDRESS"] = Constants.IPAddress,
+            ["ADDRESS"] = Constants.UserName,
             ["CHILDREN"] = new Dictionary<string, object>()
         };
 
@@ -108,7 +108,7 @@ public class FileExplorerServiceProvider
                 ["FULL_PATH"] = file.FullName,
                 ["RELATIVE_PATH"] = Path.GetRelativePath(sourceDirPath, file.FullName),
                 ["COLOR"] = "WHITE",
-                ["ADDRESS"] = Constants.IPAddress,
+                ["ADDRESS"] = Constants.UserName,
                 ["SIZE"] = file.Length,
             };
         }

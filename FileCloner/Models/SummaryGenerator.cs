@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Text.Json;
@@ -167,32 +167,43 @@ public class SummaryGenerator
         // Create a dictionary to group files by their ADDRESS, with a "CHILDREN" dictionary for each address
         var groupedByAddress = new Dictionary<string, Dictionary<string, object>>();
 
-        foreach (KeyValuePair<string, Dictionary<string, object>> entry in Summary)
+        // Iterate through the Summary dictionary
+        foreach (KeyValuePair<string, Dictionary<string, object>> entry in Summary.ToList()) // Use ToList() to avoid modifying during iteration
         {
             Dictionary<string, object> metadata = entry.Value;
 
-            if (metadata.TryGetValue("ADDRESS", out object? address) && address is string addressStr &&
-                metadata.TryGetValue("NAME", out object? name) && name is string nameStr)
+            if (metadata.TryGetValue("ADDRESS", out object? address) && address is string addressStr)
             {
-                // Initialize the address entry with a "CHILDREN" dictionary if it doesn't exist
-                if (!groupedByAddress.ContainsKey(addressStr))
+                // Remove entries where ADDRESS matches Constants.UserName
+                if (addressStr == Constants.UserName)
                 {
-                    groupedByAddress[addressStr] = new Dictionary<string, object> {
-                        ["CHILDREN"] = new Dictionary<string, Dictionary<string, object>>()
-                    };
+                    Summary.Remove(entry.Key); // Remove the entry from Summary
+                    continue; // Skip further processing for this entry
                 }
 
-                // Create a copy of metadata without the NAME field
-                var metadataCopy = new Dictionary<string, object>(metadata);
-                metadataCopy.Remove("NAME");
+                if (metadata.TryGetValue("NAME", out object? name) && name is string nameStr)
+                {
+                    // Initialize the address entry with a "CHILDREN" dictionary if it doesn't exist
+                    if (!groupedByAddress.ContainsKey(addressStr))
+                    {
+                        groupedByAddress[addressStr] = new Dictionary<string, object> {
+                            ["CHILDREN"] = new Dictionary<string, Dictionary<string, object>>()
+                        };
+                    }
 
-                // Add this entry under the "CHILDREN" section for the current address
-                var children = (Dictionary<string, Dictionary<string, object>>)groupedByAddress[addressStr]["CHILDREN"];
-                children[nameStr] = metadataCopy;
+                    // Create a copy of metadata without the NAME field
+                    var metadataCopy = new Dictionary<string, object>(metadata);
+                    metadataCopy.Remove("NAME");
+
+                    // Add this entry under the "CHILDREN" section for the current address
+                    var children = (Dictionary<string, Dictionary<string, object>>)groupedByAddress[addressStr]["CHILDREN"];
+                    children[nameStr] = metadataCopy;
+                }
             }
         }
 
         s_logger.Log($"Writing Summary to File {Constants.OutputFilePath}");
+
         // Write the grouped dictionary to the output file in JSON format
         using FileStream stream = File.Create(Constants.OutputFilePath);
         JsonSerializer.Serialize(stream, groupedByAddress, new JsonSerializerOptions { WriteIndented = true });
