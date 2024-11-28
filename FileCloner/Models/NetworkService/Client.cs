@@ -198,16 +198,16 @@ public class Client : INotificationHandler
     [ExcludeFromCodeCoverage]
     public void SendFilesInChunks(string from, string path, string requesterPath)
     {
-        using FileStream fileStream = new(path, FileMode.Open, FileAccess.Read);
-        FileInfo fileInfo = new(path);
-        long fileSizeInBytes = fileInfo.Length;
-        int bufferSize = fileSizeInBytes < Constants.FileChunkSize ? (int)fileSizeInBytes : Constants.FileChunkSize;
-        byte[] buffer = new byte[bufferSize];
-        int bytesRead = 0;
-        int indexOfChunkBeingSent = Constants.ChunkStartIndex;
-
         try
         {
+            using FileStream fileStream = new(path, FileMode.Open, FileAccess.Read);
+            FileInfo fileInfo = new(path);
+            long fileSizeInBytes = fileInfo.Length;
+            int bufferSize = fileSizeInBytes < Constants.FileChunkSize ? (int)fileSizeInBytes : Constants.FileChunkSize;
+            byte[] buffer = new byte[bufferSize];
+            int bytesRead = 0;
+            int indexOfChunkBeingSent = Constants.ChunkStartIndex;
+
             while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) > 0)
             {
                 if (bytesRead < buffer.Length)
