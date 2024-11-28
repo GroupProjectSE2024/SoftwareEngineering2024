@@ -86,6 +86,7 @@ partial class MainPageViewModel : ViewModelBase
                     LastModified = lastModifiedFormatted ?? "Unknown", // Default to "Unknown" if parsing fails
                     RelativePath = (root.Value.TryGetProperty("RELATIVE_PATH", out JsonElement relativePath) ? relativePath.GetString() : "") ?? "UNKNOWN",
                     IpAddress = (root.Value.TryGetProperty("ADDRESS", out JsonElement address) ? address.GetString() : null) ?? "localhost",
+                    UserName = (root.Value.TryGetProperty("USERNAME", out JsonElement userName) ? userName.GetString() : null) ?? "localhost",
                     FullFilePath = (root.Value.TryGetProperty("FULL_PATH", out JsonElement fullFilePath) ? fullFilePath.GetString() : "PATH NOT GIVEN!") ?? "PATH NOT GIVEN!",
                 };
 
@@ -119,6 +120,7 @@ partial class MainPageViewModel : ViewModelBase
                     Name = child.Name,
                     Color = color ?? "WHITE",
                     IpAddress = (child.Value.TryGetProperty("ADDRESS", out JsonElement address) ? address.GetString() : "localhost") ?? "localhost",
+                    UserName = (child.Value.TryGetProperty("USERNAME", out JsonElement username) ? username.GetString() : "localhost") ?? "localhost",
                     FullFilePath = (child.Value.TryGetProperty("FULL_PATH", out JsonElement fullFilePath) ? fullFilePath.GetString() : "PATH NOT GIVEN!") ?? "PATH NOT GIVEN!",
                     LastModified = DateTimeOffset.Parse((child.Value.TryGetProperty("LAST_MODIFIED", out JsonElement lastModified) ? lastModified.GetString() : "") ?? "UNKNOWN").LocalDateTime.ToString(),
                     IsFile = isFile,
