@@ -23,7 +23,7 @@ namespace UXModule.Views
 
         public event PropertyChangingEventHandler? PropertyChang;  
 
-        private readonly MainPageViewModel _mainPageViewModel;
+        private MainPageViewModel _mainPageViewModel;
         public MainWindow()
         {
             InitializeComponent();
@@ -42,5 +42,11 @@ namespace UXModule.Views
             //this.Close();
 
         }
-}
+        public void ResetViewModel()
+        {
+            _mainPageViewModel = new MainPageViewModel(); // Reinitialize the ViewModel
+            this.DataContext = new WindowViewModel(this, _mainPageViewModel);
+            MainFrame.Content = new LoginPage(_mainPageViewModel);
+        }
+    }
 }

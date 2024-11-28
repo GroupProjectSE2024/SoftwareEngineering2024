@@ -10,6 +10,7 @@ using Networking;
 using Networking.Communication;
 using WhiteboardGUI;
 using Content.ChatViewModel;
+using Content;
 
 namespace Dashboard;
 
@@ -202,6 +203,7 @@ public class ServerDashboard : INotificationHandler
     public FileCloner.Models.NetworkService.Server _fileClonerInstance = FileCloner.Models.NetworkService.Server.GetServerInstance();
     public Updater.Server _updaterServerInstance = Updater.Server.GetServerInstance();
     MainViewModel _contentInstance = MainViewModel.GetInstance;
+    ChatServer _contentServerInstance = ChatServer.GetServerInstance;
 
     /// <summary>
     /// Initializes a new instance of the ServerDashboard class.
@@ -445,17 +447,17 @@ public class ServerDashboard : INotificationHandler
     /// <returns>True if the server stops successfully.</returns>
     public bool ServerStop()
     {
-        lock (_lock)
-        {
-            DashboardDetails dashboardMessage = new() {
-                Action = Action.ServerEnd,
-                Msg = "Meeting Ended"
-            };
-            string jsonMessage = JsonSerializer.Serialize(dashboardMessage);
-            BroadcastMessage(jsonMessage);
-            ServerUserList.Clear();
-            return true;
-        }
+        DashboardDetails dashboardMessage = new() {
+            Action = Action.ServerEnd,
+            Msg = "Meeting Ended"
+        };
+        string jsonMessage = JsonSerializer.Serialize(dashboardMessage);
+        BroadcastMessage(jsonMessage);
+        ServerUserList.Clear();
+        TotalServerUserList.Clear();
+        System.Threading.Thread.Sleep(8000);
+        _communicator.Stop();
+        return true;
     }
 
     /// <summary>

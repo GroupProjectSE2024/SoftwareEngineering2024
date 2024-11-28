@@ -17,7 +17,6 @@ using static System.Net.WebRequestMethods;
 //using Dashboard;
 
 namespace Content.ChatViewModel;
-
 public class MainViewModel : INotifyPropertyChanged
 {
     private ChatClient _client; // hi
@@ -39,18 +38,6 @@ public class MainViewModel : INotifyPropertyChanged
         _client.LatestAction += SyncClientList;
         _client.MessageReceived += OnMessageReceived;
 
-        //_server = new ChatServer();
-
-        ClientUsernames = new ObservableCollection<string>();
-        _client.ClientListUpdated += (s, list) => {
-            Console.WriteLine("ClientListUpdated event triggered with clients: " + string.Join(", ", list)); // Debug log
-            ClientList.Clear();
-            foreach (string clientId in list)
-            {
-                ClientList.Add(clientId);
-            }
-        };
-
         Messages = new ObservableCollection<ChatMessage>();
         SendMessageCommand = new RelayCommand(SendButton_Click);
         EnterKeyCommand = new RelayCommand(OnEnterKeyPressed);
@@ -68,17 +55,10 @@ public class MainViewModel : INotifyPropertyChanged
     public void SetUserDetails_client(string username, string userid, string userProfileUrl)
     {
 
-        //_client = new ChatClient
-        //{
-        //    ClientId = userid,
-        //    Username = username,
-        //    UserProfileUrl = userProfileUrl
-        //};
         _client.ClientId = userid;
         _client.Username = username;
         _client.UserProfileUrl = userProfileUrl;
 
-        //_client.Start();
 
     }
 
@@ -111,11 +91,7 @@ public class MainViewModel : INotifyPropertyChanged
         get => _message;
         set { _message = value; OnPropertyChanged(); }
     }
-    public ObservableCollection<string> ClientList
-    {
-        get => _clientList;
-        set { _clientList = value; OnPropertyChanged(); }
-    }
+
     private bool _isNotFoundPopupOpen = false;
     public bool IsNotFoundPopupOpen
     {
@@ -129,15 +105,7 @@ public class MainViewModel : INotifyPropertyChanged
         }
     }
 
-    //connect button command
-    public string _username_text;
-    public string Username_Text
-    {
-        get => _username_text;
-        set {
-            _username_text = value; OnPropertyChanged(nameof(Username_Text));
-        }
-    }
+
 
     //----send button command
     public string _messagetextbox_text;
@@ -149,17 +117,7 @@ public class MainViewModel : INotifyPropertyChanged
         }
     }
 
-    //selected username
-    public string _selectedusername;
-    public string Selectedusername
-    {
-        get => _selectedusername;
-        set {
-            _selectedusername = value; OnPropertyChanged(nameof(Selectedusername));
-        }
-    }
 
-    public event EventHandler RequestVariable;
 
     private string _recipientt;
     public string Recipientt
@@ -171,15 +129,7 @@ public class MainViewModel : INotifyPropertyChanged
         }
     }
 
-    //selected emoji
-    public string _emoji;
-    public string Emoji
-    {
-        get => _emoji;
-        set {
-            _emoji = value; OnPropertyChanged(nameof(Emoji));
-        }
-    }
+
 
 
     public ObservableCollection<string> Clientte => _client._clientListobs;
@@ -207,11 +157,6 @@ public class MainViewModel : INotifyPropertyChanged
         }
     }
 
-    //public static ChatServer GetServerInstance()
-    //{
-    //    //var contentvm = MainViewModel.GetInstance;
-    //    return s_contentVMInstance._server;
-    //}
     /// <summary>
     /// Deletes a message by marking it as deleted, updating its content and notifying the UI.
     /// </summary>
@@ -268,36 +213,16 @@ public class MainViewModel : INotifyPropertyChanged
     {
         Debug.WriteLine($"Message received: {message}");
         ChatHistory += message + Environment.NewLine;
-        string[] parts = message.Split(new[] { " :.: " }, StringSplitOptions.None);
+        string[] parts = message.Split(new[] { " ✿ " }, StringSplitOptions.None);
         if (parts.Length == 2)
         {
             string userAndUrl = parts[0].Trim();
             string user = userAndUrl.Split(".url.")[0];
             string profilepicUrl = userAndUrl.Split(".url.")[1];
-            string[] msg = parts[1].Split('|');
+            string[] msg = parts[1].Split('Æ');
             string messageContent = msg[0].Trim();
             bool isSent = false;
             isSent = (user == _client.Username);
-            // Prevent adding the same message again by checking if it already exists in the collection
-            bool messageExists = Messages.Any(m => m.User == user && m.Content == messageContent);
-
-            if (!messageExists)
-            {
-                //Application.Current.Dispatcher.Invoke(() =>
-                //System.Windows.Application.Current.Dispatcher.Invoke(() =>
-                //{
-                //    ChatMessage chatMessage = new ChatMessage
-                //    (
-                //        user,
-                //        messageContent,
-                //        DateTime.Now.ToString("HH:mm"),
-                //        isSent
-                //    );
-                //    Messages.Add(chatMessage);
-                //    MessageAdded?.Invoke(chatMessage);
-
-                //});
-            }
             System.Windows.Application.Current.Dispatcher.Invoke(() => {
                 ChatMessage chatMessage = new ChatMessage
                 (
@@ -336,16 +261,6 @@ public class MainViewModel : INotifyPropertyChanged
         }
     }
 
-    /// <summary>
-    /// Handles updates to the client username list when the server triggers an update event.
-    /// </summary>
-    /// <param name="sender">The sender of the event.</param>
-    /// <param name="e">Event data.</param>
-
-    public void OnClientUsernamesUpdated(object? sender, EventArgs e)
-    {
-        Console.WriteLine("OnClientUsernamesUpdated event triggered");
-    }
 
     /// <summary>
     /// Searches messages based on a query string. Highlights the matched text in messages and adds the message to the SearchResults collection.
@@ -354,48 +269,49 @@ public class MainViewModel : INotifyPropertyChanged
 
     public void SearchMessages(string query)
     {
-        if (SearchResults == null)
+        if (Messages.Count > 0)
         {
-            SearchResults = new ObservableCollection<ChatMessage>();
-        }
-        SearchResults.Clear();
-        if (string.IsNullOrWhiteSpace(query))
-        {
-            return;
-        }
-
-        string lowerCaseQuery = query.ToLower();
-        var foundMessages = Messages.Where(m => m != null && (m.Content).ToLower().Contains(lowerCaseQuery)).ToList();
-
-        foreach (ChatMessage message in Messages)
-        {
-            message.Content = message.Text;
-
-            if (message.Content.ToLower().Contains(lowerCaseQuery) && message.Content != "[Message deleted]")
+            if (SearchResults == null)
             {
-                int startIndex = message.Content.ToLower().IndexOf(lowerCaseQuery);
-                string highlightedText = message.Content.Substring(startIndex, lowerCaseQuery.Length);
-                string beforeText = message.Content.Substring(0, startIndex);
-                string afterText = message.Content.Substring(startIndex + lowerCaseQuery.Length);
-
-                // Assign highlighted properties
-                message.Content = beforeText;
-                message.HighlightedText = highlightedText;
-                message.HighlightedAfterText = afterText;
-                Debug.WriteLine($"Search Query: {query}");
-                Debug.WriteLine($"Found Messages: {foundMessages.Count}");
-                SearchResults.Add(message);
-
+                SearchResults = new ObservableCollection<ChatMessage>();
             }
-            else
+            SearchResults.Clear();
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                return;
+            }
+
+            string lowerCaseQuery = query.ToLower();
+            var foundMessages = Messages.Where(m => m != null && (m.Content).ToLower().Contains(lowerCaseQuery)).ToList();
+
+            foreach (ChatMessage message in Messages)
             {
                 message.Content = message.Text;
-                message.HighlightedText = string.Empty;
-                message.HighlightedAfterText = string.Empty;
-            }
 
+                if (message.Content.ToLower().Contains(lowerCaseQuery) && message.Content != "[Message deleted]")
+                {
+                    int startIndex = message.Content.ToLower().IndexOf(lowerCaseQuery);
+                    string highlightedText = message.Content.Substring(startIndex, lowerCaseQuery.Length);
+                    string beforeText = message.Content.Substring(0, startIndex);
+                    string afterText = message.Content.Substring(startIndex + lowerCaseQuery.Length);
+
+                    // Assign highlighted properties
+                    message.Content = beforeText;
+                    message.HighlightedText = highlightedText;
+                    message.HighlightedAfterText = afterText;
+                    Debug.WriteLine($"Search Query: {query}");
+                    Debug.WriteLine($"Found Messages: {foundMessages.Count}");
+                    SearchResults.Add(message);
+                }
+                else
+                {
+                    message.Content = message.Text;
+                    message.HighlightedText = string.Empty;
+                    message.HighlightedAfterText = string.Empty;
+                }
+            }
+            OnPropertyChanged(nameof(SearchResults)); // Notify the view
         }
-        OnPropertyChanged(nameof(SearchResults)); // Notify the view
     }
 
     /// <summary>
@@ -417,7 +333,6 @@ public class MainViewModel : INotifyPropertyChanged
     /// <summary>
     /// Synchronizes the client list with the server and updates the ObservableCollection for UI binding.
     /// </summary>
-
     public void SyncClientList(Dictionary<int, string> dict_sent)
     {
         //System.Windows.Application.Current.Dispatcher.Invoke(() =>

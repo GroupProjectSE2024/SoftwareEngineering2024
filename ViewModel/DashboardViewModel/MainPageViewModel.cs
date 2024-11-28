@@ -9,6 +9,7 @@ using Dashboard;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using System.Text.Json;
 
 namespace ViewModel.DashboardViewModel;
 
@@ -160,7 +161,7 @@ public class MainPageViewModel : INotifyPropertyChanged
             IsHost = true;
             UserName = userName;
             ProfilePicUrl = profilePictureUrl ?? string.Empty;
-            _communicator = CommunicationFactory.GetCommunicator(isClientSide: false);
+            _communicator = CommunicationFactory.GetCommunicator(isClientSide: false,true);
             _serverSessionManager = new ServerDashboard(_communicator, userName, userEmail, profilePictureUrl);
             _serverSessionManager.PropertyChanged += UpdateUserListOnPropertyChanged; // Subscribe to PropertyChanged
             string serverCredentials = _serverSessionManager.Initialize();
@@ -213,7 +214,50 @@ public class MainPageViewModel : INotifyPropertyChanged
     /// <returns>Returns true if the session is stopped successfully, otherwise false.</returns>
     public bool ServerStopSession()
     {
-        return _serverSessionManager.ServerStop();
+        // Notify clients and stop the server
+        DashboardDetails dashboardMessage = new() {
+            Action = Dashboard.Action.ServerEnd,
+            Msg = "Meeting Ended"
+        };
+        string jsonMessage = JsonSerializer.Serialize(dashboardMessage);
+
+        if (_serverSessionManager != null)
+        {
+            _serverSessionManager.BroadcastMessage(jsonMessage);
+            _serverSessionManager.ServerStop();
+            _serverSessionManager.PropertyChanged -= UpdateUserListOnPropertyChanged;
+            _serverSessionManager = null;  // Clear instance
+        }
+
+        if (_clientSessionManager != null)
+        {
+            _clientSessionManager.PropertyChanged -= UpdateUserListOnPropertyChanged;
+            _clientSessionManager = null;  // Clear instance
+        }
+
+        // Stop communicator
+        if (_communicator != null)
+        {
+            _communicator.Stop();
+            _communicator = null;  // Clear instance
+        }
+
+        // Clear user details
+        UserDetailsList.Clear();
+        IsHost = false;
+        ServerIP = string.Empty;
+        ServerPort = string.Empty;
+        UserName = string.Empty;
+        ProfilePicUrl = string.Empty;
+
+        // Dispose of any running timers
+        if (_timer != null)
+        {
+            _timer.Stop();
+            _timer = null;
+        }
+
+        return true;
     }
 
     /// <summary>

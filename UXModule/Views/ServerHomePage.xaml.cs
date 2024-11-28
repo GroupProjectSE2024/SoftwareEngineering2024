@@ -42,9 +42,24 @@ namespace UXModule.Views
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             bool response = _viewModel.ServerStopSession();
+
+
+            Application.Current.Properties.Clear();
+
+            // Clear navigation history
+            if (Application.Current.MainWindow is MainWindow mainWindow)
+            {
+                mainWindow.MainFrame.NavigationService.RemoveBackEntry();
+            }
+
             if (response)
             {
-                NavigationService.GoBack();
+                var newMainWindow = new MainWindow();
+                newMainWindow.ResetViewModel();
+                newMainWindow.Show();
+
+                // Close the current window
+                Window.GetWindow(this)?.Close();
             }
         }
     }

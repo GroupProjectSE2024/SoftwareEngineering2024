@@ -256,14 +256,19 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
             try
             {
                 _communicator.Send(json_message, "Dashboard", null);
-                Trace.WriteLine("[Dashboardclient] left session gracefully");
+                Trace.WriteLine("[DashboardClient] Left session gracefully");
             }
             catch (Exception ex)
             {
-                Trace.WriteLine($"{ex.Message}");
+                Trace.WriteLine($"Error while sending leave session message: {ex.Message}");
             }
-            System.Threading.Thread.Sleep(5000);
+
+            // Reset resources
+            ClientUserList.Clear();
+            UserID = string.Empty;
+            CurrentUserCount = 0;
             _communicator.Stop();
+            _communicator = null; // Ensure a fresh communicator instance for the next session
             return true;
         }
     }

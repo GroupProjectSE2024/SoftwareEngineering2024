@@ -7,8 +7,10 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using Networking.Serialization;
 
 namespace Content;
+
 
 public class ChatClient : INotificationHandler
 {
@@ -25,6 +27,7 @@ public class ChatClient : INotificationHandler
     public event Action<Dictionary<int, string>> LatestAction;
     public string _clientIdCheck;
 
+    //public MessageData _messageDataClass;
     public string Username { get; set; }
     public string ClientId { get; set; }
     public string UserProfileUrl { get; set; }
@@ -40,20 +43,6 @@ public class ChatClient : INotificationHandler
     }
 
     /// <summary>
-    /// Starts the communicator with the specified server IP and port, then attempts to connect to the chat module. 
-    /// Sends a formatted connect message upon successful connection or invokes a failure event.
-    /// </summary>
-    /// <param name="serverIP">The IP address of the server.</param>
-    /// <param name="serverPort">The port number of the server.</param>
-
-    public void Start()
-    {
-        string messageType = "connect";
-        string formattedMessage = $"{messageType}|{messageType}|{Username}|{messageType}|{messageType}";
-        _communicator.Send(formattedMessage, "ChatModule", null);
-    }
-
-    /// <summary>
     /// Sends a message to the chat server. Supports both public and private messaging, with private messages requiring
     /// recipient ID adjustment to match server requirements.
     /// </summary>
@@ -63,24 +52,10 @@ public class ChatClient : INotificationHandler
     public void SendMessage(string message, string recipientId = null)
     {
         string messageType = recipientId == null ? "public" : "private";
-        //if (recipientId != null)
-        //{
-        //    int x = int.Parse(recipientId);
-        //    x = x - 1;
-        //    recipientId = x.ToString();
-        //}
-        string formattedMessage = $"{messageType}|{message}|{Username}|{ClientId}|{UserProfileUrl}|{recipientId}";
 
+        string formattedMessage = $"{messageType}Æ{message}Æ{Username}Æ{ClientId}Æ{UserProfileUrl}Æ{recipientId}";
         _communicator.Send(formattedMessage, "ChatModule", null);
-        if (messageType == "private")
-        {
-            //int x = int.Parse(_clientIdCheck);
-            //x = x - 1;
-            //string recipee = x.ToString();
 
-            string formattedMessage2 = $"{messageType}|{message}|{Username}|{ClientId}|{UserProfileUrl}|{ClientId}";
-            _communicator.Send(formattedMessage2, "ChatModule", null);
-        }
     }
 
     /// <summary>
@@ -91,9 +66,8 @@ public class ChatClient : INotificationHandler
 
     public void OnDataReceived(string serializedData)
     {
-        MessageReceived?.Invoke(this, serializedData);
 
-        string[] dataParts = serializedData.Split('|');
+        string[] dataParts = serializedData.Split('Æ');
         if (dataParts[0] == "clientlist")
         {
             // Update Client dictionary and ObservableCollection for the client list
@@ -101,10 +75,6 @@ public class ChatClient : INotificationHandler
 
             _clientIdCheck = _client_dict.FirstOrDefault(x => x.Value == Username).Key.ToString();
 
-            //foreach (KeyValuePair<int, string> kvp in _client_dict)
-            //{
-            //    Console.WriteLine($"_client_dict  {kvp.Value}");
-            //}
 
             System.Windows.Application.Current.Dispatcher.Invoke(() => {
                 LatestAction?.Invoke(_client_dict);
@@ -117,13 +87,15 @@ public class ChatClient : INotificationHandler
         else if (dataParts[1] == "private")
         {
             // Handle private message
-            string messageContent = dataParts[3];
-            MessageReceived?.Invoke(this, $"Private from {dataParts[2]} : {messageContent}");
+            //string messageContent = dataParts[3];
+            //MessageReceived?.Invoke(this, $"Private from {dataParts[2]} : {messageContent}");
+            MessageReceived?.Invoke(this, serializedData);
         }
         else
         {
             // Handle public message
             //MessageReceived?.Invoke(this, serializedData);
+            MessageReceived?.Invoke(this, serializedData);
         }
     }
 
