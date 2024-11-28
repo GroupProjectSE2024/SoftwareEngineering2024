@@ -141,8 +141,8 @@
                                 <TextBlock Grid.Row="2" Grid.Column="0" Text=" File Path:" FontWeight="SemiBold" Margin="0,0,5,0"/>
                                 <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding SelectedNode.FullFilePath}" />
 
-                                <TextBlock Grid.Row="3" Grid.Column="0" Text=" IP Address:" FontWeight="SemiBold" Margin="0,0,5,0"/>
-                                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding SelectedNode.IpAddress}" />
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text=" User Name:" FontWeight="SemiBold" Margin="0,0,5,0"/>
+                                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding SelectedNode.UserName}" />
 
                                 <TextBlock Grid.Row="4" Grid.Column="0" Text=" Last Modified:" FontWeight="SemiBold" Margin="0,0,5,0"/>
                                 <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding SelectedNode.LastModified}" />
