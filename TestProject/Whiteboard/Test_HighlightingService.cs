@@ -39,6 +39,7 @@ public class HighlightingServiceTests
                 if (Application.Current == null)
                 {
                     new Application();
+                    
                 }
 
                 // Execute the test action
@@ -102,12 +103,14 @@ public class HighlightingServiceTests
             mockShape1.Setup(s => s.ShapeId).Returns(Guid.NewGuid());
             mockShape1.Setup(s => s.ShapeType).Returns("Circle");
             mockShape1.Setup(s => s.Color).Returns("#FF0000"); // Valid color
+            mockShape1.Setup(s => s.ProfilePictureURL).Returns("vishnu");
 
             // Mock shape 2 with a valid color
             var mockShape2 = new Mock<IShape>();
             mockShape2.Setup(s => s.ShapeId).Returns(Guid.NewGuid());
             mockShape2.Setup(s => s.ShapeType).Returns("Rectangle");
             mockShape2.Setup(s => s.Color).Returns("#00FF00"); // Valid color
+            mockShape2.Setup(s => s.ProfilePictureURL).Returns("vishnu");
 
             // First hover
             element.DataContext = mockShape1.Object;
@@ -141,7 +144,7 @@ public class HighlightingServiceTests
             Assert.IsTrue(viewModel.IsShapeHovered, "IsShapeHovered should be true after second hover.");
             Assert.AreEqual(mockShape2.Object, viewModel.HoveredShape, "HoveredShape should be updated to the second shape.");
 
-            var adorners = adornerLayer.GetAdorners(element);
+            Adorner[] adorners = adornerLayer.GetAdorners(element);
             Assert.IsNotNull(adorners, "Adorners should not be null after second hover.");
             Assert.IsTrue(adorners.Any(a => a is HoverAdorner), "HoverAdorner should be added after second hover.");
 

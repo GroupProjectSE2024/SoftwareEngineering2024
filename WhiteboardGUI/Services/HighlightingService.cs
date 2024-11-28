@@ -63,7 +63,7 @@ public static class HighlightingService
     /// <summary>
     /// Attached property to store a hover timer for each element.
     /// </summary>
-    private static readonly DependencyProperty HoverTimerProperty =
+    private static readonly DependencyProperty s_hoverTimerProperty =
         DependencyProperty.RegisterAttached(
             "HoverTimer",
             typeof(DispatcherTimer),
@@ -77,7 +77,7 @@ public static class HighlightingService
     /// <returns>The hover timer associated with the object.</returns>
     private static DispatcherTimer GetHoverTimer(DependencyObject obj)
     {
-        return (DispatcherTimer)obj.GetValue(HoverTimerProperty);
+        return (DispatcherTimer)obj.GetValue(s_hoverTimerProperty);
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ public static class HighlightingService
     /// <param name="value">The hover timer to associate with the object.</param>
     private static void SetHoverTimer(DependencyObject obj, DispatcherTimer value)
     {
-        obj.SetValue(HoverTimerProperty, value);
+        obj.SetValue(s_hoverTimerProperty, value);
     }
 
     /// <summary>
@@ -120,14 +120,15 @@ public static class HighlightingService
     {
         if (sender is FrameworkElement element)
         {
-            DispatcherTimer hoverTimer = new DispatcherTimer();
-            hoverTimer.Interval = TimeSpan.FromSeconds(0.4);
+            DispatcherTimer hoverTimer = new DispatcherTimer {
+                Interval = TimeSpan.FromSeconds(0.4)
+            };
             hoverTimer.Tick += (s, args) =>
             {
                 hoverTimer.Stop();
                 SetHoverTimer(element, null);
 
-                var viewModel = FindParentViewModel(element);
+                MainPageViewModel? viewModel = FindParentViewModel(element);
                 if (viewModel is MainPageViewModel vm && element.DataContext is IShape shape)
                 {
                     Point elementPosition = element.TranslatePoint(new Point(0, 0), Application.Current.MainWindow);
@@ -138,7 +139,6 @@ public static class HighlightingService
                         RemoveHoverAdorner(adornerLayer, vm);
                         vm.HoveredShape = shape;
                         vm.IsShapeHovered = true;
-
                         Color shapeColor = (Color)ColorConverter.ConvertFromString(shape.Color);
                         ImageSource imageSource = GetImageSourceForShape(shape);
 
@@ -162,10 +162,10 @@ public static class HighlightingService
     /// <returns>The image source of the shape, or null if unavailable.</returns>
     private static ImageSource GetImageSourceForShape(IShape shape)
     {
-        string imagePath = "../Views/Assets/sirphoto.png";
+        //string imagePath = "../Views/Assets/sirphoto.png";
         try
         {
-            return new BitmapImage(new Uri($"pack://application:,,,/{imagePath}", UriKind.Absolute));
+            return new BitmapImage(new Uri(shape.ProfilePictureURL));
         }
         catch
         {
@@ -184,7 +184,7 @@ public static class HighlightingService
             hoverTimer?.Stop();
             SetHoverTimer(element, null);
 
-            var viewModel = FindParentViewModel(element);
+            MainPageViewModel? viewModel = FindParentViewModel(element);
             if (viewModel is MainPageViewModel vm && element.DataContext is IShape shape)
             {
                 AdornerLayer adornerLayer = AdornerLayer.GetAdornerLayer(element);

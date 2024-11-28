@@ -18,7 +18,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Shapes;
 using WhiteboardGUI.Models;
+using WhiteboardGUI.ViewModel;
 
 namespace WhiteboardGUI.Services;
 
@@ -41,12 +43,16 @@ public class RenderingService
     /// <summary>
     /// Collection of shapes currently present on the whiteboard.
     /// </summary>
-    ObservableCollection<IShape> Shapes;
+    ObservableCollection<IShape> _shapes;
+
+    MainPageViewModel _mainPageViewModel;
+
 
     /// <summary>
     /// Unique identifier for the current user.
     /// </summary>
     double _userId;
+    string _name;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="RenderingService"/> class.
@@ -54,13 +60,15 @@ public class RenderingService
     /// <param name="networkingService">The networking service for communication.</param>
     /// <param name="undoRedoService">The service managing undo and redo operations.</param>
     /// <param name="shapes">The collection of shapes on the whiteboard.</param>
-    /// <param name="UserID">The unique identifier of the user.</param>
-    public RenderingService(NetworkingService networkingService, UndoRedoService undoRedoService, ObservableCollection<IShape> shapes, double UserID)
+    /// <param name="userID">The unique identifier of the user.</param>
+    public RenderingService(NetworkingService networkingService, UndoRedoService undoRedoService, ObservableCollection<IShape> shapes, double userID, string name, MainPageViewModel mainPageViewModel)
     {
         _networkingService = networkingService;
         _undoRedoService = undoRedoService;
-        Shapes = shapes;
-        _userId = UserID;
+        _shapes = shapes;
+        _userId = userID;
+        _name = name;
+        _mainPageViewModel = mainPageViewModel;
     }
 
     /// <summary>
@@ -70,7 +78,7 @@ public class RenderingService
     /// <returns>The previous version of the shape, if it existed; otherwise, null.</returns>
     private IShape UpdateSynchronizedShapes(IShape shape)
     {
-        var prevShape = _networkingService._synchronizedShapes.Where(s => s.ShapeId == shape.ShapeId && s.UserID == shape.UserID).FirstOrDefault();
+        IShape? prevShape = _networkingService._synchronizedShapes.Where(s => s.ShapeId == shape.ShapeId && s.UserID == shape.UserID).FirstOrDefault();
         _networkingService._synchronizedShapes.Remove(prevShape);
         _networkingService._synchronizedShapes.Add(shape);
         return prevShape;
@@ -81,21 +89,20 @@ public class RenderingService
     /// </summary>
     /// <param name="currentShape">The shape to render or manipulate.</param>
     /// <param name="command">The command indicating the action to perform (e.g., CREATE, MODIFY, DELETE).</param>
-    public void RenderShape(IShape currentShape, string command)
+    public virtual void RenderShape(IShape currentShape, string command)
     {
 
         if (command == "CREATE")
         {
-            var newShape = currentShape.Clone();
+            IShape newShape = currentShape.Clone();
             _networkingService._synchronizedShapes.Add(newShape);
-            newShape.IsSelected = false;
             _undoRedoService.UpdateLastDrawing(newShape, null);
         }
 
         else if (command.StartsWith("INDEX"))
         {
             _networkingService._synchronizedShapes.Clear();
-            foreach (IShape shape in Shapes)
+            foreach (IShape shape in _shapes)
             {
                 _networkingService._synchronizedShapes.Add(shape);
             }
@@ -103,26 +110,29 @@ public class RenderingService
 
         else if (command == "DOWNLOAD")
         {
-            var newShape = currentShape.Clone();
-            _networkingService._synchronizedShapes.Add(newShape);
+            IShape newShape = currentShape.Clone();
             newShape.IsSelected = false;
+            _networkingService._synchronizedShapes.Add(newShape);
+            
         }
 
         else if (command == "MODIFY")
         {
-            var newShape = currentShape.Clone();
-            var prevShape = UpdateSynchronizedShapes(newShape);
+            IShape newShape = currentShape.Clone();
+            IShape prevShape = UpdateSynchronizedShapes(newShape);
             newShape.IsSelected = false;
+            newShape.IsLocked = false;
+            newShape.LockedByUserID = -1;
             _undoRedoService.UpdateLastDrawing(newShape, prevShape);
         }
 
         else if (command == "CLEAR")
         {
-            Shapes.Clear();
-            _undoRedoService.UndoList.Clear();
-            _undoRedoService.RedoList.Clear();
+            _shapes.Clear();
+            _undoRedoService._undoList.Clear();
+            _undoRedoService._redoList.Clear();
             _networkingService._synchronizedShapes.Clear();
-            string clearMessage = $"ID{_userId}{command}:";
+            string clearMessage = $"ID{_userId}END{command}:";
             Debug.WriteLine(clearMessage);
             _networkingService.BroadcastShapeData(clearMessage);
             return;
@@ -130,48 +140,54 @@ public class RenderingService
 
         else if (command == "UNDO")
         {
-            var prevShape = _undoRedoService.UndoList[_undoRedoService.UndoList.Count - 1].Item1;
-            var _currentShape = _undoRedoService.UndoList[_undoRedoService.UndoList.Count - 1].Item2;
-            if (_currentShape == null)
+            IShape prevShape = _undoRedoService._undoList[_undoRedoService._undoList.Count - 1].Item1;
+            IShape currentShapeRendered = _undoRedoService._undoList[_undoRedoService._undoList.Count - 1].Item2;
+            if (currentShapeRendered == null)
             {
                 currentShape = prevShape;
-                foreach (var s in Shapes)
+                foreach (IShape s in _shapes)
                 {
                     if (s.ShapeId == currentShape.ShapeId)
                     {
-                        Shapes.Remove(s);
+                        _shapes.Remove(s);
                         break;
                     }
                 }
                 _networkingService._synchronizedShapes.Remove(currentShape);
-                prevShape.LastModifierID = _networkingService._clientID;
+                prevShape.LastModifierID = _userId;
                 command = "DELETE";
             }
 
             else if (prevShape == null)
             {
-                currentShape = _currentShape;
-                var newShape = currentShape.Clone();
-                Shapes.Add(newShape);
+                currentShape = currentShapeRendered;
+                IShape newShape = currentShape.Clone();
+                newShape.IsLocked = false;
+                newShape.LockedByUserID = -1;
+                _shapes.Add(newShape);
+                _mainPageViewModel.SelectedShape = newShape;
                 _networkingService._synchronizedShapes.Add(newShape);
                 command = "CREATE";
             }
 
             else
             {
-                currentShape = _currentShape;
-                var newShape = currentShape.Clone();
+                currentShape = currentShapeRendered;
+                IShape newShape = currentShape.Clone();
+                newShape.IsLocked = false;
+                newShape.LockedByUserID = -1;
                 UpdateSynchronizedShapes(newShape);
-                foreach (var s in Shapes)
+                foreach (IShape s in _shapes)
                 {
                     if (s.ShapeId == prevShape.ShapeId)
                     {
-                        Shapes.Remove(s);
+                        _shapes.Remove(s);
                         break;
                     }
                 }
-                Shapes.Add(currentShape);
-                _currentShape.LastModifierID = _networkingService._clientID;
+                _shapes.Add(currentShape);
+                _mainPageViewModel.SelectedShape = currentShape;
+                currentShapeRendered.LastModifierID = _userId;
                 command = "MODIFY";
 
             }
@@ -180,46 +196,48 @@ public class RenderingService
 
         else if (command == "REDO")
         {
-            var prevShape = _undoRedoService.RedoList[_undoRedoService.RedoList.Count - 1].Item1;
-            var _currentShape = _undoRedoService.RedoList[_undoRedoService.RedoList.Count - 1].Item2;
-            if (_currentShape == null)
+            IShape prevShape = _undoRedoService._redoList[_undoRedoService._redoList.Count - 1].Item1;
+            IShape currentShapeRendered = _undoRedoService._redoList[_undoRedoService._redoList.Count - 1].Item2;
+            if (currentShapeRendered == null)
             {
                 currentShape = prevShape;
-                foreach (var s in Shapes)
+                foreach (IShape s in _shapes)
                 {
                     if (s.ShapeId == prevShape.ShapeId)
                     {
-                        Shapes.Remove(s);
+                        _shapes.Remove(s);
                         break;
                     }
                 }
                 _networkingService._synchronizedShapes.Remove(currentShape);
-                prevShape.LastModifierID = _networkingService._clientID;
+                prevShape.LastModifierID = _userId;
                 command = "DELETE";
             }
             else if (prevShape == null)
             {
-                currentShape = _currentShape;
-                var newShape = currentShape.Clone();
-                Shapes.Add(newShape);
+                currentShape = currentShapeRendered;
+                IShape newShape = currentShape.Clone();
+                _shapes.Add(newShape);
+                _mainPageViewModel.SelectedShape = newShape;
                 _networkingService._synchronizedShapes.Add(newShape);
                 command = "CREATE";
             }
             else
             {
-                currentShape = _currentShape;
-                var newShape = currentShape.Clone();
+                currentShape = currentShapeRendered;
+                IShape newShape = currentShape.Clone();
                 UpdateSynchronizedShapes(newShape);
-                foreach (var s in Shapes)
+                foreach (IShape s in _shapes)
                 {
                     if (s.ShapeId == currentShape.ShapeId)
                     {
-                        Shapes.Remove(s);
+                        _shapes.Remove(s);
                         break;
                     }
                 }
-                Shapes.Add(currentShape);
-                _currentShape.LastModifierID = _networkingService._clientID;
+                _shapes.Add(currentShape);
+                _mainPageViewModel.SelectedShape = currentShape;
+                currentShapeRendered.LastModifierID = _userId;
                 command = "MODIFY";
 
             }
@@ -228,15 +246,26 @@ public class RenderingService
 
         else if (command == "DELETE")
         {
-            Shapes.Remove(currentShape);
+            _shapes.Remove(currentShape);
             _networkingService._synchronizedShapes.Remove(currentShape);
             _undoRedoService.UpdateLastDrawing(null, currentShape);
         }
 
-        currentShape.LastModifierID = _networkingService._clientID;
+        currentShape.LastModifierID = _userId;
+        currentShape.LastModifiedBy = _name;
         string serializedShape = SerializationService.SerializeShape(currentShape);
         string serializedMessage = $"ID{_userId}END{command}:{serializedShape}";
         Debug.WriteLine(serializedMessage);
         _networkingService.BroadcastShapeData(serializedMessage);
+    }
+
+    public void OnNewClientJoined(int senderId)
+    {
+        foreach (IShape item in _shapes)
+        {
+            string serializedShape = SerializationService.SerializeShape(item);
+            string serializedMessage = $"ID{_userId}ENDNEWSHAPE:{serializedShape}";
+            _networkingService.BroadcastShapeData(serializedMessage, senderId.ToString());
+        }
     }
 }

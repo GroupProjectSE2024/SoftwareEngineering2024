@@ -125,12 +125,17 @@ public class CircleShape : ShapeBase
             Color = this.Color,
             StrokeThickness = this.StrokeThickness,
             LastModifierID = this.LastModifierID,
-            IsSelected = this.IsSelected, // New shape should not be selected by default
+            IsSelected = false, // New shape should not be selected by default
             CenterX = this.CenterX,
             CenterY = this.CenterY,
             RadiusX = this.RadiusX,
             RadiusY = this.RadiusY,
-            ZIndex = this.ZIndex
+            ZIndex = this.ZIndex,
+            UserName = this.UserName,
+            ProfilePictureURL = this.ProfilePictureURL,
+            LastModifiedBy = this.LastModifiedBy,
+            BoundingBoxColor = this.BoundingBoxColor
+            
         };
     }
 }

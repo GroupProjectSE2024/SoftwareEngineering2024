@@ -20,7 +20,7 @@ public class ShapeConverter : JsonConverter
             var shapes = new ObservableCollection<IShape>();
             var shapeArray = JArray.Load(reader);
 
-            foreach (var shapeDict in shapeArray)
+            foreach (JToken shapeDict in shapeArray)
             {
                 string shapeType = shapeDict["ShapeType"]?.ToString();
                 IShape shape = shapeType switch
@@ -29,6 +29,7 @@ public class ShapeConverter : JsonConverter
                     "Line" => shapeDict.ToObject<LineShape>(),
                     "Scribble" => shapeDict.ToObject<ScribbleShape>(),
                     "TextShape" => shapeDict.ToObject<TextShape>(),
+                    "TextboxModel" => shapeDict.ToObject<TextboxModel>(),
                     _ => throw new NotSupportedException($"Shape type '{shapeType}' not supported"),
                 };
                 shapes.Add(shape);

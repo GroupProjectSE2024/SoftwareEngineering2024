@@ -116,7 +116,7 @@ public class TextboxModelTests
         };
 
         // Act
-        var bounds = textShape.GetBounds();
+        Rect bounds = textShape.GetBounds();
 
         // Assert
         Assert.AreEqual(textShape.X, bounds.Left, "Bounds.Left should be equal to X.");
@@ -146,7 +146,7 @@ public class TextboxModelTests
         textShape.Width = 200;
         textShape.Height = 100;
 
-        var bounds = textShape.GetBounds();
+        Rect bounds = textShape.GetBounds();
 
         // Assert
         Assert.AreEqual(50, bounds.Left, "Bounds.Left should be equal to X.");

@@ -139,9 +139,13 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
         _screenShareClient.SetUserDetails(username, UserID);
 
         _updaterClient.GetClientId(UserID);
+        WhiteboardGUI.Models.ServerOrClient serverOrClient = WhiteboardGUI.Models.ServerOrClient.ServerOrClientInstance;
+
+            serverOrClient.SetUserDetails(UserName, UserID, UserEmail, UserProfileUrl);
 
         WhiteboardGUI.Models.ServerOrClient serverOrClient = WhiteboardGUI.Models.ServerOrClient.ServerOrClientInstance;
         serverOrClient.SetUserDetails(UserName, UserID);
+        
 
         Trace.WriteLine("[DashboardServer] sent info to whiteboard client");
     }

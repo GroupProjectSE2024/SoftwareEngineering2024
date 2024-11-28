@@ -24,7 +24,7 @@ public class Test_InverseBooleanConverter
         CultureInfo culture = CultureInfo.InvariantCulture;
 
         // Act
-        var result = _converter.Convert(value, typeof(bool), null, culture);
+        object result = _converter.Convert(value, typeof(bool), null, culture);
 
         // Assert
         Assert.IsInstanceOfType(result, typeof(bool));
@@ -39,7 +39,7 @@ public class Test_InverseBooleanConverter
         CultureInfo culture = CultureInfo.InvariantCulture;
 
         // Act
-        var result = _converter.Convert(value, typeof(bool), null, culture);
+        object result = _converter.Convert(value, typeof(bool), null, culture);
 
         // Assert
         Assert.IsInstanceOfType(result, typeof(bool));

@@ -13,10 +13,10 @@ namespace Whiteboard;
 [TestClass]
 public class Test_HoverAdorner
 {
-    private static Thread _uiThread;
-    private static AutoResetEvent _uiThreadReady = new AutoResetEvent(false);
-    private static Dispatcher _uiDispatcher;
-    private static Exception _uiException;
+    private static Thread s_uiThread;
+    private static AutoResetEvent s_uiThreadReady = new AutoResetEvent(false);
+    private static Dispatcher s_uiDispatcher;
+    private static Exception s_uiException;
 
     private HoverAdorner _hoverAdorner;
     private FrameworkElement _adornedElement;
@@ -24,37 +24,31 @@ public class Test_HoverAdorner
     [ClassInitialize]
     public static void ClassInitialize(TestContext context)
     {
-        _uiThread = new Thread(() =>
+        s_uiThread = new Thread(() =>
         {
-            _uiDispatcher = Dispatcher.CurrentDispatcher;
-            _uiThreadReady.Set();
+            s_uiDispatcher = Dispatcher.CurrentDispatcher;
+            s_uiThreadReady.Set();
             try
             {
                 Dispatcher.Run(); // Start the Dispatcher loop
             }
             catch (Exception ex)
             {
-                _uiException = ex;
+                s_uiException = ex;
             }
         });
 
-        _uiThread.SetApartmentState(ApartmentState.STA);
-        _uiThread.Start();
-        _uiThreadReady.WaitOne(); // Wait until the Dispatcher is ready
+        s_uiThread.SetApartmentState(ApartmentState.STA);
+        s_uiThread.Start();
+        s_uiThreadReady.WaitOne(); // Wait until the Dispatcher is ready
     }
 
     [ClassCleanup]
     public static void ClassCleanup()
     {
-        if (_uiDispatcher != null)
-        {
-            _uiDispatcher.InvokeShutdown(); // Shut down the Dispatcher
-        }
+        s_uiDispatcher?.InvokeShutdown(); // Shut down the Dispatcher
 
-        if (_uiThread != null)
-        {
-            _uiThread.Join(); // Ensure the thread has exited
-        }
+        s_uiThread?.Join(); // Ensure the thread has exited
     }
 
     [TestInitialize]
@@ -103,7 +97,7 @@ public class Test_HoverAdorner
 
             Assert.IsNotNull(getVisualChildMethod);
 
-            var visualChild = getVisualChildMethod.Invoke(_hoverAdorner, new object[] { 0 });
+            object? visualChild = getVisualChildMethod.Invoke(_hoverAdorner, new object[] { 0 });
 
             Assert.IsInstanceOfType(visualChild, typeof(Border));
         });
@@ -146,10 +140,12 @@ public class Test_HoverAdorner
 
     private void RunOnUIThread(Action action)
     {
-        if (_uiDispatcher == null)
+        if (s_uiDispatcher == null)
+        {
             throw new InvalidOperationException("Dispatcher is not initialized.");
+        }
 
-        _uiDispatcher.Invoke(() =>
+        s_uiDispatcher.Invoke(() =>
         {
             try
             {
@@ -157,14 +153,14 @@ public class Test_HoverAdorner
             }
             catch (Exception ex)
             {
-                _uiException = ex;
+                s_uiException = ex;
             }
         });
 
-        if (_uiException != null)
+        if (s_uiException != null)
         {
-            var exception = _uiException;
-            _uiException = null;
+            Exception exception = s_uiException;
+            s_uiException = null;
             throw exception;
         }
     }
