@@ -750,6 +750,7 @@ public class MainPageViewModel : INotifyPropertyChanged
         _receivedDataService.ShapeLocked += OnShapeLocked;
         _receivedDataService.ShapeUnlocked += OnShapeUnlocked;
         _receivedDataService.NewClientJoinedShapeReceived += OnNewClientJoinedShapeReceived;
+        _receivedDataService.SnapShotReceived += OnSnapShotReceived;
 
         Shapes.CollectionChanged += Shapes_CollectionChanged;
 
@@ -1460,6 +1461,15 @@ public class MainPageViewModel : INotifyPropertyChanged
             }
         });
         OnShapeLocked(shape);
+    }
+
+    private void OnSnapShotReceived(IShape shape)
+    {
+        Application.Current.Dispatcher.Invoke(() => {
+            Shapes.Add(shape);
+            IShape newShape = shape.Clone();
+            _networkingService._synchronizedShapes.Add(newShape);
+        });
     }
 
 

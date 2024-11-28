@@ -76,7 +76,9 @@ public class ReceivedDataService
     /// The ID of the current service instance.
     /// </summary>
     private int _id;
-    
+
+    public event Action<IShape> SnapShotReceived;
+
     MainPageViewModel _mainPageViewModel;
 
     /// <summary>
@@ -220,7 +222,7 @@ public class ReceivedDataService
             IShape shape = SerializationService.DeserializeShape(data);
             if (shape != null)
             {
-                ShapeReceived?.Invoke(shape, false); // For rendering snapshot after downloading
+                SnapShotReceived?.Invoke(shape); // For rendering snapshot after downloading
             }
         }
         else if (receivedData.StartsWith("UNLOCK:"))
