@@ -30,17 +30,17 @@ using ViewModel.DashboardViewModel;
 using Google.Apis.Util;
 using UXModule.Views;
 
-namespace UXModule.Views
+namespace UXModule.Views; // Defining the namespace for the class
+
+/// <summary>
+/// Interaction logic for LoginPage.xaml
+/// </summary>
+public partial class LoginPage : Page // Partial class for LoginPage inheriting from Page
 {
-    /// <summary>
-    /// Interaction logic for LoginPage.xaml
-    /// </summary>
-    public partial class LoginPage : Page
-    {
-        private const string RedirectUri = "http://localhost:5041/signin-google";
-        private static readonly string[] Scopes = { Oauth2Service.Scope.UserinfoProfile, Oauth2Service.Scope.UserinfoEmail };
-        private readonly MainPageViewModel _viewModel;
-        private const string client_secret_json = @"
+    private const string RedirectUri = "http://localhost:5041/signin-google"; // Constant for redirect URI
+    private static readonly string[] s_scopes = { Oauth2Service.Scope.UserinfoProfile, Oauth2Service.Scope.UserinfoEmail }; // Scopes for Google OAuth
+    private readonly MainPageViewModel _viewModel; // Readonly field for MainPageViewModel
+    private const string Client_secret_json = @"
         {   
            ""web"":{
             ""client_id"":""222768174287-pan40hlrb6cjs1jomg70frllg53abhdl.apps.googleusercontent.com"",
@@ -51,187 +51,211 @@ namespace UXModule.Views
             ""client_secret"":""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"",
             ""redirect_uris"":[""http://localhost:5041/signin-google""]
            }
-        }";
+        }"; // JSON string for client secret
 
-        private readonly ICloud _cloudService;
-        private string? _userEmail;
+    private readonly ICloud _cloudService; // Readonly field for cloud service
+    private string? _userEmail; // Nullable string for user email
 
-        public LoginPage(MainPageViewModel viewModel)
+    public LoginPage(MainPageViewModel viewModel) // Constructor for LoginPage
+    {
+        InitializeComponent(); // Initialize the component
+        _viewModel = viewModel; // Assign the view model
+
+        ILoggerFactory loggerFactory = LoggerFactory.Create(builder => builder.AddConsole()); // Create a logger factory
+        _cloudService = new CloudService( // Initialize the cloud service
+            baseUrl: "https://secloudapp-2024.azurewebsites.net/api",
+            team: "dashboard",
+            sasToken: "sp=racwdli&st=2024-11-15T10:35:50Z&se=2024-11-29T18:35:50Z&spr=https&sv=2022-11-02&sr=c&sig=MRaD0z23KNmNxhbGdUfquDnriqHWh7FDvCjwPSIjOs8%3D",
+            httpClient: new HttpClient(),
+            logger: loggerFactory.CreateLogger<CloudService>()
+        );
+
+        // Initialize StatusText
+        StatusText = new TextBlock(); // Initialize StatusText as a new TextBlock
+    }
+
+    /// <summary>
+    /// Handles the click event of the SignIn button.
+    /// Initiates the Google OAuth sign-in process and navigates to the HomePage upon success.
+    /// </summary>
+    private async void SignInButton_Click(object sender, RoutedEventArgs e) // Event handler for SignIn button click
+    {
+        try
         {
-            InitializeComponent();
-            _viewModel = viewModel;
+            SignInButton.IsEnabled = false; // Disable the SignIn button
 
-            var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
-            _cloudService = new CloudService(
-                baseUrl: "https://secloudapp-2024.azurewebsites.net/api",
-                team: "dashboard",
-                sasToken: "sp=racwdli&st=2024-11-15T10:35:50Z&se=2024-11-29T18:35:50Z&spr=https&sv=2022-11-02&sr=c&sig=MRaD0z23KNmNxhbGdUfquDnriqHWh7FDvCjwPSIjOs8%3D",
-                httpClient: new HttpClient(),
-                logger: loggerFactory.CreateLogger<CloudService>()
-            );
+            // Get the path to the application data directory
+            string appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "UXModule");
 
-            // Initialize StatusText
-            StatusText = new TextBlock();
+            // Ensure the directory exists
+            Directory.CreateDirectory(appDataPath);
+
+            // Path to the token.json file
+            string credPath = Path.Combine(appDataPath, "token.json");
+
+            if (File.Exists(credPath)) // Check if token.json file exists
+            {
+                File.Delete(credPath); // Delete the token.json file
+            }
+
+            UserCredential? credential = await GetGoogleOAuthCredentialAsync(); // Get Google OAuth credentials
+            if (credential == null) // Check if credentials are null
+            {
+                MessageBox.Show("Failed to obtain credentials."); // Show error message
+                return; // Return from the method
+            }
+
+            Userinfo? userInfo = await GetUserInfoAsync(credential); // Get user information
+            if (userInfo == null) // Check if user information is null
+            {
+                MessageBox.Show("Failed to obtain user information."); // Show error message
+                return; // Return from the method
+            }
+
+            _userEmail = userInfo.Email; // Assign user email
+            await UploadUserInfoToCloud(userInfo); // Upload user information to cloud
+
+            // Navigate to HomePage and pass user info
+            var homePage = new HomePage(_viewModel); // Create a new HomePage instance
+            homePage.SetUserInfo(userInfo.Name, userInfo.Email, userInfo.Picture); // Set user information on HomePage
+            NavigationService.Navigate(homePage); // Navigate to HomePage
         }
-
-        /// <summary>
-        /// Handles the click event of the SignIn button.
-        /// Initiates the Google OAuth sign-in process and navigates to the HomePage upon success.
-        /// </summary>
-        private async void SignInButton_Click(object sender, RoutedEventArgs e)
+        catch (Exception ex) // Catch any exceptions
         {
-            try
-            {
-                SignInButton.IsEnabled = false;
-
-                if (File.Exists("token.json"))
-                {
-                    File.Delete("token.json");
-                }
-
-                var credential = await GetGoogleOAuthCredentialAsync();
-                if (credential == null)
-                {
-                    MessageBox.Show("Failed to obtain credentials.");
-                    return;
-                }
-
-                var userInfo = await GetUserInfoAsync(credential);
-                if (userInfo == null)
-                {
-                    MessageBox.Show("Failed to obtain user information.");
-                    return;
-                }
-
-                _userEmail = userInfo.Email;
-                await UploadUserInfoToCloud(userInfo);
-
-                // Navigate to HomePage and pass user info
-                var homePage = new HomePage(_viewModel);
-                homePage.SetUserInfo(userInfo.Name, userInfo.Email, userInfo.Picture);
-                NavigationService.Navigate(homePage);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Sign-in error: {ex.Message}\n\nDetails: {ex.InnerException?.Message}");
-            }
-            finally
-            {
-                SignInButton.IsEnabled = true;
-            }
+            MessageBox.Show($"Sign-in error: {ex.Message}\n\nDetails: {ex.InnerException?.Message}"); // Show error message
         }
-
-        /// <summary>
-        /// Handles the click event of the SignOut button.
-        /// Signs out the user by clearing stored credentials and deleting user data from the cloud.
-        /// </summary>
-        private async void SignOutButton_Click(object sender, RoutedEventArgs e)
+        finally
         {
-            try
+            SignInButton.IsEnabled = true; // Enable the SignIn button
+        }
+    }
+
+
+    /// <summary>
+    /// Handles the click event of the SignOut button.
+    /// Signs out the user by clearing stored credentials and deleting user data from the cloud.
+    /// </summary>
+
+
+    private async void SignOutButton_Click(object sender, RoutedEventArgs e) // Event handler for SignOut button click
+    {
+        try
+        {
+            // Get the path to the application data directory
+            string appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "UXModule");
+
+            // Path to the token.json file
+            string credPath = Path.Combine(appDataPath, "token.json");
+
+            await Task.Run(() => // Run a task asynchronously
             {
-                await Task.Run(() =>
+                if (File.Exists(credPath)) // Check if token.json file exists
                 {
-                    if (File.Exists("token.json"))
-                    {
-                        File.Delete("token.json");
-                    }
-                });
-
-                // Clear the stored credentials in the FileDataStore
-                var credPath = "token.json";
-                var fileDataStore = new FileDataStore(credPath, true);
-                await fileDataStore.ClearAsync();
-
-                // Delete user_data.json from cloud
-                if (!string.IsNullOrEmpty(_userEmail))
-                {
-                    await DeleteUserInfoFromCloud(_userEmail);
+                    File.Delete(credPath); // Delete the token.json file
                 }
-
-                MessageBox.Show("Signed out successfully.");
-                StatusText.Text = "Signed out. Please sign in again.";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Sign-out error: {ex.Message}");
-            }
-        }
-
-        /// <summary>
-        /// Obtains Google OAuth credentials.
-        /// </summary>
-        /// <returns>The user credential or null if failed.</returns>
-        private async Task<UserCredential?> GetGoogleOAuthCredentialAsync()
-        {
-            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(client_secret_json)))
-            {
-                var credPath = "token.json";
-                var clientSecrets = GoogleClientSecrets.FromStream(stream).Secrets;
-                return await GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    clientSecrets,
-                    Scopes,
-                    "user",
-                    CancellationToken.None,
-                    new FileDataStore(credPath, true),
-                    new Dashboard.LocalServerCodeReceiver(RedirectUri));
-            }
-        }
-
-        /// <summary>
-        /// Retrieves user information from Google OAuth service.
-        /// </summary>
-        /// <param name="credential">The user credential.</param>
-        /// <returns>The user information or null if failed.</returns>
-        private async Task<Userinfo?> GetUserInfoAsync(UserCredential credential)
-        {
-            var service = new Oauth2Service(new BaseClientService.Initializer
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = "Dashboard"
             });
 
-            var userInfoRequest = service.Userinfo.Get();
-            return await userInfoRequest.ExecuteAsync();
-        }
+            // Clear the stored credentials in the FileDataStore
+            var fileDataStore = new FileDataStore(appDataPath, true); // Create a new FileDataStore instance
+            await fileDataStore.ClearAsync(); // Clear the stored credentials
 
-        /// <summary>
-        /// Uploads user information to the cloud service.
-        /// </summary>
-        /// <param name="userInfo">The user information.</param>
-        /// <returns>A task representing the asynchronous operation.</returns>
-        private async Task UploadUserInfoToCloud(Userinfo userInfo)
-        {
-            var userData = new
+            // Delete user_data.json from cloud
+            if (!string.IsNullOrEmpty(_userEmail)) // Check if user email is not null or empty
             {
-                Name = userInfo.Name,
-                Email = userInfo.Email,
-                Picture = userInfo.Picture,
-                SavedAt = DateTime.UtcNow
-            };
-
-            var jsonOptions = new JsonSerializerOptions { WriteIndented = true };
-            string jsonString = JsonSerializer.Serialize(userData, jsonOptions);
-
-            // Write JSON string to MemoryStream
-            using (var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(jsonString)))
-            {
-                // Upload the MemoryStream with a unique filename
-                var response = await _cloudService.UploadAsync($"{userInfo.Email}_user_data.json", memoryStream, "application/json");
-                Console.WriteLine(response.ToString());
+                await DeleteUserInfoFromCloud(_userEmail); // Delete user information from cloud
             }
-        }
 
-        /// <summary>
-        /// Deletes user information from the cloud service.
-        /// </summary>
-        /// <param name="userEmail">The user's email address.</param>
-        /// <returns>A task representing the asynchronous operation.</returns>
-        private async Task DeleteUserInfoFromCloud(string userEmail)
+            MessageBox.Show("Signed out successfully."); // Show success message
+            StatusText.Text = "Signed out. Please sign in again."; // Update status text
+        }
+        catch (Exception ex) // Catch any exceptions
         {
-            var response = await _cloudService.DeleteAsync($"{userEmail}_user_data.json");
-            Console.WriteLine(response.ToString());
+            MessageBox.Show($"Sign-out error: {ex.Message}"); // Show error message
         }
-
-        private TextBlock StatusText { get; set; }
     }
+
+
+    /// <summary>
+    /// Obtains Google OAuth credentials.
+    /// </summary>
+    /// <returns>The user credential or null if failed.</returns>
+
+
+    private async Task<UserCredential?> GetGoogleOAuthCredentialAsync()
+    {
+        using var stream = new MemoryStream(Encoding.UTF8.GetBytes(Client_secret_json));
+        // Get the path to the application data directory
+        string appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "YourAppName");
+
+        // Ensure the directory exists
+        Directory.CreateDirectory(appDataPath);
+
+        // Path to the token.json file
+        string credPath = Path.Combine(appDataPath, "token.json");
+
+        ClientSecrets clientSecrets = GoogleClientSecrets.FromStream(stream).Secrets; // Get client secrets from the stream
+        return await GoogleWebAuthorizationBroker.AuthorizeAsync( // Authorize and get user credentials
+            clientSecrets,
+            s_scopes,
+            "user",
+            CancellationToken.None,
+            new FileDataStore(credPath, true), // FileDataStore stores the token.json file
+            new Dashboard.LocalServerCodeReceiver(RedirectUri));
+    }
+
+
+    /// <summary>
+    /// Retrieves user information from Google OAuth service.
+    /// </summary>
+    /// <param name="credential">The user credential.</param>
+    /// <returns>The user information or null if failed.</returns>
+    private async Task<Userinfo?> GetUserInfoAsync(UserCredential credential) // Method to get user information
+    {
+        var service = new Oauth2Service(new BaseClientService.Initializer // Initialize OAuth2 service
+        {
+            HttpClientInitializer = credential,
+            ApplicationName = "Dashboard"
+        });
+
+        UserinfoResource.GetRequest userInfoRequest = service.Userinfo.Get(); // Create a user info request
+        return await userInfoRequest.ExecuteAsync(); // Execute the request and get user information
+    }
+
+    /// <summary>
+    /// Uploads user information to the cloud service.
+    /// </summary>
+    /// <param name="userInfo">The user information.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    private async Task UploadUserInfoToCloud(Userinfo userInfo) // Method to upload user information to cloud
+    {
+        var userData = new // Create an anonymous object for user data
+        {
+            Name = userInfo.Name,
+            Email = userInfo.Email,
+            Picture = userInfo.Picture,
+            SavedAt = DateTime.UtcNow
+        };
+
+        var jsonOptions = new JsonSerializerOptions { WriteIndented = true }; // JSON serialization options
+        string jsonString = JsonSerializer.Serialize(userData, jsonOptions); // Serialize user data to JSON string
+
+        // Write JSON string to MemoryStream
+        using var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(jsonString)); // Create a memory stream from JSON string
+                                                                                       // Upload the MemoryStream with a unique filename
+        ServiceResponse<string> response = await _cloudService.UploadAsync($"{userInfo.Email}_user_data.json", memoryStream, "application/json"); // Upload user data to cloud
+        Console.WriteLine(response.ToString()); // Log the response
+    }
+
+    /// <summary>
+    /// Deletes user information from the cloud service.
+    /// </summary>
+    /// <param name="userEmail">The user's email address.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    private async Task DeleteUserInfoFromCloud(string userEmail) // Method to delete user information from cloud
+    {
+        ServiceResponse<bool> response = await _cloudService.DeleteAsync($"{userEmail}_user_data.json"); // Delete user data from cloud
+        Console.WriteLine(response.ToString()); // Log the response
+    }
+
+    private TextBlock StatusText { get; set; } // Property for status text
 }

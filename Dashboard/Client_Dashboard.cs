@@ -26,30 +26,109 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
 {
     private ICommunicator _communicator;
 
+    private readonly object _lock = new object();
+
+    private string _userName;
+    private string _userEmail;
+    private string _userId;
+    private string _profilePictureUrl;
+    private string _serverIp = string.Empty;
+    private string _serverPort = string.Empty;
+    private int _currentUserCount = 1;
+
     /// <summary>
     /// Gets or sets the user name.
     /// </summary>
-    private string UserName { get; set; }
+    private string UserName
+    {
+        get {
+            lock (_lock)
+            {
+                return _userName;
+            }
+        }
+        set {
+            lock (_lock)
+            {
+                _userName = value;
+            }
+        }
+    }
 
     /// <summary>
     /// Gets or sets the user email.
     /// </summary>
-    private string UserEmail { get; set; }
+    private string UserEmail
+    {
+        get {
+            lock (_lock)
+            {
+                return _userEmail;
+            }
+        }
+        set {
+            lock (_lock)
+            {
+                _userEmail = value;
+            }
+        }
+    }
 
     /// <summary>
     /// Gets or sets the user ID.
     /// </summary>
-    private string UserID { get; set; }
+    private string UserID
+    {
+        get {
+            lock (_lock)
+            {
+                return _userId;
+            }
+        }
+        set {
+            lock (_lock)
+            {
+                _userId = value;
+            }
+        }
+    }
 
     /// <summary>
     /// Gets or sets the user profile URL.
     /// </summary>
-    private string UserProfileUrl { get; set; }
+    private string UserProfileUrl
+    {
+        get {
+            lock (_lock)
+            {
+                return _profilePictureUrl;
+            }
+        }
+        set {
+            lock (_lock)
+            {
+                _profilePictureUrl = value;
+            }
+        }
+    }
 
     /// <summary>
     /// Gets or sets the current user count.
     /// </summary>
-    public int CurrentUserCount { get; set; }
+    public int CurrentUserCount {
+        get {
+            lock (_lock)
+            {
+                return _currentUserCount;
+            }
+        }
+        private set {
+            lock (_lock)
+            {
+                _currentUserCount = value;
+            }
+        }
+    }
 
     /// <summary>
     /// Gets or sets the client user list.
@@ -89,9 +168,12 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
     /// <returns>Server response.</returns>
     public string Initialize(string serverIP, string serverPort)
     {
-        string server_response = _communicator.Start(serverIP, serverPort);
-        Trace.WriteLine("[DashboardClient] client connected to server");
-        return server_response;
+        lock (_lock)
+        {
+            string server_response = _communicator.Start(serverIP, serverPort);
+            Trace.WriteLine("[DashboardClient] client connected to server");
+            return server_response;
+        }
     }
 
     /// <summary>
@@ -101,14 +183,17 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
     /// <param name="message">Message to be sent.</param>
     public void SendMessage(string clientIP, string message)
     {
-        string json_message = JsonSerializer.Serialize(message);
-        try
+        lock (_lock)
         {
-            _communicator.Send(json_message, "Dashboard", null);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error sending message: {ex.Message}");
+            string json_message = JsonSerializer.Serialize(message);
+            try
+            {
+                _communicator.Send(json_message, "Dashboard", null);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error sending message: {ex.Message}");
+            }
         }
     }
 
@@ -119,37 +204,39 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
     /// <param name="useremail">User email.</param>
     public void SendInfo(string username, string useremail)
     {
-        DashboardDetails details = new DashboardDetails
+        lock (_lock)
         {
-            User = new UserDetails
+            DashboardDetails details = new DashboardDetails {
+                User = new UserDetails {
+                    UserName = username,
+                    UserEmail = useremail,
+                    ProfilePictureUrl = UserProfileUrl,
+                    UserId = UserID
+                },
+                Action = Action.ClientUserConnected
+            };
+            string json_message = JsonSerializer.Serialize(details);
+            try
             {
-                UserName = username,
-                UserEmail = useremail,
-                ProfilePictureUrl = UserProfileUrl,
-                UserId = UserID
-            },
-            Action = Action.ClientUserConnected
-        };
-        string json_message = JsonSerializer.Serialize(details);
-        try
-        {
-            _communicator.Send(json_message, "Dashboard", null);
+                _communicator.Send(json_message, "Dashboard", null);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error sending message: {ex.Message}");
+            }
+            Trace.WriteLine("[DashboardClient] sent user info to server");
+
+            _screenShareClient.SetUserDetails(username, UserID);
+
+            _updaterClient.GetClientId(UserID);
+            WhiteboardGUI.Models.ServerOrClient serverOrClient = WhiteboardGUI.Models.ServerOrClient.ServerOrClientInstance;
+
+            serverOrClient.SetUserDetails(UserName, UserID, UserEmail, UserProfileUrl);
+            _contentInstance.SetUserDetails_client(UserName, UserID, UserProfileUrl);
+
+
+            Trace.WriteLine("[DashboardServer] sent info to whiteboard client");
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error sending message: {ex.Message}");
-        }
-        Trace.WriteLine("[DashboardClient] sent user info to server");
-
-        _screenShareClient.SetUserDetails(username, UserID);
-
-        _updaterClient.GetClientId(UserID);
-        WhiteboardGUI.Models.ServerOrClient serverOrClient = WhiteboardGUI.Models.ServerOrClient.ServerOrClientInstance;
-
-        serverOrClient.SetUserDetails(UserName, UserID, UserEmail, UserProfileUrl);
-        _contentInstance.SetUserDetails_client(UserName, UserID, UserProfileUrl);
-
-        Trace.WriteLine("[DashboardServer] sent info to whiteboard client");
     }
 
     /// <summary>
@@ -158,25 +245,27 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
     /// <returns>True if the client leaves gracefully.</returns>
     public bool ClientLeft()
     {
-        DashboardDetails details = new DashboardDetails
+        lock (_lock)
         {
-            User = new UserDetails { UserName = UserName, UserId = UserID },
-            Action = Action.ClientUserLeft
-        };
-        string json_message = JsonSerializer.Serialize(details);
+            DashboardDetails details = new DashboardDetails {
+                User = new UserDetails { UserName = UserName, UserId = UserID },
+                Action = Action.ClientUserLeft
+            };
+            string json_message = JsonSerializer.Serialize(details);
 
-        try
-        {
-            _communicator.Send(json_message, "Dashboard", null);
-            Trace.WriteLine("[Dashboardclient] left session gracefully");
+            try
+            {
+                _communicator.Send(json_message, "Dashboard", null);
+                Trace.WriteLine("[Dashboardclient] left session gracefully");
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine($"{ex.Message}");
+            }
+            System.Threading.Thread.Sleep(5000);
+            _communicator.Stop();
+            return true;
         }
-        catch (Exception ex)
-        {
-            Trace.WriteLine($"{ex.Message}");
-        }
-        System.Threading.Thread.Sleep(5000);
-        _communicator.Stop();
-        return true;
     }
 
     /// <summary>
@@ -185,52 +274,55 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
     /// <param name="message">Received message.</param>
     public void OnDataReceived(string message)
     {
-        try
+        lock (_lock)
         {
-            var details = JsonSerializer.Deserialize<DashboardDetails>(message);
-            if (details == null)
+            try
             {
-                Console.WriteLine("Error: Deserialized message is null");
-                return;
+                var details = JsonSerializer.Deserialize<DashboardDetails>(message);
+                if (details == null)
+                {
+                    Console.WriteLine("Error: Deserialized message is null");
+                    return;
+                }
+                Trace.WriteLine("[DashClient]" + details.Action);
+                switch (details.Action)
+                {
+                    case Action.ServerSendUserID:
+                        HandleRecievedUserInfo(details);
+                        break;
+                    case Action.ServerUserAdded:
+                        HandleUserConnected(details);
+                        break;
+                    case Action.ServerUserLeft:
+                        HandleUserLeft(details);
+                        break;
+                    case Action.ServerEnd:
+                        HandleEndOfMeeting();
+                        break;
+                    default:
+                        Console.WriteLine($"Unknown action: {details.Action}");
+                        break;
+                }
             }
-            Trace.WriteLine("[DashClient]" + details.Action);
-            switch (details.Action)
+            catch (JsonException)
             {
-                case Action.ServerSendUserID:
-                    HandleRecievedUserInfo(details);
-                    break;
-                case Action.ServerUserAdded:
-                    HandleUserConnected(details);
-                    break;
-                case Action.ServerUserLeft:
-                    HandleUserLeft(details);
-                    break;
-                case Action.ServerEnd:
-                    HandleEndOfMeeting();
-                    break;
-                default:
-                    Console.WriteLine($"Unknown action: {details.Action}");
-                    break;
+                Trace.WriteLine("[DashClient] received list from server");
+                var userList = JsonSerializer.Deserialize<List<UserDetails>>(message);
+                if (userList != null)
+                {
+                    ClientUserList = new ObservableCollection<UserDetails>(userList);
+                    CurrentUserCount = userList.Count;
+                }
+                else
+                {
+                    Console.WriteLine("Error: Deserialized user list is null");
+                }
+                OnPropertyChanged(nameof(ClientUserList));
             }
-        }
-        catch (JsonException)
-        {
-            Trace.WriteLine("[DashClient] received list from server");
-            var userList = JsonSerializer.Deserialize<List<UserDetails>>(message);
-            if (userList != null)
+            catch (Exception ex)
             {
-                ClientUserList = new ObservableCollection<UserDetails>(userList);
-                CurrentUserCount = userList.Count;
+                Console.WriteLine($"Error deserializing message: {ex.Message}");
             }
-            else
-            {
-                Console.WriteLine("Error: Deserialized user list is null");
-            }
-            OnPropertyChanged(nameof(ClientUserList));
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error deserializing message: {ex.Message}");
         }
     }
 
@@ -240,14 +332,17 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
     /// <param name="message">Received message.</param>
     private void HandleRecievedUserInfo(DashboardDetails message)
     {
-        if (message.User != null && message.User.UserId != null)
+        lock (_lock)
         {
-            UserID = message.User.UserId;
-            SendInfo(UserName, UserEmail);
-        }
-        else
-        {
-            Console.WriteLine("Error: Received user info is null");
+            if (message.User != null && message.User.UserId != null)
+            {
+                UserID = message.User.UserId;
+                SendInfo(UserName, UserEmail);
+            }
+            else
+            {
+                Console.WriteLine("Error: Received user info is null");
+            }
         }
     }
 
@@ -257,30 +352,33 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
     /// <param name="message">Received message.</param>
     private void HandleUserConnected(DashboardDetails message)
     {
-        if (message.User != null && message.User.UserId != null)
+        lock (_lock)
         {
-            UserDetails userData = message.User;
-            string newuserid = userData.UserId;
-
-            Trace.WriteLine($"[Dash client] User Connected: {userData.UserName}");
-
-            if (newuserid != UserID)
+            if (message.User != null && message.User.UserId != null)
             {
-                if (ClientUserList.Count >= int.Parse(newuserid))
+                UserDetails userData = message.User;
+                string newuserid = userData.UserId;
+
+                Trace.WriteLine($"[Dash client] User Connected: {userData.UserName}");
+
+                if (newuserid != UserID)
                 {
-                    ClientUserList[int.Parse(newuserid) - 1] = userData;
+                    if (ClientUserList.Count >= int.Parse(newuserid))
+                    {
+                        ClientUserList[int.Parse(newuserid) - 1] = userData;
+                    }
+                    else
+                    {
+                        ClientUserList.Add(userData);
+                    }
                 }
-                else
-                {
-                    ClientUserList.Add(userData);
-                }
+                CurrentUserCount++;
+                OnPropertyChanged(nameof(ClientUserList));
             }
-            CurrentUserCount++;
-            OnPropertyChanged(nameof(ClientUserList));
-        }
-        else
-        {
-            Console.WriteLine("Error: Received user info is null");
+            else
+            {
+                Console.WriteLine("Error: Received user info is null");
+            }
         }
     }
 
@@ -290,24 +388,27 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
     /// <param name="message">Received message.</param>
     private void HandleUserLeft(DashboardDetails message)
     {
-        if (message.User != null && message.User.UserId != null)
+        lock (_lock)
         {
-            Trace.WriteLine("[Dashboard client] some random client left");
-            CurrentUserCount--;
-            string leftuserid = message.User.UserId;
-
-            foreach (var user in ClientUserList)
+            if (message.User != null && message.User.UserId != null)
             {
-                if (user.UserId == leftuserid)
+                Trace.WriteLine("[Dashboard client] some random client left");
+                CurrentUserCount--;
+                string leftuserid = message.User.UserId;
+
+                foreach (var user in ClientUserList)
                 {
-                    ClientUserList.Remove(user);
+                    if (user.UserId == leftuserid)
+                    {
+                        ClientUserList.Remove(user);
+                    }
                 }
+                OnPropertyChanged(nameof(ClientUserList));
             }
-            OnPropertyChanged(nameof(ClientUserList));
-        }
-        else
-        {
-            Console.WriteLine("Error: Received user info is null");
+            else
+            {
+                Console.WriteLine("Error: Received user info is null");
+            }
         }
     }
 
@@ -316,8 +417,11 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
     /// </summary>
     private void HandleEndOfMeeting()
     {
-        ClientUserList.Clear();
-        _communicator.Stop();
+        lock (_lock)
+        {
+            ClientUserList.Clear();
+            _communicator.Stop();
+        }
     }
 
     /// <summary>

@@ -104,8 +104,7 @@
                 <Border Grid.Row="1" BorderThickness="1" BorderBrush="#E0E0E0"
                        CornerRadius="4" Background="#ffffff">
                     <ScrollViewer VerticalScrollBarVisibility="Auto"
-                               HorizontalScrollBarVisibility="Auto"
-                               MaxHeight="300">
+                               HorizontalScrollBarVisibility="Auto">
                         <!-- Set max height for scrolling -->
                         <ItemsControl ItemsSource="{Binding UserDetailsList}"
                                    Margin="5">
@@ -165,20 +164,23 @@
      Series="{Binding SeriesCollection}"
      DisableAnimations="True"
      Hoverable="True"
-     DataTooltip="{Binding DataTooltip}"
      Margin="15">
+                            <!-- X Axis -->
                             <lvc:CartesianChart.AxisX>
                                 <lvc:Axis Title="Time" FontSize="12" ShowLabels="False">
+                                    <!-- Using the TimeLabels from ViewModel -->
+                                    <lvc:Axis.Labels>
+                                        <Binding Path="TimeLabels" />
+                                    </lvc:Axis.Labels>
                                     <lvc:Axis.Separator>
-                                        <lvc:Separator Step="1"/>
+                                        <lvc:Separator Step="1" />
                                     </lvc:Axis.Separator>
                                 </lvc:Axis>
                             </lvc:CartesianChart.AxisX>
+
+                            <!-- Y Axis -->
                             <lvc:CartesianChart.AxisY>
                                 <lvc:Axis Title="Number of Users" FontSize="12" MinValue="0">
-                                    <lvc:Axis.Separator>
-                                        <lvc:Separator Step="1"/>
-                                    </lvc:Axis.Separator>
                                 </lvc:Axis>
                             </lvc:CartesianChart.AxisY>
                         </lvc:CartesianChart>
