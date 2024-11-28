@@ -143,7 +143,7 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
         _updaterClient.GetClientId(UserID);
         WhiteboardGUI.Models.ServerOrClient serverOrClient = WhiteboardGUI.Models.ServerOrClient.ServerOrClientInstance;
 
-        serverOrClient.SetUserDetails(UserName, UserID, "", "");
+        serverOrClient.SetUserDetails(UserName, UserID, UserEmail, UserProfileUrl);
         _contentInstance.SetUserDetails_client(UserName, UserID, UserProfileUrl);
 
 

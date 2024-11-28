@@ -31,7 +31,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Content\Content.csproj" />
-    <ProjectReference Include="..\FileCloner\FileCloner.csproj" />
     <ProjectReference Include="..\Screenshare\Screenshare.csproj" />
     <ProjectReference Include="..\Updater\Updater.csproj" />
     <ProjectReference Include="..\ViewModel\ViewModel.csproj" />

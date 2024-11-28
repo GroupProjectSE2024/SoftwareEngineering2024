@@ -151,7 +151,7 @@ public class ServerDashboard : INotificationHandler
         _contentInstance.SetUserDetails_server(UserName, ProfilePictureUrl);
         WhiteboardGUI.Models.ServerOrClient serverOrClient = WhiteboardGUI.Models.ServerOrClient.ServerOrClientInstance;
 
-        serverOrClient.SetUserDetails(UserName, "1","","");
+        serverOrClient.SetUserDetails(UserName, "1",UserEmail,ProfilePictureUrl);
         return serverCredentials;
     }
 

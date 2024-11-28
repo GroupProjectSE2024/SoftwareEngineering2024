@@ -20,7 +20,6 @@
     <PackageReference Include="Google.Apis.Auth" Version="1.68.0" />
     <PackageReference Include="Google.Apis.Oauth2.v2" Version="1.68.0.1869" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.0" />
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="SharpDX" Version="4.2.0" />
@@ -30,11 +29,15 @@
     <PackageReference Include="UKSIVTSOSAT" Version="1.0.0" />
   </ItemGroup>
 
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
+        <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Content\Content.csproj" />
     <ProjectReference Include="..\Dashboard\Dashboard.csproj" />
-    <ProjectReference Include="..\FileCloner\FileCloner.csproj" />
     <ProjectReference Include="..\Networking\Networking.csproj" />
     <ProjectReference Include="..\Screenshare\Screenshare.csproj" />
     <ProjectReference Include="..\Updater\Updater.csproj" />
@@ -81,5 +84,42 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Views\assets\circleicon.png" />
+        <None Remove="Views\assets\cloud-download.png" />
+        <None Remove="Views\assets\cloud-upload.png" />
+        <None Remove="Views\assets\deleteicon.png" />
+        <None Remove="Views\assets\housekeeping-icon.png" />
+        <None Remove="Views\assets\lineicon.png" />
+        <None Remove="Views\assets\night-icon.png" />
+        <None Remove="Views\assets\palette.png" />
+        <None Remove="Views\assets\pencilicon.png" />
+        <None Remove="Views\assets\redo-circle.png" />
+        <None Remove="Views\assets\selecticon.png" />
+        <None Remove="Views\assets\sirPhoto.png" />
+        <None Remove="Views\assets\texticon.png" />
+        <None Remove="Views\assets\thickness.png" />
+        <None Remove="Views\assets\undo-circle.png" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+        <Resource Include="Views\assets\circleicon.png" />
+        <Resource Include="Views\assets\cloud-download.png" />
+        <Resource Include="Views\assets\cloud-upload.png" />
+        <Resource Include="Views\assets\deleteicon.png" />
+        <Resource Include="Views\assets\housekeeping-icon.png" />
+        <Resource Include="Views\assets\lineicon.png" />
+        <Resource Include="Views\assets\night-icon.png" />
+        <Resource Include="Views\assets\palette.png" />
+        <Resource Include="Views\assets\pencilicon.png" />
+        <Resource Include="Views\assets\redo-circle.png" />
+        <Resource Include="Views\assets\selecticon.png" />
+        <Resource Include="Views\assets\sirphoto.png" />
+        <Resource Include="Views\assets\texticon.png" />
+        <Resource Include="Views\assets\thickness.png" />
+        <Resource Include="Views\assets\undo-circle.png" />
+    </ItemGroup>
 
 </Project>

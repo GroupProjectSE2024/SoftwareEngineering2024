@@ -1,6 +1,1224 @@
 ﻿<Page x:Class="UXModule.Views.WhiteboardPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  
+      xmlns:conv="clr-namespace:WhiteboardGUI.Converters;assembly=WhiteboardGUI"
+      xmlns:models="clr-namespace:WhiteboardGUI.Models;assembly=WhiteboardGUI"
+      xmlns:service="clr-namespace:WhiteboardGUI.Services;assembly=WhiteboardGUI"
+      xmlns:vm="clr-namespace:WhiteboardGUI.ViewModel;assembly=WhiteboardGUI"
+      xmlns:local="clr-namespace:UXModule.Views"
       Title="WhiteboardPage" Background="Gray">
+    <Page.Resources>
 
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <conv:BooleanToTextConverter x:Key="BooleanToTextConverter" />
+        <conv:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+        <conv:DarkModeColorConverter x:Key="DarkModeColorConverter" />
+
+
+        <!--  Style for the Track Buttons  -->
+        <Style x:Key="TrackButtonStyle" TargetType="RepeatButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                        <Rectangle Fill="Transparent" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="Focusable" Value="False" />
+        </Style>
+
+        <!--  Style for the Thumb  -->
+        <Style x:Key="RoundedThumbStyle" TargetType="Thumb">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Thumb">
+                        <Ellipse
+                            Width="18"
+                            Height="18"
+                            Fill="#522B5B" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="CustomSliderTemplate" TargetType="Slider">
+            <Grid>
+                <!--  Track Background  -->
+                <Rectangle
+                    Name="PART_TrackBackground"
+                    Height="4"
+                    VerticalAlignment="Center"
+                    Fill="LightGray" />
+
+                <!--  Track  -->
+                <Track Name="PART_Track">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Command="Slider.DecreaseLarge" Style="{StaticResource TrackButtonStyle}" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource RoundedThumbStyle}" />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Command="Slider.IncreaseLarge" Style="{StaticResource TrackButtonStyle}" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+            </Grid>
+        </ControlTemplate>
+
+
+
+
+        <!--  Style for consistent Popups and Dialogs  -->
+
+
+        <Style x:Key="PopupBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="#dfb6b2" />
+            <Setter Property="BorderBrush" Value="#522b5b" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="15" />
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect
+                        BlurRadius="10"
+                        Opacity="0.2"
+                        Color="Black" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <!--  Style for confirmation buttons with rounded edges  -->
+        <Style x:Key="ConfirmationButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#2B124C" />
+            <!--  Default background color  -->
+            <Setter Property="Foreground" Value="White" />
+            <!--  Text color  -->
+            <Setter Property="FontWeight" Value="Bold" />
+            <!--  Bold text  -->
+            <Setter Property="Padding" Value="5,2" />
+            <!--  Padding for better spacing  -->
+            <Setter Property="Margin" Value="0,0,5,0" />
+            <!--  Margin between buttons  -->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="5.5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#2B124C" />
+                                <!--  Hover background color  -->
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#854f6c" />
+                                <!--  Pressed background color  -->
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.5" />
+                                <!--  Disabled state opacity  -->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <!--  Style for standard toolbar buttons  -->
+        <Style x:Key="ToolBarStyle" TargetType="Button">
+            <Setter Property="Background" Value="#DFB6B2" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            Width="40"
+                            Height="40"
+                            Margin="5"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="SkyBlue" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="LightBlue" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.25" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--  Style for standard toggle toolbar buttons  -->
+        <!--  Updated Style for standard toggle toolbar buttons to differentiate checked and unchecked states  -->
+        <Style x:Key="ToolBarToggleStyle" TargetType="ToggleButton">
+            <Setter Property="Background" Value="#DFB6B2" />
+            <!--  Light background when unchecked  -->
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border
+                            Width="40"
+                            Height="40"
+                            Margin="5"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#C0A99F" />
+                                <!--  Hover color  -->
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#A67875" />
+                                <!--  Pressed color  -->
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Opacity" Value="0.5" />
+                                <!--  Darker color when checked  -->
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter Property="Background" Value="#DFB6B2" />
+                                <!--  Lighter color when unchecked  -->
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <!--  Style for top bar toggle buttons  -->
+        <Style x:Key="TopBarStyle" TargetType="ToggleButton">
+            <Setter Property="Background" Value="#FBE4DB" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border
+                            Width="40"
+                            Height="40"
+                            Margin="5"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightBlue" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="Blue" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="Gray" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CircularColorButton" TargetType="Button">
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Background" Value="Gray" />
+            <!--  Default Background  -->
+            <Setter Property="BorderBrush" Value="#190019" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Ellipse
+                                Fill="{TemplateBinding Background}"
+                                Stroke="{TemplateBinding BorderBrush}"
+                                StrokeThickness="{TemplateBinding BorderThickness}" />
+                            <!--  Optional: Add a ContentPresenter if you want to display content inside  -->
+                            <!--<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.8" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Opacity" Value="0.6" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--  Corrected Style for TextBox with Placeholder  -->
+        <Style x:Key="WatermarkTextBox" TargetType="TextBox">
+            <Setter Property="Foreground" Value="#190019" />
+            <Setter Property="Background" Value="#FBE4DB" />
+            <Setter Property="BorderBrush" Value="#DFB6B2" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+
+                            <Border
+                                CornerRadius="5"
+                                Background="BlanchedAlmond"
+                                Padding="2,2,2,2">
+                                <!--  Placeholder TextBlock  -->
+                                <TextBlock
+                                    x:Name="PlaceholderText"
+                                    Margin="5,5,0,0"
+                                    Width="100"
+                                    Background="BlanchedAlmond"
+                                    Foreground="#190019"
+                                    IsHitTestVisible="False"
+                                    Text="Enter filename"
+                                    Visibility="Collapsed" />
+                            </Border>
+                            <!--  The actual TextBox content  -->
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="0"
+      Background="Transparent"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <!--  Show placeholder when Text is empty  -->
+                            <Trigger Property="Text" Value="">
+                                <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                            <!--  Hide placeholder when TextBox is focused  -->
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="PlaceholderText" Property="Visibility" Value="Collapsed" />
+                            </Trigger>
+                            <!--  Hide placeholder when Text is not empty  -->
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Self}}" Value="{x:Null}">
+                                <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource Self}}" Value="0">
+                                <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource Self}}" Value="1">
+                                <Setter TargetName="PlaceholderText" Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SubmitButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#522b5b" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Margin" Value="0,10,0,0" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            Padding="10"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#854f6c" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#190019" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="Gray" />
+                                <Setter Property="Foreground" Value="LightGray" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Page.Resources>
+
+    <Page.DataContext>
+        <vm:MainPageViewModel />
+    </Page.DataContext>
+
+    <Page.InputBindings>
+        <!--  Bind Shift + Z key to UndoCommand  -->
+        <KeyBinding
+            Key="Z"
+            Command="{Binding UndoCommand}"
+            Modifiers="Shift" />
+        <KeyBinding
+            Key="X"
+            Command="{Binding RedoCommand}"
+            Modifiers="Shift" />
+    </Page.InputBindings>
+
+    <AdornerDecorator>
+        <Grid Background="{Binding CanvasBackground}">
+            <!--  Define two rows: one for the toolbar, one for the canvas  -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Toolbar Section  -->
+
+            <!--  Canvas Section  -->
+            <ItemsControl
+                x:Name="ShapesItemsControl"
+                Grid.Row="1"
+                ItemsSource="{Binding Shapes}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas
+                            ClipToBounds="True"
+                            Background="{Binding CanvasBackground}"
+                            MouseLeftButtonDown="Canvas_LeftMouseButtonDown"
+                            MouseLeftButtonUp="Canvas_MouseLeftButtonUp"
+                            MouseMove="Canvas_MouseMove" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="ContentPresenter">
+                        <Setter Property="Canvas.ZIndex" Value="{Binding ZIndex}" />
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+
+                <!--  Define templates for each shape type  -->
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type models:ShapeBase}">
+                        <ContentControl Content="{Binding}" Tag="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Page}}">
+
+                            <ContentControl.Resources>
+                                <!--  CircleShape Template  -->
+                                <DataTemplate DataType="{x:Type models:CircleShape}">
+                                    <Canvas>
+
+                                        <Ellipse
+                                            Canvas.Left="{Binding Left}"
+                                            Canvas.Top="{Binding Top}"
+                                            Width="{Binding Width}"
+                                            Height="{Binding Height}"
+                                            service:HighlightingService.EnableHighlighting="True"
+                                            StrokeThickness="{Binding StrokeThickness}">
+                                            <Ellipse.Stroke>
+                                                <MultiBinding Converter="{StaticResource DarkModeColorConverter}">
+                                                    <Binding Path="Color" />
+                                                    <Binding Path="DataContext.IsDarkMode" RelativeSource="{RelativeSource AncestorType=Page}" />
+                                                </MultiBinding>
+                                            </Ellipse.Stroke>
+                                        </Ellipse>
+                                        <Rectangle
+                                            Canvas.Left="{Binding Left}"
+                                            Canvas.Top="{Binding Top}"
+                                            Width="{Binding Width}"
+                                            Height="{Binding Height}"
+                                            Fill="Transparent"
+                                            MouseRightButtonDown="Shape_MouseRightButtonDown"
+                                            StrokeDashArray="2"
+                                            StrokeThickness="1"
+                                            Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                            Stroke="{Binding BoundingBoxColor}"
+                                     ></Rectangle>
+
+
+
+
+
+                                        <!--  Top-Left Handle  -->
+                                        <Rectangle
+                                            Canvas.Left="{Binding Left}"
+                                            Canvas.Top="{Binding Top}"
+                                            Width="{Binding HandleSize}"
+                                            Height="{Binding HandleSize}"
+                                            Cursor="SizeNWSE"
+                                            Fill="#FBE4DB"
+                                            MouseLeftButtonDown="ResizeHandle_MouseLeftButtonDown"
+                                            MouseLeftButtonUp="ResizeHandle_MouseLeftButtonUp"
+                                            MouseMove="ResizeHandle_MouseMove"
+                                            Stroke="#190019"
+                                            Tag="TopLeft"
+                                            Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                                        <!--  Top-Right Handle  -->
+                                        <Rectangle
+                                            Canvas.Left="{Binding TopRightHandleX}"
+                                            Canvas.Top="{Binding Top}"
+                                            Width="{Binding HandleSize}"
+                                            Height="{Binding HandleSize}"
+                                            Cursor="SizeNESW"
+                                            Fill="#FBE4DB"
+                                            MouseLeftButtonDown="ResizeHandle_MouseLeftButtonDown"
+                                            MouseLeftButtonUp="ResizeHandle_MouseLeftButtonUp"
+                                            MouseMove="ResizeHandle_MouseMove"
+                                            Stroke="#190019"
+                                            Tag="TopRight"
+                                            Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                                        <!--  Bottom-Left Handle  -->
+                                        <Rectangle
+                                            Canvas.Left="{Binding Left}"
+                                            Canvas.Top="{Binding DownLeftHandleY}"
+                                            Width="{Binding HandleSize}"
+                                            Height="{Binding HandleSize}"
+                                            Cursor="SizeNESW"
+                                            Fill="#FBE4DB"
+                                            MouseLeftButtonDown="ResizeHandle_MouseLeftButtonDown"
+                                            MouseLeftButtonUp="ResizeHandle_MouseLeftButtonUp"
+                                            MouseMove="ResizeHandle_MouseMove"
+                                            Stroke="#190019"
+                                            Tag="BottomLeft"
+                                            Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                                        <!--  Bottom-Right Handle  -->
+                                        <Rectangle
+                                            Canvas.Left="{Binding TopRightHandleX}"
+                                            Canvas.Top="{Binding DownLeftHandleY}"
+                                            Width="{Binding HandleSize}"
+                                            Height="{Binding HandleSize}"
+                                            Cursor="SizeNWSE"
+                                            Fill="#FBE4DB"
+                                            MouseLeftButtonDown="ResizeHandle_MouseLeftButtonDown"
+                                            MouseLeftButtonUp="ResizeHandle_MouseLeftButtonUp"
+                                            MouseMove="ResizeHandle_MouseMove"
+                                            Stroke="#190019"
+                                            Tag="BottomRight"
+                                            Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                    </Canvas>
+                                </DataTemplate>
+
+
+
+
+
+                                <!--  LineShape Template  -->
+                                <DataTemplate DataType="{x:Type models:LineShape}">
+                                    <Canvas>
+                                        <!--  The Line Element  -->
+                                        <Line
+                                            Canvas.Left="{Binding Left}"
+                                            Canvas.Top="{Binding Bottomleft}"
+                                            service:HighlightingService.EnableHighlighting="True"
+                                            StrokeThickness="{Binding StrokeThickness}"
+                                            X1="{Binding RelativeStartX}"
+                                            X2="{Binding RelativeEndX}"
+                                            Y1="{Binding RelativeStartY}"
+                                            Y2="{Binding RelativeEndY}">
+                                            <Line.Stroke>
+                                                <MultiBinding Converter="{StaticResource DarkModeColorConverter}">
+                                                    <Binding Path="Color" />
+                                                    <Binding Path="DataContext.IsDarkMode" RelativeSource="{RelativeSource AncestorType=Page}" />
+                                                </MultiBinding>
+                                            </Line.Stroke>
+                                        </Line>
+
+                                        <!--  Selection Rectangle  -->
+                                        <Rectangle
+                                            Canvas.Left="{Binding Left}"
+                                            Canvas.Top="{Binding Top}"
+                                            Width="{Binding Width}"
+                                            Height="{Binding Height}"
+                                            Fill="Transparent"
+                                            MouseRightButtonDown="Shape_MouseRightButtonDown"
+                                            StrokeDashArray="2"
+                                            StrokeThickness="1"
+                                            Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                             Stroke="{Binding BoundingBoxColor}"/>
+
+                                        <!--  Start Handle  -->
+                                        <Ellipse
+                                            Canvas.Left="{Binding StartHandleX}"
+                                            Canvas.Top="{Binding StartHandleY}"
+                                            Width="{Binding HandleSize}"
+                                            Height="{Binding HandleSize}"
+                                            Cursor="SizeAll"
+                                            Fill="#FBE4DB"
+                                            MouseLeftButtonDown="ResizeHandle_MouseLeftButtonDown"
+                                            MouseLeftButtonUp="ResizeHandle_MouseLeftButtonUp"
+                                            MouseMove="ResizeHandle_MouseMove"
+                                            Stroke="#190019"
+                                            Tag="Start"
+                                            Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                                        <!--  End Handle  -->
+                                        <Ellipse
+                                            Canvas.Left="{Binding EndHandleX}"
+                                            Canvas.Top="{Binding EndHandleY}"
+                                            Width="{Binding HandleSize}"
+                                            Height="{Binding HandleSize}"
+                                            Cursor="SizeAll"
+                                            Fill="#FBE4DB"
+                                            MouseLeftButtonDown="ResizeHandle_MouseLeftButtonDown"
+                                            MouseLeftButtonUp="ResizeHandle_MouseLeftButtonUp"
+                                            MouseMove="ResizeHandle_MouseMove"
+                                            Stroke="#190019"
+                                            Tag="End"
+                                            Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                    </Canvas>
+                                </DataTemplate>
+
+
+
+
+
+                                <!--  ScribbleShape Template  -->
+                                <DataTemplate DataType="{x:Type models:ScribbleShape}">
+                                    <Canvas>
+                                        <!--  The Polyline Element  -->
+                                        <Polyline
+                                            Canvas.Left="{Binding Left}"
+                                            Canvas.Top="{Binding Top}"
+                                            service:HighlightingService.EnableHighlighting="True"
+                                            Points="{Binding RelativePoints}"
+                                            StrokeThickness="{Binding StrokeThickness}">
+                                            <Polyline.Stroke>
+                                                <MultiBinding Converter="{StaticResource DarkModeColorConverter}">
+                                                    <Binding Path="Color" />
+                                                    <Binding Path="DataContext.IsDarkMode" RelativeSource="{RelativeSource AncestorType=Page}" />
+                                                </MultiBinding>
+                                            </Polyline.Stroke>
+                                        </Polyline>
+
+                                        <!--  Selection Rectangle  -->
+                                        <Rectangle
+                                            Canvas.Left="{Binding Left}"
+                                            Canvas.Top="{Binding Top}"
+                                            Width="{Binding Width}"
+                                            Height="{Binding Height}"
+                                            Fill="Transparent"
+                                            MouseRightButtonDown="Shape_MouseRightButtonDown"
+                                            StrokeDashArray="2"
+                                            StrokeThickness="1"
+                                            Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                             Stroke="{Binding BoundingBoxColor}"/>
+
+                                        <!--  Top-Left Handle  -->
+                                        <Rectangle
+                                            Canvas.Left="{Binding Left}"
+                                            Canvas.Top="{Binding Top}"
+                                            Width="{Binding HandleSize}"
+                                            Height="{Binding HandleSize}"
+                                            Cursor="SizeNWSE"
+                                            Fill="#FBE4DB"
+                                            MouseLeftButtonDown="ResizeHandle_MouseLeftButtonDown"
+                                            MouseLeftButtonUp="ResizeHandle_MouseLeftButtonUp"
+                                            MouseMove="ResizeHandle_MouseMove"
+                                            Stroke="#190019"
+                                            Tag="TopLeft"
+                                            Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                        <!--  Top-Right Handle  -->
+                                        <Rectangle
+                                            Canvas.Left="{Binding TopRightHandleX}"
+                                            Canvas.Top="{Binding Top}"
+                                            Width="{Binding HandleSize}"
+                                            Height="{Binding HandleSize}"
+                                            Cursor="SizeNESW"
+                                            Fill="#FBE4DB"
+                                            MouseLeftButtonDown="ResizeHandle_MouseLeftButtonDown"
+                                            MouseLeftButtonUp="ResizeHandle_MouseLeftButtonUp"
+                                            MouseMove="ResizeHandle_MouseMove"
+                                            Stroke="#190019"
+                                            Tag="TopRight"
+                                            Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                        <!--  Bottom-Left Handle  -->
+                                        <Rectangle
+                                            Canvas.Left="{Binding Left}"
+                                            Canvas.Top="{Binding DownLeftHandleY}"
+                                            Width="{Binding HandleSize}"
+                                            Height="{Binding HandleSize}"
+                                            Cursor="SizeNESW"
+                                            Fill="#FBE4DB"
+                                            MouseLeftButtonDown="ResizeHandle_MouseLeftButtonDown"
+                                            MouseLeftButtonUp="ResizeHandle_MouseLeftButtonUp"
+                                            MouseMove="ResizeHandle_MouseMove"
+                                            Stroke="#190019"
+                                            Tag="BottomLeft"
+                                            Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                                        <!--  Bottom-Right Handle  -->
+                                        <Rectangle
+                                            Canvas.Left="{Binding TopRightHandleX}"
+                                            Canvas.Top="{Binding DownLeftHandleY}"
+                                            Width="{Binding HandleSize}"
+                                            Height="{Binding HandleSize}"
+                                            Cursor="SizeNWSE"
+                                            Fill="#FBE4DB"
+                                            MouseLeftButtonDown="ResizeHandle_MouseLeftButtonDown"
+                                            MouseLeftButtonUp="ResizeHandle_MouseLeftButtonUp"
+                                            MouseMove="ResizeHandle_MouseMove"
+                                            Stroke="#190019"
+                                            Tag="BottomRight"
+                                            Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                    </Canvas>
+                                </DataTemplate>
+
+                                <DataTemplate DataType="{x:Type models:TextboxModel}">
+                                    <Canvas>
+                                        <TextBox
+                                            Canvas.Left="{Binding X}"
+                                            Canvas.Top="{Binding Y}"
+                                            Width="{Binding Width}"
+                                            Height="{Binding Height}"
+                                            AcceptsReturn="False"
+                                            Background="{Binding Background}"
+                                            BorderBrush="{Binding BorderBrush}"
+                                            FontSize="{Binding FontSize}"
+                                            Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}">
+                                            <TextBox.InputBindings>
+                                                <KeyBinding Key="Enter" Command="{Binding DataContext.FinalizeTextBoxCommand, RelativeSource={RelativeSource AncestorType=Page}}" />
+                                                <KeyBinding Key="Escape" Command="{Binding DataContext.CancelTextBoxCommand, RelativeSource={RelativeSource AncestorType=Page}}" />
+                                            </TextBox.InputBindings>
+                                        </TextBox>
+                                        <!--  Bounding box if selected  -->
+                                        <Rectangle
+                                            Canvas.Left="{Binding Left}"
+                                            Canvas.Top="{Binding Top}"
+                                            Width="{Binding Width}"
+                                            Height="{Binding Height}"
+                                            StrokeDashArray="2"
+                                            StrokeThickness="1"
+                                            Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                             Stroke="{Binding BoundingBoxColor}"/>
+                                    </Canvas>
+                                </DataTemplate>
+
+                                <!--  TextShape Template  -->
+                                <DataTemplate DataType="{x:Type models:TextShape}">
+                                    <Canvas>
+                                        <TextBlock
+                                            Canvas.Left="{Binding X}"
+                                            Canvas.Top="{Binding Y}"
+                                            service:HighlightingService.EnableHighlighting="True"
+                                            FontSize="{Binding FontSize}"
+                                            MouseRightButtonDown="Shape_MouseRightButtonDownText"
+                                            Text="{Binding Text}">
+                                            <TextBlock.Foreground>
+                                                <MultiBinding Converter="{StaticResource DarkModeColorConverter}">
+                                                    <Binding Path="Color" />
+                                                    <Binding Path="DataContext.IsDarkMode" RelativeSource="{RelativeSource AncestorType=Page}" />
+                                                </MultiBinding>
+                                            </TextBlock.Foreground>
+                                        </TextBlock>
+                                        <!--  Bounding box if selected  -->
+                                        <Rectangle
+                                            Canvas.Left="{Binding Left}"
+                                            Canvas.Top="{Binding Top}"
+                                            Width="{Binding Width}"
+                                            Height="{Binding Height}"
+                                            StrokeDashArray="2"
+                                            StrokeThickness="1"
+                                            Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                             Stroke="{Binding BoundingBoxColor}"/>
+                                    </Canvas>
+                                </DataTemplate>
+                            </ContentControl.Resources>
+                        </ContentControl>
+
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Border
+                Grid.Row="0"
+                Margin="10"
+                Padding="10"
+                CornerRadius="10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Offset="0.0" Color="#2B124C" />
+                        <GradientStop Offset="1.0" Color="#522B5B" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <Border
+                        Grid.Row="0"
+                        Margin="10,10,0,10"
+                        Background="#854f6c"
+                        CornerRadius="10">
+                        <StackPanel
+                            Grid.Row="0"
+                            Margin="10,10,0,10"
+                            HorizontalAlignment="Center"
+                            Background="#854f6c"
+                            Orientation="Horizontal">
+
+                            <Button
+                                Command="{Binding SelectToolCommand}"
+                                CommandParameter="{x:Static models:ShapeType.Pencil}"
+                                Style="{StaticResource ToolBarStyle}"
+                                ToolTip="Pencil">
+                                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                    <Image
+                                        Width="20"
+                                        Height="20"
+                                        Source="Assets/PencilIcon.png" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="12"
+                                        Text="Pencil" />
+                                </StackPanel>
+                            </Button>
+
+                            <Button
+                                Command="{Binding SelectToolCommand}"
+                                CommandParameter="{x:Static models:ShapeType.Line}"
+                                Style="{StaticResource ToolBarStyle}"
+                                ToolTip="Line">
+                                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                    <Image
+                                        Width="20"
+                                        Height="20"
+                                        Source="Assets/LineIcon.png" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="12"
+                                        Text="Line" />
+                                </StackPanel>
+                            </Button>
+                            <Button
+                                Command="{Binding SelectToolCommand}"
+                                CommandParameter="{x:Static models:ShapeType.Circle}"
+                                Style="{StaticResource ToolBarStyle}"
+                                ToolTip="Circle">
+                                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                    <Image
+                                        Width="20"
+                                        Height="20"
+                                        Source="Assets/circleicon.png" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="12"
+                                        Text="Circle" />
+                                </StackPanel>
+                            </Button>
+                            <Button
+                                Command="{Binding SelectToolCommand}"
+                                CommandParameter="{x:Static models:ShapeType.Text}"
+                                Style="{StaticResource ToolBarStyle}"
+                                ToolTip="Text">
+                                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                    <Image
+                                        Width="20"
+                                        Height="20"
+                                        Source="Assets/texticon.png" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="12"
+                                        Text="Text" />
+                                </StackPanel>
+                            </Button>
+
+                            <Button
+                                Command="{Binding SelectToolCommand}"
+                                CommandParameter="{x:Static models:ShapeType.Select}"
+                                Style="{StaticResource ToolBarStyle}"
+                                ToolTip="Select">
+                                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                    <Image
+                                        Width="20"
+                                        Height="20"
+                                        Source="Assets/selecticon.png" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="12"
+                                        Text="Select" />
+                                </StackPanel>
+                            </Button>
+                            <Button
+                                Background="#DFB6B2"
+                                Command="{Binding DeleteShapeCommand}"
+                                IsEnabled="{Binding IsShapeSelected}"
+                                Style="{StaticResource ToolBarStyle}"
+                                ToolTip="Delete">
+                                <StackPanel
+                                    HorizontalAlignment="Center"
+                                    Background="#DFB6B2"
+                                    Orientation="Vertical">
+                                    <Image
+                                        Width="20"
+                                        Height="20"
+                                        Source="Assets/deleteicon.png" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="12"
+                                        Text="Delete" />
+                                </StackPanel>
+                            </Button>
+                            <!--  Clear Button with Confirmation Dialog  -->
+                            <Button
+                                x:Name="ClearButton"
+                                Command="{Binding OpenClearConfirmationCommand}"
+                                Style="{StaticResource ToolBarStyle}"
+                                ToolTip="Clear All Shapes">
+                                <!--  Updated Command Binding  -->
+                                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                    <Image
+                                        Width="20"
+                                        Height="20"
+                                        RenderTransformOrigin="0.524,0.5"
+                                        Source="Assets/housekeeping-icon.png" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="12"
+                                        Text="Clear" />
+                                </StackPanel>
+                            </Button>
+                            <!--  Confirmation Popup for Clear Button  -->
+                            <Popup
+                                x:Name="ClearConfirmationPopup"
+                                AllowsTransparency="True"
+                                IsOpen="{Binding IsClearConfirmationOpen, Mode=TwoWay}"
+                                Placement="Bottom"
+                                PlacementTarget="{Binding ElementName=ClearButton}"
+                                PopupAnimation="Fade">
+                                <Border Style="{StaticResource PopupBorderStyle}">
+                                    <!--  Applied consistent Popup style  -->
+                                    <StackPanel>
+                                        <TextBlock
+                                            Margin="0,0,0,10"
+                                            FontSize="14"
+                                            Text="Are you sure you want to clear the screen?&#xA;You can't revert this action"
+                                            TextWrapping="Wrap" />
+                                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                            <Button
+                                                Width="60"
+                                                Margin="0,0,10,0"
+                                                Command="{Binding ConfirmClearCommand}"
+                                                Content="Yes"
+                                                Style="{StaticResource ConfirmationButtonStyle}" />
+                                            <Button
+                                                Width="60"
+                                                Command="{Binding CancelClearCommand}"
+                                                Content="No"
+                                                Style="{StaticResource ConfirmationButtonStyle}" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+                            </Popup>
+
+                            <Button
+                                Background="#DFB6B2"
+                                Command="{Binding UndoCommand}"
+                                Style="{StaticResource ToolBarStyle}"
+                                ToolTip="Undo">
+                                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                    <Image
+                                        Width="20"
+                                        Height="20"
+                                        Source="Assets/undo-circle.png" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="12"
+                                        Text="Undo" />
+                                </StackPanel>
+                            </Button>
+
+                            <Button
+                                Background="#DFB6B2"
+                                Command="{Binding RedoCommand}"
+                                Style="{StaticResource ToolBarStyle}"
+                                ToolTip="Redo">
+                                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                    <Image
+                                        Width="20"
+                                        Height="20"
+                                        Source="Assets/redo-circle.png" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="12"
+                                        Text="Redo" />
+                                </StackPanel>
+                            </Button>
+                            <!--  start  -->
+                            <ToggleButton
+                                x:Name="PaletteToggleButton"
+                                Checked="PaletteToggleButton_Checked"
+                                Style="{StaticResource ToolBarToggleStyle}"
+                                ToolTip="Color Palette"
+                                Unchecked="PaletteToggleButton_Unchecked">
+                                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                    <Image
+                                        Width="20"
+                                        Height="20"
+                                        Source="Assets/palette.png" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="12"
+                                        Text="Palette" />
+                                </StackPanel>
+                            </ToggleButton>
+                            <!--  Popup containing color options  -->
+                            <Popup
+                                x:Name="ColorPopup"
+                                AllowsTransparency="True"
+                                Placement="Bottom"
+                                PlacementTarget="{Binding ElementName=PaletteToggleButton}"
+                                PopupAnimation="Fade"
+                                StaysOpen="False">
+                                <!-- <Border Background="#FBE4DB"
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    CornerRadius="5"
+                    Padding="10">-->
+                                <Border Style="{StaticResource PopupBorderStyle}">
+                                    <WrapPanel>
+                                        <!--  Add more colors as needed  -->
+                                        <!--  Define color buttons  -->
+                                        <Button
+                                            Margin="5"
+                                            Background="{Binding DefaultColor}"
+                                            Command="{Binding SelectColorCommand}"
+                                            CommandParameter="Black"
+                                            Style="{StaticResource CircularColorButton}" />
+                                        <Button
+                                            Margin="5"
+                                            Background="Red"
+                                            Command="{Binding SelectColorCommand}"
+                                            CommandParameter="Red"
+                                            Style="{StaticResource CircularColorButton}" />
+                                        <Button
+                                            Margin="5"
+                                            Background="Green"
+                                            Command="{Binding SelectColorCommand}"
+                                            CommandParameter="Green"
+                                            Style="{StaticResource CircularColorButton}" />
+                                        <Button
+                                            Margin="5"
+                                            Background="Blue"
+                                            Command="{Binding SelectColorCommand}"
+                                            CommandParameter="Blue"
+                                            Style="{StaticResource CircularColorButton}" />
+                                        <Button
+                                            Margin="5"
+                                            Background="Yellow"
+                                            Command="{Binding SelectColorCommand}"
+                                            CommandParameter="Yellow"
+                                            Style="{StaticResource CircularColorButton}" />
+                                        <Button
+                                            Margin="5"
+                                            Background="Orange"
+                                            Command="{Binding SelectColorCommand}"
+                                            CommandParameter="Orange"
+                                            Style="{StaticResource CircularColorButton}" />
+                                        <Button
+                                            Margin="5"
+                                            Background="Purple"
+                                            Command="{Binding SelectColorCommand}"
+                                            CommandParameter="Purple"
+                                            Style="{StaticResource CircularColorButton}" />
+                                    </WrapPanel>
+                                </Border>
+                            </Popup>
+                            <Ellipse
+                                Width="20"
+                                Height="20"
+                                Margin="0,0,10,0"
+                                Stroke="#190019">
+                                <Ellipse.Fill>
+                                    <SolidColorBrush Color="{Binding CurrentColor}" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <!--  Thickness Slider  -->
+                            <StackPanel
+                                Margin="10,0,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Orientation="Vertical">
+                                <Image
+                                    Width="20"
+                                    Height="20"
+                                    Source="Assets/thickness.png" />
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    FontSize="12"
+                                    Text="Thickness" />
+                            </StackPanel>
+
+                            <Slider
+                                Width="100"
+                                Margin="0,0,15,0"
+                                VerticalAlignment="Center"
+                                HorizontalContentAlignment="Stretch"
+                                Background="#FFF71818"
+                                IsSnapToTickEnabled="True"
+                                Maximum="10"
+                                Minimum="1"
+                                Template="{StaticResource CustomSliderTemplate}"
+                                TickFrequency="1"
+                                Ticks="1,5,10"
+                                ValueChanged="Slider_ValueChanged"
+                                Value="{Binding SelectedThickness, Mode=TwoWay}" />
+
+                            <Button
+                                x:Name="UploadButton"
+                                Background="#DFB6B2"
+                                Command="{Binding OpenPopupCommand}"
+                                Style="{StaticResource ToolBarStyle}"
+                                ToolTip="Upload">
+                                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                    <Image
+                                        Width="20"
+                                        Height="20"
+                                        Source="Assets/cloud-upload.png" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="12"
+                                        Text="Snap" />
+                                </StackPanel>
+                            </Button>
+
+                            <!--  Popup containing the TextBox for filename  -->
+                            <Popup
+                                x:Name="UploadPopup"
+                                AllowsTransparency="True"
+                                IsOpen="{Binding IsPopupOpen, Mode=TwoWay}"
+                                Placement="Bottom"
+                                PlacementTarget="{Binding ElementName=UploadButton}"
+                                PopupAnimation="Fade"
+                                StaysOpen="False">
+                                <!--<Border Background="#FBE4D8"
+                                BorderBrush="Gray"
+                                BorderThickness="1"
+                                CornerRadius="5"
+                                Padding="10">-->
+                                <Border Style="{StaticResource PopupBorderStyle}">
+                                    <StackPanel>
+
+                                        <!--  TextBox with Placeholder  -->
+                                        <TextBox Style="{StaticResource WatermarkTextBox}" Text="{Binding SnapShotFileName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                                        <!--  Submit Button with IsEnabled Binding  -->
+                                        <Button
+                                            Width="75"
+                                            Height="35"
+                                            Margin="0,10,0,0"
+                                            HorizontalAlignment="Right"
+                                            Command="{Binding SubmitCommand}"
+                                            Content="{Binding IsUploading, ConverterParameter=Submit|Uploading..., Converter={StaticResource BooleanToTextConverter}}"
+                                            IsEnabled="{Binding IsUploading, Converter={StaticResource InverseBooleanConverter}}"
+                                            Style="{StaticResource SubmitButtonStyle}" />
+                                    </StackPanel>
+                                </Border>
+                            </Popup>
+
+                            <!--  Download Button  -->
+                            <Button
+                                x:Name="DownloadButton"
+                                Background="#DFB6B2"
+                                Command="{Binding OpenDownloadPopupCommand}"
+                                Style="{StaticResource ToolBarStyle}"
+                                ToolTip="Download">
+                                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                    <Image
+                                        Width="20"
+                                        Height="20"
+                                        Source="Assets/cloud-download.png" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="12"
+                                        Text="Load" />
+                                </StackPanel>
+                            </Button>
+
+                            <!--  Popup containing the ListBox for selecting an item  -->
+                            <Popup
+                                x:Name="DownloadPopup"
+                                AllowsTransparency="True"
+                                IsOpen="{Binding IsDownloadPopupOpen, Mode=TwoWay}"
+                                Placement="Bottom"
+                                PlacementTarget="{Binding ElementName=DownloadButton}"
+                                PopupAnimation="Fade"
+                                StaysOpen="False">
+                                <Border Style="{StaticResource PopupBorderStyle}">
+                                    <StackPanel>
+                                        <TextBlock
+                                            Margin="0,0,0,10"
+                                            FontWeight="Bold"
+                                            Text="Select an item to download:" />
+
+                                        <!-- ListBox for displaying download items -->
+                                        <ListBox ItemsSource="{Binding DownloadItems}"
+                                            SelectedItem="{Binding SelectedDownloadItem, Mode=TwoWay}"
+                                            Width="200" Height="150">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal" Margin="5">
+                                                        <TextBlock Text="{Binding FileName}" FontSize="14" />
+                                                        <TextBlock Text="{Binding Time, StringFormat=' \{0:MM/dd/yyyy HH:mm\}'}" 
+                                                            FontSize="12" Foreground="Gray" Margin="10,0,0,0" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+
+                                        <!--  Download Button  -->
+                                        <Button
+                                            Width="90"
+                                            Height="38"
+                                            Margin="0,10,0,0"
+                                            HorizontalAlignment="Right"
+                                            Command="{Binding DownloadItemCommand}"
+                                            Content="Download"
+                                            IsEnabled="{Binding CanDownload}"
+                                            Style="{StaticResource SubmitButtonStyle}" />
+                                    </StackPanel>
+                                </Border>
+                            </Popup>
+                            <!--  Add this within your existing StackPanel in the toolbar  -->
+                            <ToggleButton
+                                IsChecked="{Binding IsDarkMode, Mode=TwoWay}"
+                                Style="{StaticResource ToolBarToggleStyle}"
+                                ToolTip="Dark Mode">
+                                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                    <Image
+                                        Width="18"
+                                        Height="17"
+                                        Margin="0,2"
+                                        RenderTransformOrigin="0.459,0.793"
+                                        Source="Assets/night-icon.png" />
+                                    <TextBlock FontSize="12" Text="Theme" />
+                                </StackPanel>
+                            </ToggleButton>
+
+                        </StackPanel>
+                    </Border>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </AdornerDecorator>
 </Page>
