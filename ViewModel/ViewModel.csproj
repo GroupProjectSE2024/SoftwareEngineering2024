@@ -24,12 +24,4 @@
     <ProjectReference Include="..\Updater\Updater.csproj" />
   </ItemGroup>
 
- 
-
-  <ItemGroup>
-    <Reference Include="SECloud">
-      <HintPath>..\SECloud.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
