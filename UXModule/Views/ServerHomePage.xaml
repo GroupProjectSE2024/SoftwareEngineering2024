@@ -192,15 +192,19 @@
                             Series="{Binding SeriesCollection}"
                             DisableAnimations="True"
                             Hoverable="True"
-                            DataTooltip="{Binding DataTooltip}"
                             Margin="15">
+                            <!--x-axis-->
                             <lvc:CartesianChart.AxisX >
                                 <lvc:Axis Title="Time" FontSize="12"  ShowLabels="False">
-                                    <lvc:Axis.Separator>
+                                    <lvc:Axis.Labels>
+                                        <Binding Path="TimeLabels" />
+                                    </lvc:Axis.Labels>
+                                        <lvc:Axis.Separator>
                                         <lvc:Separator Step="1"/>
                                     </lvc:Axis.Separator>
                                 </lvc:Axis>
                             </lvc:CartesianChart.AxisX>
+                            <!--Y-axis-->
                             <lvc:CartesianChart.AxisY>
                                 <lvc:Axis Title="Number of Users" FontSize="12" MinValue="0">
                                     <lvc:Axis.Separator>

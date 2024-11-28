@@ -12,20 +12,12 @@ using LiveCharts.Wpf;
 
 namespace ViewModel.DashboardViewModel;
 
-/// <summary>
-/// Model representing data for the graph.
-/// </summary>
-public class GraphDataModel
-{
-    public DateTime Time { get; set; }
-    public int UserCount { get; set; }
-}
-
 public class MainPageViewModel : INotifyPropertyChanged
 {
     private ICommunicator _communicator;
     private ServerDashboard _serverSessionManager;
     private ClientDashboard _clientSessionManager;
+    private readonly object _lock = new object();
 
     // UserDetailsList is bound to the UI to display the participant list
     private ObservableCollection<UserDetails> _userDetailsList = new ObservableCollection<UserDetails>();
@@ -36,66 +28,28 @@ public class MainPageViewModel : INotifyPropertyChanged
         {
             if (_userDetailsList != value)
             {
-                _userDetailsList = value;
-                OnPropertyChanged(nameof(UserDetailsList));
+                lock (_lock)
+                {
+                    _userDetailsList = value;
+                    OnPropertyChanged(nameof(UserDetailsList));
+                }
             }
-        }
-    }
-
-    private ObservableCollection<GraphDataModel> _userCountData;
-    public ObservableCollection<GraphDataModel> UserCountData
-    {
-        get => _userCountData;
-        private set
-        {
-            _userCountData = value;
-            OnPropertyChanged(nameof(UserCountData));
         }
     }
 
     public SeriesCollection SeriesCollection { get; private set; }
 
-    private List<string> _timeLabels;
+    private List<string> _timeLabels = [];
     public List<string> TimeLabels
     {
         get => _timeLabels;
         set
         {
-            _timeLabels = value;
-            OnPropertyChanged(nameof(TimeLabels));
-        }
-    }
-
-    private double _axisMax;
-    private double _axisMin;
-    public double AxisMax
-    {
-        get => _axisMax;
-        set
-        {
-            _axisMax = value;
-            OnPropertyChanged(nameof(AxisMax));
-        }
-    }
-    public double AxisMin
-    {
-        get => _axisMin;
-        set
-        {
-            _axisMin = value;
-            OnPropertyChanged(nameof(AxisMin));
-        }
-    }
-
-    // Add property for max Y value
-    private int _maxYValue = 3;  // Default value
-    public int MaxYValue
-    {
-        get => _maxYValue;
-        set
-        {
-            _maxYValue = value;
-            OnPropertyChanged(nameof(MaxYValue));
+            lock (_lock)
+            {
+                _timeLabels = value;
+                OnPropertyChanged(nameof(TimeLabels));
+            }
         }
     }
 
@@ -107,10 +61,13 @@ public class MainPageViewModel : INotifyPropertyChanged
         get => _currentUserCount;
         set
         {
-            if (_currentUserCount != value)
+            lock (_lock)
             {
-                _currentUserCount = value;
-                OnPropertyChanged(nameof(CurrentUserCount));
+                if (_currentUserCount != value)
+                {
+                    _currentUserCount = value;
+                    OnPropertyChanged(nameof(CurrentUserCount));
+                }
             }
         }
     }
@@ -135,8 +92,11 @@ public class MainPageViewModel : INotifyPropertyChanged
         get => _userName;
         set
         {
-            _userName = value;
-            OnPropertyChanged(nameof(UserName));
+            lock (_lock)
+            {
+                _userName = value;
+                OnPropertyChanged(nameof(UserName));
+            }
         }
     }
 
@@ -145,8 +105,11 @@ public class MainPageViewModel : INotifyPropertyChanged
         get => _profilePicUrl;
         set
         {
-            _profilePicUrl = value;
-            OnPropertyChanged(nameof(ProfilePicUrl));
+            lock (_lock)
+            {
+                _profilePicUrl = value;
+                OnPropertyChanged(nameof(ProfilePicUrl));
+            }
         }
     }
 
@@ -157,8 +120,11 @@ public class MainPageViewModel : INotifyPropertyChanged
         get => _serverIP;
         set
         {
-            _serverIP = value;
-            OnPropertyChanged(nameof(ServerIP));
+            lock (_lock)
+            {
+                _serverIP = value;
+                OnPropertyChanged(nameof(ServerIP));
+            }
         }
     }
 
@@ -167,10 +133,13 @@ public class MainPageViewModel : INotifyPropertyChanged
         get => _serverPort;
         set
         {
-            if (_serverPort != value)
+            lock (_lock)
             {
-                _serverPort = value;
-                OnPropertyChanged(nameof(ServerPort));
+                if (_serverPort != value)
+                {
+                    _serverPort = value;
+                    OnPropertyChanged(nameof(ServerPort));
+                }
             }
         }
     }
@@ -186,22 +155,25 @@ public class MainPageViewModel : INotifyPropertyChanged
     /// <returns>Returns "success" if the session is created successfully, otherwise "failure".</returns>
     public string CreateSession(string userName, string userEmail, string profilePictureUrl)
     {
-        IsHost = true;
-        UserName = userName;
-        ProfilePicUrl = profilePictureUrl ?? string.Empty;
-        _communicator = CommunicationFactory.GetCommunicator(isClientSide: false);
-        _serverSessionManager = new ServerDashboard(_communicator, userName, userEmail, profilePictureUrl);
-        _serverSessionManager.PropertyChanged += UpdateUserListOnPropertyChanged; // Subscribe to PropertyChanged
-        string serverCredentials = _serverSessionManager.Initialize();
-
-        if (serverCredentials != "failure")
+        lock (_lock)
         {
-            string[] parts = serverCredentials.Split(':');
-            ServerIP = parts[0];
-            ServerPort = parts[1];
-            return "success";
+            IsHost = true;
+            UserName = userName;
+            ProfilePicUrl = profilePictureUrl ?? string.Empty;
+            _communicator = CommunicationFactory.GetCommunicator(isClientSide: false);
+            _serverSessionManager = new ServerDashboard(_communicator, userName, userEmail, profilePictureUrl);
+            _serverSessionManager.PropertyChanged += UpdateUserListOnPropertyChanged; // Subscribe to PropertyChanged
+            string serverCredentials = _serverSessionManager.Initialize();
+
+            if (serverCredentials != "failure")
+            {
+                string[] parts = serverCredentials.Split(':');
+                ServerIP = parts[0];
+                ServerPort = parts[1];
+                return "success";
+            }
+            return "failure";
         }
-        return "failure";
     }
 
     /// <summary>
@@ -215,21 +187,24 @@ public class MainPageViewModel : INotifyPropertyChanged
     /// <returns>Returns "success" if the session is joined successfully, otherwise "failure".</returns>
     public string JoinSession(string userName, string userEmail, string serverIP, string serverPort, string profilePictureUrl)
     {
-        IsHost = false;
-        UserName = userName;
-        ProfilePicUrl = profilePictureUrl ?? string.Empty;
-        _communicator = CommunicationFactory.GetCommunicator();
-        _clientSessionManager = new ClientDashboard(_communicator, userName, userEmail, profilePictureUrl);
-        _clientSessionManager.PropertyChanged += UpdateUserListOnPropertyChanged; // Subscribe to PropertyChanged
-        string serverResponse = _clientSessionManager.Initialize(serverIP, serverPort);
-
-        if (serverResponse == "success")
+        lock (_lock)
         {
+            IsHost = false;
             UserName = userName;
-            UserEmail = userEmail;
-            UpdateUserListOnPropertyChanged(this, new PropertyChangedEventArgs(nameof(ClientDashboard.ClientUserList)));
+            ProfilePicUrl = profilePictureUrl ?? string.Empty;
+            _communicator = CommunicationFactory.GetCommunicator();
+            _clientSessionManager = new ClientDashboard(_communicator, userName, userEmail, profilePictureUrl);
+            _clientSessionManager.PropertyChanged += UpdateUserListOnPropertyChanged; // Subscribe to PropertyChanged
+            string serverResponse = _clientSessionManager.Initialize(serverIP, serverPort);
+
+            if (serverResponse == "success")
+            {
+                UserName = userName;
+                UserEmail = userEmail;
+                UpdateUserListOnPropertyChanged(this, new PropertyChangedEventArgs(nameof(ClientDashboard.ClientUserList)));
+            }
+            return serverResponse;
         }
-        return serverResponse;
     }
 
     /// <summary>
@@ -259,20 +234,22 @@ public class MainPageViewModel : INotifyPropertyChanged
 
     public void UpdateUserListOnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName == nameof(ServerDashboard.ServerUserList) || e.PropertyName == nameof(ClientDashboard.ClientUserList))
+        lock (_lock)
         {
-            var users = _serverSessionManager?.ServerUserList ?? _clientSessionManager?.ClientUserList;
-
-            if (users != null)
+            if (e.PropertyName == nameof(ServerDashboard.ServerUserList) || e.PropertyName == nameof(ClientDashboard.ClientUserList))
             {
-                Application.Current.Dispatcher.Invoke(() =>
+                ObservableCollection<UserDetails>? users = _serverSessionManager?.ServerUserList ?? _clientSessionManager?.ClientUserList;
+
+                if (users != null)
                 {
-                    UserDetailsList.Clear();
-                    foreach (var user in users)
-                    {
-                        UserDetailsList.Add(user);
-                    }
-                });
+                    Application.Current.Dispatcher.Invoke(() => {
+                        UserDetailsList.Clear();
+                        foreach (UserDetails user in users)
+                        {
+                            UserDetailsList.Add(user);
+                        }
+                    });
+                }
             }
         }
     }
@@ -282,11 +259,10 @@ public class MainPageViewModel : INotifyPropertyChanged
     /// </summary>
     private void InitializeGraph()
     {
-        _userCountData = new ObservableCollection<GraphDataModel>();
-        _timeLabels = new List<string>();
-
-        SeriesCollection = new SeriesCollection
+        lock (_lock)
         {
+            SeriesCollection = new SeriesCollection
+            {
             new LineSeries
             {
                 Title = "Users",
@@ -294,10 +270,9 @@ public class MainPageViewModel : INotifyPropertyChanged
                 PointGeometry = null,
                 LineSmoothness = 0
             }
-        };
+            };
+        }
 
-        AxisMax = DateTime.Now.Ticks + TimeSpan.FromSeconds(1).Ticks;
-        AxisMin = DateTime.Now.Ticks;
     }
 
     /// <summary>
@@ -305,25 +280,19 @@ public class MainPageViewModel : INotifyPropertyChanged
     /// </summary>
     private void UpdateUserCountGraph()
     {
-        Application.Current.Dispatcher.Invoke(() =>
+        lock (_lock)
         {
-            var now = DateTime.Now;
-            var currentCount = UserDetailsList.Count;
+            Application.Current.Dispatcher.Invoke(() => {
+                DateTime now = DateTime.Now;
+                int currentCount = UserDetailsList.Count;
 
-            CurrentUserCount = currentCount;
-
-            // Ensure we are adding ObservableValue to the ChartValues
-            SeriesCollection[0].Values.Add(new ObservableValue(currentCount));
-            TimeLabels.Add(now.ToString("hh:mm"));
-
-            if (currentCount + 2 > MaxYValue)
-            {
-                MaxYValue = currentCount + 2;
-            }
-
-            OnPropertyChanged(nameof(SeriesCollection));
-            OnPropertyChanged(nameof(TimeLabels));
-        });
+                CurrentUserCount = currentCount;
+                SeriesCollection[0].Values.Add(new ObservableValue(currentCount));
+                TimeLabels.Add(now.ToString("HH:mm:ss"));
+                OnPropertyChanged(nameof(TimeLabels));
+                OnPropertyChanged(nameof(SeriesCollection));
+            });
+        }
     }
 
     /// <summary>
@@ -331,12 +300,14 @@ public class MainPageViewModel : INotifyPropertyChanged
     /// </summary>
     public void SetupTimer()
     {
-        _timer = new DispatcherTimer
+        lock (_lock)
         {
-            Interval = TimeSpan.FromSeconds(1)
-        };
-        _timer.Tick += TimerOnTick;
-        _timer.Start();
+            _timer = new DispatcherTimer {
+                Interval = TimeSpan.FromSeconds(1)
+            };
+            _timer.Tick += TimerOnTick;
+            _timer.Start();
+        }
     }
 
     /// <summary>
@@ -344,7 +315,10 @@ public class MainPageViewModel : INotifyPropertyChanged
     /// </summary>
     public void TimerOnTick(object sender, EventArgs e)
     {
-        UpdateUserCountGraph();
+        lock (_lock)
+        {
+            UpdateUserCountGraph();
+        }
     }
 
     /// <summary>
