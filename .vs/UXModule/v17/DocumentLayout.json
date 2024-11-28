@@ -1,14 +1,73 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\SoftwareEngineering2024\\",
+  "WorkspaceRootPath": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4CEC5659-2D01-4F4E-BDA6-7957E27A099B}|UXModule\\UXModule.csproj|d:\\softwareengineering2024\\uxmodule\\views\\screenshareserver.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{4CEC5659-2D01-4F4E-BDA6-7957E27A099B}|UXModule\\UXModule.csproj|solutionrelative:uxmodule\\views\\screenshareserver.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{4CEC5659-2D01-4F4E-BDA6-7957E27A099B}|UXModule\\UXModule.csproj|c:\\users\\gopal pallakonda\\onedrive\\documents\\sefinaldemo\\softwareengineering2024_edited\\softwareengineering2024\\uxmodule\\views\\chatpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{4CEC5659-2D01-4F4E-BDA6-7957E27A099B}|UXModule\\UXModule.csproj|solutionrelative:uxmodule\\views\\chatpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4CEC5659-2D01-4F4E-BDA6-7957E27A099B}|UXModule\\UXModule.csproj|d:\\softwareengineering2024\\uxmodule\\views\\screenshareclient.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{4CEC5659-2D01-4F4E-BDA6-7957E27A099B}|UXModule\\UXModule.csproj|solutionrelative:uxmodule\\views\\screenshareclient.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\gopal pallakonda\\onedrive\\documents\\sefinaldemo\\softwareengineering2024_edited\\softwareengineering2024\\testproject\\content\\chatmessagestests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\content\\chatmessagestests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\gopal pallakonda\\onedrive\\documents\\sefinaldemo\\softwareengineering2024_edited\\softwareengineering2024\\testproject\\content\\chatservertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\content\\chatservertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\gopal pallakonda\\onedrive\\documents\\sefinaldemo\\softwareengineering2024_edited\\softwareengineering2024\\testproject\\content\\client_test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\content\\client_test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\gopal pallakonda\\onedrive\\documents\\sefinaldemo\\softwareengineering2024_edited\\softwareengineering2024\\testproject\\content\\mainviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\content\\mainviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07B5BDB9-92EE-417D-BF3C-0AFEA6B6F607}|Content\\Content.csproj|c:\\users\\gopal pallakonda\\onedrive\\documents\\sefinaldemo\\softwareengineering2024_edited\\softwareengineering2024\\content\\chatviewmodel\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07B5BDB9-92EE-417D-BF3C-0AFEA6B6F607}|Content\\Content.csproj|solutionrelative:content\\chatviewmodel\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07B5BDB9-92EE-417D-BF3C-0AFEA6B6F607}|Content\\Content.csproj|c:\\users\\gopal pallakonda\\onedrive\\documents\\sefinaldemo\\softwareengineering2024_edited\\softwareengineering2024\\content\\chatclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07B5BDB9-92EE-417D-BF3C-0AFEA6B6F607}|Content\\Content.csproj|solutionrelative:content\\chatclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07B5BDB9-92EE-417D-BF3C-0AFEA6B6F607}|Content\\Content.csproj|c:\\users\\gopal pallakonda\\onedrive\\documents\\sefinaldemo\\softwareengineering2024_edited\\softwareengineering2024\\content\\chatserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07B5BDB9-92EE-417D-BF3C-0AFEA6B6F607}|Content\\Content.csproj|solutionrelative:content\\chatserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CEC5659-2D01-4F4E-BDA6-7957E27A099B}|UXModule\\UXModule.csproj|c:\\users\\gopal pallakonda\\onedrive\\documents\\sefinaldemo\\softwareengineering2024_edited\\softwareengineering2024\\uxmodule\\views\\chatpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CEC5659-2D01-4F4E-BDA6-7957E27A099B}|UXModule\\UXModule.csproj|solutionrelative:uxmodule\\views\\chatpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{997C3B5B-99D0-404D-A5E3-FBA617685ABC}|Dashboard\\Dashboard.csproj|c:\\users\\gopal pallakonda\\onedrive\\documents\\sefinaldemo\\softwareengineering2024_edited\\softwareengineering2024\\dashboard\\server_dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{997C3B5B-99D0-404D-A5E3-FBA617685ABC}|Dashboard\\Dashboard.csproj|solutionrelative:dashboard\\server_dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8161D20A-A842-4DB3-9B61-CF822C81B2F2}|FileCloner\\FileCloner.csproj|c:\\users\\gopal pallakonda\\onedrive\\documents\\sefinaldemo\\softwareengineering2024_edited\\softwareengineering2024\\filecloner\\models\\networkservice\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8161D20A-A842-4DB3-9B61-CF822C81B2F2}|FileCloner\\FileCloner.csproj|solutionrelative:filecloner\\models\\networkservice\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1E1194CD-06FF-4DAF-B77F-9DFB8C31439B}|Networking\\Networking.csproj|c:\\users\\gopal pallakonda\\onedrive\\documents\\sefinaldemo\\softwareengineering2024_edited\\softwareengineering2024\\networking\\serialization\\serializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1E1194CD-06FF-4DAF-B77F-9DFB8C31439B}|Networking\\Networking.csproj|solutionrelative:networking\\serialization\\serializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CCEBD4C-6BD7-487F-8A9A-4C859F595001}|Updater\\Updater.csproj|c:\\users\\gopal pallakonda\\onedrive\\documents\\sefinaldemo\\softwareengineering2024_edited\\softwareengineering2024\\updater\\utils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CCEBD4C-6BD7-487F-8A9A-4C859F595001}|Updater\\Updater.csproj|solutionrelative:updater\\utils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1E1194CD-06FF-4DAF-B77F-9DFB8C31439B}|Networking\\Networking.csproj|c:\\users\\gopal pallakonda\\onedrive\\documents\\sefinaldemo\\softwareengineering2024_edited\\softwareengineering2024\\networking\\serialization\\iserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1E1194CD-06FF-4DAF-B77F-9DFB8C31439B}|Networking\\Networking.csproj|solutionrelative:networking\\serialization\\iserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07B5BDB9-92EE-417D-BF3C-0AFEA6B6F607}|Content\\Content.csproj|c:\\users\\gopal pallakonda\\onedrive\\documents\\sefinaldemo\\softwareengineering2024_edited\\softwareengineering2024\\content\\chatmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07B5BDB9-92EE-417D-BF3C-0AFEA6B6F607}|Content\\Content.csproj|solutionrelative:content\\chatmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1503200-0E58-4F6E-87C6-67769CB0B32F}|Solution Items{A1503200-0E58-4F6E-87C6-67769CB0B32F}|C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\.editorconfig||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A1503200-0E58-4F6E-87C6-67769CB0B32F}|Solution Items{A1503200-0E58-4F6E-87C6-67769CB0B32F}|solutionrelative:.editorconfig||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,35 +77,241 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 22,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ChatServer.cs",
+              "DocumentMoniker": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Content\\ChatServer.cs",
+              "RelativeDocumentMoniker": "Content\\ChatServer.cs",
+              "ToolTip": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Content\\ChatServer.cs",
+              "RelativeToolTip": "Content\\ChatServer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T13:19:06.123Z",
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ScreenShareServer.xaml",
-              "DocumentMoniker": "D:\\SoftwareEngineering2024\\UXModule\\Views\\ScreenShareServer.xaml",
-              "RelativeDocumentMoniker": "UXModule\\Views\\ScreenShareServer.xaml",
-              "ToolTip": "D:\\SoftwareEngineering2024\\UXModule\\Views\\ScreenShareServer.xaml",
-              "RelativeToolTip": "UXModule\\Views\\ScreenShareServer.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-19T14:13:11.113Z",
-              "EditorCaption": ""
+              "DocumentIndex": 5,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Content\\ChatViewModel\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "Content\\ChatViewModel\\MainViewModel.cs",
+              "ToolTip": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Content\\ChatViewModel\\MainViewModel.cs",
+              "RelativeToolTip": "Content\\ChatViewModel\\MainViewModel.cs",
+              "ViewState": "AgIAAFgBAAAAAAAAAAAUwAYBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T12:57:10.928Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainViewModelTests.cs",
+              "DocumentMoniker": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\TestProject\\Content\\MainViewModelTests.cs",
+              "RelativeDocumentMoniker": "TestProject\\Content\\MainViewModelTests.cs",
+              "ToolTip": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\TestProject\\Content\\MainViewModelTests.cs",
+              "RelativeToolTip": "TestProject\\Content\\MainViewModelTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAANAAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T18:29:19.048Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Client_test.cs",
+              "DocumentMoniker": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\TestProject\\Content\\Client_test.cs",
+              "RelativeDocumentMoniker": "TestProject\\Content\\Client_test.cs",
+              "ToolTip": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\TestProject\\Content\\Client_test.cs",
+              "RelativeToolTip": "TestProject\\Content\\Client_test.cs",
+              "ViewState": "AgIAAPMAAAAAAAAAAAAkwPgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T18:28:32.004Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ChatServerTest.cs",
+              "DocumentMoniker": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\TestProject\\Content\\ChatServerTest.cs",
+              "RelativeDocumentMoniker": "TestProject\\Content\\ChatServerTest.cs",
+              "ToolTip": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\TestProject\\Content\\ChatServerTest.cs",
+              "RelativeToolTip": "TestProject\\Content\\ChatServerTest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T18:27:54.978Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ScreenShareClient.xaml",
-              "DocumentMoniker": "D:\\SoftwareEngineering2024\\UXModule\\Views\\ScreenShareClient.xaml",
-              "RelativeDocumentMoniker": "UXModule\\Views\\ScreenShareClient.xaml",
-              "ToolTip": "D:\\SoftwareEngineering2024\\UXModule\\Views\\ScreenShareClient.xaml",
-              "RelativeToolTip": "UXModule\\Views\\ScreenShareClient.xaml",
+              "Title": "ChatMessagesTests.cs",
+              "DocumentMoniker": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\TestProject\\Content\\ChatMessagesTests.cs",
+              "RelativeDocumentMoniker": "TestProject\\Content\\ChatMessagesTests.cs",
+              "ToolTip": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\TestProject\\Content\\ChatMessagesTests.cs",
+              "RelativeToolTip": "TestProject\\Content\\ChatMessagesTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T18:27:09.733Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ChatPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\UXModule\\Views\\ChatPage.xaml.cs",
+              "RelativeDocumentMoniker": "UXModule\\Views\\ChatPage.xaml.cs",
+              "ToolTip": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\UXModule\\Views\\ChatPage.xaml.cs",
+              "RelativeToolTip": "UXModule\\Views\\ChatPage.xaml.cs",
+              "ViewState": "AgIAAE4BAAAAAAAAAAAQwM4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T18:17:24.259Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ChatClient.cs",
+              "DocumentMoniker": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Content\\ChatClient.cs",
+              "RelativeDocumentMoniker": "Content\\ChatClient.cs",
+              "ToolTip": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Content\\ChatClient.cs",
+              "RelativeToolTip": "Content\\ChatClient.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T13:02:25.58Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Client.cs",
+              "DocumentMoniker": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\FileCloner\\Models\\NetworkService\\Client.cs",
+              "RelativeDocumentMoniker": "FileCloner\\Models\\NetworkService\\Client.cs",
+              "ToolTip": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\FileCloner\\Models\\NetworkService\\Client.cs",
+              "RelativeToolTip": "FileCloner\\Models\\NetworkService\\Client.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAArwDAAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T17:05:36.989Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Utils.cs",
+              "DocumentMoniker": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Updater\\Utils.cs",
+              "RelativeDocumentMoniker": "Updater\\Utils.cs",
+              "ToolTip": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Updater\\Utils.cs",
+              "RelativeToolTip": "Updater\\Utils.cs",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAjwFUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T16:53:39.443Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ISerializer.cs",
+              "DocumentMoniker": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Networking\\Serialization\\ISerializer.cs",
+              "RelativeDocumentMoniker": "Networking\\Serialization\\ISerializer.cs",
+              "ToolTip": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Networking\\Serialization\\ISerializer.cs",
+              "RelativeToolTip": "Networking\\Serialization\\ISerializer.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAjwAwAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T16:53:26.111Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Serializer.cs",
+              "DocumentMoniker": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Networking\\Serialization\\Serializer.cs",
+              "RelativeDocumentMoniker": "Networking\\Serialization\\Serializer.cs",
+              "ToolTip": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Networking\\Serialization\\Serializer.cs",
+              "RelativeToolTip": "Networking\\Serialization\\Serializer.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAQwFEAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T10:54:32.135Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Server_Dashboard.cs",
+              "DocumentMoniker": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Dashboard\\Server_Dashboard.cs",
+              "RelativeDocumentMoniker": "Dashboard\\Server_Dashboard.cs",
+              "ToolTip": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Dashboard\\Server_Dashboard.cs",
+              "RelativeToolTip": "Dashboard\\Server_Dashboard.cs",
+              "ViewState": "AgIAAAIBAAAAAAAAAAAlwAcBAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T09:49:38.054Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Microsoft.Common.CurrentVersion.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ViewState": "AgIAAJYTAAAAAAAAAAAMwKkTAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2024-11-28T14:59:02.197Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": ".editorconfig",
+              "DocumentMoniker": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\.editorconfig",
+              "RelativeDocumentMoniker": ".editorconfig",
+              "ToolTip": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\.editorconfig",
+              "RelativeToolTip": ".editorconfig",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADgBAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-11-28T14:51:55.531Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ChatPage.xaml",
+              "DocumentMoniker": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\UXModule\\Views\\ChatPage.xaml",
+              "RelativeDocumentMoniker": "UXModule\\Views\\ChatPage.xaml",
+              "ToolTip": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\UXModule\\Views\\ChatPage.xaml",
+              "RelativeToolTip": "UXModule\\Views\\ChatPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-19T14:12:40.505Z",
+              "WhenOpened": "2024-11-27T19:31:49.425Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ChatMessage.cs",
+              "DocumentMoniker": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Content\\ChatMessage.cs",
+              "RelativeDocumentMoniker": "Content\\ChatMessage.cs",
+              "ToolTip": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Content\\ChatMessage.cs",
+              "RelativeToolTip": "Content\\ChatMessage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T19:19:23.408Z"
             }
           ]
         }

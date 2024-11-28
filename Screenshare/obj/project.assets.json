@@ -5866,19 +5866,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hp\\.nuget\\packages\\": {}
+    "C:\\Users\\Gopal Pallakonda\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj",
+      "projectUniqueName": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj",
       "projectName": "Screenshare",
-      "projectPath": "D:\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj",
-      "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "D:\\SoftwareEngineering2024\\Screenshare\\obj\\",
+      "projectPath": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj",
+      "packagesPath": "C:\\Users\\Gopal Pallakonda\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Screenshare\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Gopal Pallakonda\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5892,8 +5892,8 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "D:\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
-              "projectPath": "D:\\SoftwareEngineering2024\\Networking\\Networking.csproj"
+            "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+              "projectPath": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Networking\\Networking.csproj"
             }
           }
         }
@@ -5962,7 +5962,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

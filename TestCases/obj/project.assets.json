@@ -6530,24 +6530,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Asus\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Gopal Pallakonda\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE\\SoftwareEngineering2024\\TestCases\\TestCases.csproj",
+      "projectUniqueName": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\TestCases\\TestCases.csproj",
       "projectName": "TestCases",
-      "projectPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE\\SoftwareEngineering2024\\TestCases\\TestCases.csproj",
-      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE\\SoftwareEngineering2024\\TestCases\\obj\\",
+      "projectPath": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\TestCases\\TestCases.csproj",
+      "packagesPath": "C:\\Users\\Gopal Pallakonda\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\TestCases\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Gopal Pallakonda\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6555,15 +6550,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\Asus\\OneDrive\\Desktop\\SE\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
-              "projectPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\SE\\SoftwareEngineering2024\\Networking\\Networking.csproj"
+            "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+              "projectPath": "C:\\Users\\Gopal Pallakonda\\OneDrive\\Documents\\SEFINALDEMO\\SoftwareEngineering2024_edited\\SoftwareEngineering2024\\Networking\\Networking.csproj"
             }
           }
         }
@@ -6576,9 +6570,8 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+        "auditMode": "direct"
+      }
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -6617,50 +6610,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.Formats.Asn1' 6.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-447r-wph3-92pm",
-      "libraryId": "System.Formats.Asn1",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.Net.Http' 4.3.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-7jgj-8wvc-jh57",
-      "libraryId": "System.Net.Http",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.Security.Cryptography.Pkcs' 6.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-555c-2p6r-68mm",
-      "libraryId": "System.Security.Cryptography.Pkcs",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.Text.RegularExpressions' 4.3.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-cmhx-cq75-c4mj",
-      "libraryId": "System.Text.RegularExpressions",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    }
-  ]
+  }
 }

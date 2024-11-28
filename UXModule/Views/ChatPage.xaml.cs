@@ -185,7 +185,10 @@ public partial class ChatPage : Page
         _viewModel.SearchResults?.Clear();
         _viewModel.BackToOriginalMessages();
         MessagesListView.ItemsSource = _viewModel.Messages;
-        MessagesListView.ScrollIntoView(_viewModel.Messages.Last());
+        if (_viewModel.Messages != null && _viewModel.Messages.Any())
+        {
+            MessagesListView.ScrollIntoView(_viewModel.Messages.Last());
+        }
     }
 
     /// <summary>
@@ -196,7 +199,10 @@ public partial class ChatPage : Page
 
     private void BackFromSearchButton_Click(object sender, RoutedEventArgs e)
     {
-        ClearSearch();
+        if (_viewModel?.Messages != null)
+        {
+            ClearSearch();
+        }
         ReverseSearchTransition();
     }
 

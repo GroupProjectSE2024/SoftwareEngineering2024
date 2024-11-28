@@ -210,3 +210,268 @@ C:\Users\Asus\OneDrive\Desktop\SE\SoftwareEngineering2024\FileCloner\obj\Debug\n
 C:\Users\Asus\OneDrive\Desktop\SE\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.pdb
 C:\Users\Asus\OneDrive\Desktop\SE\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.genruntimeconfig.cache
 C:\Users\Asus\OneDrive\Desktop\SE\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\ref\FileCloner.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.exe
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.deps.json
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.runtimeconfig.json
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.pdb
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Google.Protobuf.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.AspNetCore.Server.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.AspNetCore.Server.ClientFactory.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Core.Api.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Net.Client.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Net.ClientFactory.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Net.Common.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Microsoft.WindowsAPICodePack.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\System.ServiceModel.Primitives.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\cs\System.ServiceModel.Primitives.resources.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\de\System.ServiceModel.Primitives.resources.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\es\System.ServiceModel.Primitives.resources.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\fr\System.ServiceModel.Primitives.resources.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\it\System.ServiceModel.Primitives.resources.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\ja\System.ServiceModel.Primitives.resources.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\ko\System.ServiceModel.Primitives.resources.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\pl\System.ServiceModel.Primitives.resources.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\pt-BR\System.ServiceModel.Primitives.resources.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\ru\System.ServiceModel.Primitives.resources.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\tr\System.ServiceModel.Primitives.resources.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\zh-Hans\System.ServiceModel.Primitives.resources.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\zh-Hant\System.ServiceModel.Primitives.resources.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Networking.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Networking.pdb
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.csproj.AssemblyReference.cache
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Dictionaries\Dictionary1.baml
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainPage.g.cs
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainWindow.g.cs
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner_MarkupCompile.cache
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner_MarkupCompile.lref
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\App.baml
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainPage.baml
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainWindow.baml
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.g.resources
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.AssemblyInfoInputs.cache
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.AssemblyInfo.cs
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.csproj.CoreCompileInputs.cache
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.sourcelink.json
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.csproj.Up2Date
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\refint\FileCloner.dll
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.pdb
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.genruntimeconfig.cache
+C:\Users\Satya\OneDrive\Documents\SE final proj\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\ref\FileCloner.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.exe
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.deps.json
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.runtimeconfig.json
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.pdb
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Google.Protobuf.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.AspNetCore.Server.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.AspNetCore.Server.ClientFactory.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Core.Api.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Net.Client.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Net.ClientFactory.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Net.Common.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Microsoft.WindowsAPICodePack.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\System.ServiceModel.Primitives.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\cs\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\de\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\es\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\fr\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\it\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\ja\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\ko\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\pl\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\pt-BR\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\ru\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\tr\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\zh-Hans\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\zh-Hant\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Networking.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Networking.pdb
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.csproj.AssemblyReference.cache
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Dictionaries\Dictionary1.baml
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainPage.g.cs
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainWindow.g.cs
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner_MarkupCompile.cache
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner_MarkupCompile.lref
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\App.baml
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainPage.baml
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainWindow.baml
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.g.resources
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.AssemblyInfoInputs.cache
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.AssemblyInfo.cs
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.csproj.CoreCompileInputs.cache
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.sourcelink.json
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.csproj.Up2Date
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\refint\FileCloner.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.pdb
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.genruntimeconfig.cache
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEWITHPRIVCHAT\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\ref\FileCloner.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.exe
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.deps.json
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.runtimeconfig.json
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.pdb
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Google.Protobuf.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.AspNetCore.Server.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.AspNetCore.Server.ClientFactory.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Core.Api.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Net.Client.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Net.ClientFactory.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Net.Common.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Microsoft.WindowsAPICodePack.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\System.ServiceModel.Primitives.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\cs\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\de\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\es\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\fr\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\it\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\ja\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\ko\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\pl\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\pt-BR\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\ru\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\tr\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\zh-Hans\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\zh-Hant\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Networking.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Networking.pdb
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.csproj.AssemblyReference.cache
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Dictionaries\Dictionary1.baml
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainPage.g.cs
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainWindow.g.cs
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner_MarkupCompile.cache
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner_MarkupCompile.lref
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\App.baml
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainPage.baml
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainWindow.baml
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.g.resources
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.AssemblyInfoInputs.cache
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.AssemblyInfo.cs
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.csproj.CoreCompileInputs.cache
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.sourcelink.json
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.csproj.Up2Date
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\refint\FileCloner.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.pdb
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.genruntimeconfig.cache
+C:\Users\pragn\Downloads\SoftwareEngineering2024\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\ref\FileCloner.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.exe
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.deps.json
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.runtimeconfig.json
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.pdb
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Google.Protobuf.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.AspNetCore.Server.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.AspNetCore.Server.ClientFactory.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Core.Api.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Net.Client.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Net.ClientFactory.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Net.Common.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Microsoft.WindowsAPICodePack.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\System.ServiceModel.Primitives.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\cs\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\de\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\es\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\fr\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\it\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\ja\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\ko\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\pl\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\pt-BR\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\ru\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\tr\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\zh-Hans\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\zh-Hant\System.ServiceModel.Primitives.resources.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Networking.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Networking.pdb
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.csproj.AssemblyReference.cache
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Dictionaries\Dictionary1.baml
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainPage.g.cs
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainWindow.g.cs
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner_MarkupCompile.cache
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner_MarkupCompile.lref
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\App.baml
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainPage.baml
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainWindow.baml
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.g.resources
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.AssemblyInfoInputs.cache
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.AssemblyInfo.cs
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.csproj.CoreCompileInputs.cache
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.sourcelink.json
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.csproj.Up2Date
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\refint\FileCloner.dll
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.pdb
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.genruntimeconfig.cache
+C:\Users\pragn\Downloads\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\ref\FileCloner.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.exe
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.deps.json
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.runtimeconfig.json
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\FileCloner.pdb
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Google.Protobuf.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.AspNetCore.Server.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.AspNetCore.Server.ClientFactory.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Core.Api.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Net.Client.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Net.ClientFactory.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Grpc.Net.Common.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Microsoft.WindowsAPICodePack.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\System.ServiceModel.Primitives.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\cs\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\de\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\es\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\fr\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\it\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\ja\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\ko\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\pl\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\pt-BR\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\ru\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\tr\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\zh-Hans\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\zh-Hant\System.ServiceModel.Primitives.resources.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Networking.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\bin\Debug\net8.0-windows\Networking.pdb
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.csproj.AssemblyReference.cache
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Dictionaries\Dictionary1.baml
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainPage.g.cs
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainWindow.g.cs
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner_MarkupCompile.cache
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner_MarkupCompile.lref
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\App.baml
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainPage.baml
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\Views\MainWindow.baml
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.g.resources
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.AssemblyInfoInputs.cache
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.AssemblyInfo.cs
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.csproj.CoreCompileInputs.cache
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.sourcelink.json
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.csproj.Up2Date
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\refint\FileCloner.dll
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.pdb
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\FileCloner.genruntimeconfig.cache
+C:\Users\Gopal Pallakonda\OneDrive\Documents\SEFINALDEMO\SoftwareEngineering2024_edited\SoftwareEngineering2024\FileCloner\obj\Debug\net8.0-windows\ref\FileCloner.dll

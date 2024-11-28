@@ -110,25 +110,26 @@
                 <TextBox Name="SearchTextBox" Width="200" Margin="5,5,5,5" 
                          FontSize="12" Background="#F0F0F0" 
                          Text="" TextChanged="SearchTextBox_TextChanged" />
-                <Button Name="ClearSearchButton" Content="✖" Width="30" Height="28" FontSize="18" Background="Transparent" BorderThickness="0" Foreground="White" Click="ClearSearchButton_Click" />
+                <Button Name="ClearSearchButton" Content="Clear" Width="30" Height="28" FontSize="10" Background="Transparent" BorderThickness="0" Foreground="White" Click="ClearSearchButton_Click" />
             </StackPanel>
 
             <!-- Chat Messages -->
             <ListView x:Name="MessagesListView"                      
           ItemsSource="{Binding Messages}" 
-          Margin="0,50,0,50"
+          Margin="0,50,0,50" BorderBrush="Transparent"
           Background="Transparent"
           HorizontalContentAlignment="Stretch"
           ScrollViewer.VerticalScrollBarVisibility="Auto"
-          ScrollViewer.CanContentScroll="True"
-          MaxHeight="650"  >
+          ScrollViewer.CanContentScroll="False"
+          VirtualizingStackPanel.IsVirtualizing="False"
+          MaxHeight="635"  >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Margin="5"  HorizontalAlignment="{Binding IsSentByUser, Converter={StaticResource BoolToAlignmentConverter}}">
-                            <Ellipse Width="40" Height="40" Visibility="{Binding IsSentByUser, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=False}">
+                            <Ellipse Width="40" Height="40" VerticalAlignment="Top"
+                         Visibility="{Binding IsSentByUser, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=False}">
                                 <Ellipse.Fill>
                                     <ImageBrush ImageSource="{Binding UserProfileUrl}" />
-
                                 </Ellipse.Fill>
                             </Ellipse>
 
@@ -136,8 +137,7 @@
                             <Border 
                     CornerRadius="10"
                     Background="{Binding IsSentByUser, Converter={StaticResource BoolToBrushConverter}}"
-                    Padding="10" Margin="5" MaxWidth="300" Height="Auto" 
-                    >
+                    Padding="10" Margin="5" MaxWidth="200" Height="Auto">
                                 <StackPanel Orientation="Horizontal" >
                                     <StackPanel Orientation="Vertical">
                                         <Grid>
@@ -147,37 +147,37 @@
                                             </Grid.ColumnDefinitions>
 
                                             <TextBlock Text="{Binding User}" 
-                                           FontSize="11" 
-                                           FontWeight="Bold" 
-                                           Foreground="#2B124C" 
-                                           VerticalAlignment="Center" />
+                               FontSize="11" 
+                               FontWeight="Bold" 
+                               Foreground="#2B124C" 
+                               VerticalAlignment="Center" />
 
                                             <!-- Options Button to right -->
                                             <Button Grid.Column="1"   Content="⋮" 
-                                        Width="20" 
-                                        Height="20"  
-                                        FontSize="12" 
-                                        VerticalAlignment="Center" 
-                                        HorizontalAlignment="Right"
-                                        Background="Transparent" 
-                                        Foreground="White"
-                                        BorderBrush="Transparent"
-                                        DataContext="{Binding}"
-                                        Padding="0"  Visibility="{Binding IsSentByUser, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=True}"                                                
-                                        Click="OptionsButton_Click">
+                            Width="20" 
+                            Height="20"  
+                            FontSize="12" 
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Right"
+                            Background="Transparent" 
+                            Foreground="White"
+                            BorderBrush="Transparent"
+                            DataContext="{Binding}"
+                            Padding="0"  Visibility="{Binding IsSentByUser, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=True}"                                                
+                            Click="OptionsButton_Click">
                                                 <Button.ContextMenu>
                                                     <ContextMenu>
                                                         <MenuItem Header="Delete For Me"
-                                          Click="Delete_Click"/>
+                              Click="Delete_Click"/>
                                                     </ContextMenu>
                                                 </Button.ContextMenu>
                                             </Button>
                                         </Grid>
                                         <TextBlock Height="Auto"
-                                       FontSize="12"
-                                       TextWrapping="Wrap"
-                                       MaxWidth="300" Foreground="White"
-                                       Name="MessageTextBlock">
+                           FontSize="12"
+                           TextWrapping="Wrap"
+                           MaxWidth="150" Foreground="White"
+                           Name="MessageTextBlock">
                                             <TextBlock.Inlines>
                                                 <Run Text="{Binding Content}" />
                                                 <Run Text="{Binding HighlightedText}" Background="#190019" FontWeight="Bold" />
@@ -201,10 +201,10 @@
 
 
         <!-- Private Message Section -->
-        <DockPanel VerticalAlignment="Bottom" Height="50" Background="Transparent" Margin="7,0,7,2" >
-            <Grid>
-                <ComboBox x:Name="ClientDropdown"  Width="62" ItemsSource="{Binding Clientte}"  Margin="1,5,0,5" Height="36" Background="Teal"  SelectedItem="{Binding Recipientt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
-                <TextBlock Text="Members" Foreground="Gray" VerticalAlignment="Center" Margin="5,0,0,0" IsHitTestVisible="False" FontSize="10.4"
+        <DockPanel VerticalAlignment="Bottom" Height="Auto" Background="Transparent" Margin="7,0,7,2" >
+            <Grid VerticalAlignment="Bottom">
+                <ComboBox x:Name="ClientDropdown"  Width="55" ItemsSource="{Binding Clientte, UpdateSourceTrigger=PropertyChanged}"  Margin="1,5,0,5" Height="36" Background="Teal"  SelectedItem="{Binding Recipientt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+                <TextBlock Text="Members" Foreground="Gray" VerticalAlignment="Center" Margin="5,0,0,0" IsHitTestVisible="False" FontSize="9"
                 Visibility="{Binding SelectedItem, ElementName=ClientDropdown, Converter={StaticResource NullToVisibilityConverter}}"/>
             </Grid>
             <Grid>
@@ -214,21 +214,28 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <!-- Message TextBox -->
-                <TextBox Grid.Column="0" Name="MessageTextBox" 
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBox Grid.Row="0" Name="MessageTextBox"
              Style="{StaticResource CornerRadiusStyle}" 
-             Margin="7,10,5,10" BorderBrush="#190019" FontSize="12"
-             FontFamily="segoe ui" MinWidth="182" MaxWidth="210" Background="#F0F0F0" 
+             Margin="7,10,5,10" BorderBrush="#190019" FontSize="12" MaxHeight="150"
+             FontFamily="Segoe UI" MinWidth="120" MaxWidth="125" Background="#F0F0F0" 
              Text="{Binding MessageTextBox_Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-             GotFocus="MessageTextBox_GotFocus">
-                    <TextBox.InputBindings>
-                        <KeyBinding Key="Enter" Command="{Binding EnterKeyCommand}" />
-                    </TextBox.InputBindings>
-                </TextBox>
+             GotFocus="MessageTextBox_GotFocus" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" 
+             MinHeight="30">
+                        <TextBox.InputBindings>
+                            <KeyBinding Key="Enter" Command="{Binding EnterKeyCommand}" />
+                        </TextBox.InputBindings>
+                    </TextBox>
+                </Grid>
 
                 <!-- Emoji Button -->
                 <Button Grid.Column="1" Content="☻" Width="32" Height="32" FontSize="22" 
-                Foreground="White" Margin="5,5,5,5" Background="#854F6C" 
+                Foreground="White" Margin="5,9,5,9" Background="#854F6C" VerticalAlignment="Bottom"
                 Click="EmojiPopupButton_Click">
                     <Button.Style>
                         <Style TargetType="Button">
@@ -285,40 +292,12 @@
                             <Button Content="🧠" Width="30" Height="30" Click="Emoji_Click"/>
                             <Button Content="👂🏻" Width="30" Height="30" Click="Emoji_Click"/>
                             <Button Content="🐽" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="😂" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="😍" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="😎" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="😢" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="😡" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="😇" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="😆" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="😅" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="😂" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="😊" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="🙂" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="🙃" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="😉" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="😌" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="😍" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="🥰" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="😘" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="😗" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="😚" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="😋" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="😛" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="😝" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="🤪" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="🤲🏻" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="🧠" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="👂🏻" Width="30" Height="30" Click="Emoji_Click"/>
-                            <Button Content="🐽" Width="30" Height="30" Click="Emoji_Click"/>
-
                         </UniformGrid>
                     </Border>
                 </Popup>
                 <!-- Send Button -->
                 <Button Grid.Column="2" Style="{StaticResource ChatSendButton}" 
-                Height="30" Width="30" Margin="5,10,5,10" HorizontalAlignment="Right" 
+                Height="30" Width="30" Margin="5,10,5,10" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                 Command="{Binding SendMessageCommand}">
                     <Image Source="Resources/send-mail.png" Width="25" Height="20" />
                 </Button>

@@ -10,6 +10,7 @@ using Networking;
 using Networking.Communication;
 using WhiteboardGUI;
 using Content.ChatViewModel;
+using Content;
 
 namespace Dashboard
 {
@@ -91,10 +92,14 @@ namespace Dashboard
         /// </summary>
         public ObservableCollection<UserDetails> TotalServerUserList { get; private set; } = new ObservableCollection<UserDetails>();
 
+
+
         public FileCloner.Models.NetworkService.Server _fileClonerInstance = FileCloner.Models.NetworkService.Server.GetServerInstance();
         public Updater.Server _updaterServerInstance = Updater.Server.GetServerInstance();
         MainViewModel _contentInstance = MainViewModel.GetInstance;
+        ChatServer _contentServerInstance = ChatServer.GetServerInstance;
 
+        public Dictionary<int, string> clientDict = new();
         /// <summary>
         /// Initializes a new instance of the ServerDashboard class.
         /// </summary>
@@ -128,6 +133,8 @@ namespace Dashboard
             };
             ServerUserList.Add(serverUser);
             TotalServerUserList.Add(serverUser);
+            clientDict[2] = UserName;
+            //_contentServerInstance.GetClientDictionary(clientDict);
 
             string serverCredentials = "failure";
             while (serverCredentials == "failure")
@@ -251,6 +258,11 @@ namespace Dashboard
 
                     ServerUserList.Add(newUserDetails);
 
+
+                    clientDict[int.Parse(newUserId)] = details.User.UserName;
+
+                    _contentServerInstance.GetClientDictionary(clientDict);
+
                     if (userInTotalList == null)
                     {
                         TotalServerUserList.Add(newUserDetails);
@@ -354,6 +366,7 @@ namespace Dashboard
             };
 
             _communicator.AddClient(newUserId, socket);
+
 
             _updaterServerInstance.SetUser(newUserId, socket);
 

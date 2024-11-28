@@ -19,15 +19,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Updater", "Updater\Updater.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject", "TestProject\TestProject.csproj", "{692AA595-A997-4907-87AB-4074C9A750E0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EditorConfig", "EditorConfig", "{215B9813-8F05-4E02-B8EB-E8E219F6B951}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestCases", "TestCases\TestCases.csproj", "{868F2CB0-8AB8-48D7-86A0-5ECF83A39CFE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhiteboardGUI", "WhiteboardGUI\WhiteboardGUI.csproj", "{ABC650CC-284A-4B56-A19C-6D316A69881B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Content", "Content\Content.csproj", "{07B5BDB9-92EE-417D-BF3C-0AFEA6B6F607}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Content", "Content\Content.csproj", "{07B5BDB9-92EE-417D-BF3C-0AFEA6B6F607}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolInterface", "ToolInterface\ToolInterface.csproj", "{3B81B7B9-E91B-404A-84A4-704E5DA9ECB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolInterface", "ToolInterface\ToolInterface.csproj", "{3B81B7B9-E91B-404A-84A4-704E5DA9ECB7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A1503200-0E58-4F6E-87C6-67769CB0B32F}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

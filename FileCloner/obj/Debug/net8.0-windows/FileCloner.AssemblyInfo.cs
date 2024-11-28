@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FileCloner")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c4b17aeb636bfc59a95388709ef253bccc2baf48")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be8fcd8ae304ece5e71e579d07fcb8e1e5fa59fe")]
 [assembly: System.Reflection.AssemblyProductAttribute("FileCloner")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FileCloner")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
