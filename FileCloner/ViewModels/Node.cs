@@ -54,6 +54,13 @@ public class Node : ViewModelBase
         set => _ipAddress = value;
     }
 
+    private string _userName;
+    public string UserName
+    {
+        get => _userName;
+        set => _userName = value;
+    }
+
     private string _lastModified;
     public string LastModified
     {
@@ -109,6 +116,7 @@ public class Node : ViewModelBase
     {
         _isChecked = false;
         _ipAddress = "localhost";
+        _userName = "localhost";
         _color = "";
         _fullFilePath = "";
         Children = [];
