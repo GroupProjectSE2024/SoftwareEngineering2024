@@ -280,6 +280,10 @@ public class SnapShotService
     {
         foreach (IShape shape in snapShot)
         {
+            shape.IsLocked = false;
+            shape.LockedByUserID = -1;
+            shape.IsSelected = false;
+            shape.BoundingBoxColor = "blue";
             _shapes.Add(shape);
             _renderingService.RenderShape(shape, "DOWNLOAD");
             Debug.WriteLine($"Added Shape {shape.GetType()}");
