@@ -1450,16 +1450,19 @@ public class MainPageViewModel : INotifyPropertyChanged
     /// <param name="addToUndo">Indicates whether to update the undo history.</param>
     private void OnShapeReceived(IShape shape, bool addToUndo)
     {
+        shape.IsSelected = false;
+
         Application.Current.Dispatcher.Invoke(() =>
         {
             Shapes.Add(shape);
-            IShape newShape = shape.Clone();
-            _networkingService._synchronizedShapes.Add(newShape);
-            if (addToUndo)
-            {
-                _undoRedoService.RemoveLastModified(shape);
-            }
+           
         });
+        IShape newShape = shape.Clone();
+        _networkingService._synchronizedShapes.Add(newShape);
+        if (addToUndo)
+        {
+            _undoRedoService.RemoveLastModified(shape);
+        }
         OnShapeLocked(shape);
     }
 
@@ -1467,19 +1470,22 @@ public class MainPageViewModel : INotifyPropertyChanged
     {
         Application.Current.Dispatcher.Invoke(() => {
             Shapes.Add(shape);
-            IShape newShape = shape.Clone();
-            _networkingService._synchronizedShapes.Add(newShape);
+            
         });
+        IShape newShape = shape.Clone();
+        _networkingService._synchronizedShapes.Add(newShape);
     }
 
 
     private void OnNewClientJoinedShapeReceived(IShape shape)
     {
+        
         Application.Current.Dispatcher.Invoke(() => {
             Shapes.Add(shape);
-            IShape newShape = shape.Clone();
-            _networkingService._synchronizedShapes.Add(newShape);
+            
         });
+        IShape newShape = shape.Clone();
+        _networkingService._synchronizedShapes.Add(newShape);
         if (shape.IsLocked == true)
         {
             OnShapeLocked(shape);
@@ -1646,8 +1652,9 @@ public class MainPageViewModel : INotifyPropertyChanged
                     break;
                 }
             }
-            _networkingService._synchronizedShapes.Remove(shape);
+            
         });
+        _networkingService._synchronizedShapes.Remove(shape);
     }
 
     /// <summary>
@@ -1656,13 +1663,10 @@ public class MainPageViewModel : INotifyPropertyChanged
     private void OnShapeClear()
     {
         FinalizeTextBox();
-        Application.Current.Dispatcher.Invoke(() =>
-        {
-            Shapes.Clear();
-            _undoRedoService._redoList.Clear();
-            _undoRedoService._undoList.Clear();
-            _networkingService._synchronizedShapes.Clear();
-        });
+        Application.Current.Dispatcher.Invoke(Shapes.Clear);
+        _undoRedoService._redoList.Clear();
+        _undoRedoService._undoList.Clear();
+        _networkingService._synchronizedShapes.Clear();
     }
 
     /// <summary>

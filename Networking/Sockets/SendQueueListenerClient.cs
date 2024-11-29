@@ -104,8 +104,7 @@ public class SendQueueListenerClient
             {
                 _clientSocket.Client.Send(bytes);
                 Trace.WriteLine("[Networking] SendQueueListener" +
-                    "Client: Data sent from client to server by" +
-                    " module: " + packet._moduleOfPacket);
+                    "Client: Data sent from client to server by" );
             }
             catch (Exception e)
             {
