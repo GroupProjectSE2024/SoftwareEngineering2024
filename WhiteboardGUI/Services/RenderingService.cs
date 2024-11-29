@@ -91,7 +91,10 @@ public class RenderingService
     /// <param name="command">The command indicating the action to perform (e.g., CREATE, MODIFY, DELETE).</param>
     public virtual void RenderShape(IShape currentShape, string command)
     {
-
+        if (_mainPageViewModel.Shapes.Contains(currentShape))
+        {
+            return;
+        }
         if (command == "CREATE")
         {
             IShape newShape = currentShape.Clone();

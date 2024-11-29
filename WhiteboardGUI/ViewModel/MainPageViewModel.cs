@@ -1664,8 +1664,15 @@ public class MainPageViewModel : INotifyPropertyChanged
     /// </summary>
     private void OnShapeClear()
     {
-        FinalizeTextBox();
-        Application.Current.Dispatcher.Invoke(Shapes.Clear);
+        //FinalizeTextBox();
+        //Application.Current.Dispatcher.Invoke(Shapes.Clear);
+        Application.Current.Dispatcher.Invoke(() => {
+            if (_currentTextboxModel != null)
+            {
+                Shapes.Remove(_currentTextboxModel);
+            }
+            Shapes.Clear();
+        });
         _undoRedoService._redoList.Clear();
         _undoRedoService._undoList.Clear();
         _networkingService._synchronizedShapes.Clear();
