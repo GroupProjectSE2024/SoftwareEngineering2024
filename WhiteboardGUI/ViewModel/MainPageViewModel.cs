@@ -1652,8 +1652,9 @@ public class MainPageViewModel : INotifyPropertyChanged
                     break;
                 }
             }
-            _networkingService._synchronizedShapes.Remove(shape);
+            
         });
+        _networkingService._synchronizedShapes.Remove(shape);
     }
 
     /// <summary>
@@ -1662,13 +1663,10 @@ public class MainPageViewModel : INotifyPropertyChanged
     private void OnShapeClear()
     {
         FinalizeTextBox();
-        Application.Current.Dispatcher.Invoke(() =>
-        {
-            Shapes.Clear();
-            _undoRedoService._redoList.Clear();
-            _undoRedoService._undoList.Clear();
-            _networkingService._synchronizedShapes.Clear();
-        });
+        Application.Current.Dispatcher.Invoke(Shapes.Clear);
+        _undoRedoService._redoList.Clear();
+        _undoRedoService._undoList.Clear();
+        _networkingService._synchronizedShapes.Clear();
     }
 
     /// <summary>
