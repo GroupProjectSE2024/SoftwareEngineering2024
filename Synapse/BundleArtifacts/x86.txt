@@ -1,0 +1,2 @@
+MainPackage=C:\Users\Asus\OneDrive\Desktop\Synapse\SoftwareEngineering2024\Synapse\bin\x86\Debug\Synapse_2.0.5.0_x86_Debug.appx
+SymbolPackage=C:\Users\Asus\OneDrive\Desktop\Synapse\SoftwareEngineering2024\Synapse\obj\x86\Debug\Symbols\Synapse_2.0.5.0_x86_Debug.appxsym
