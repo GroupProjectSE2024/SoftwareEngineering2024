@@ -189,9 +189,6 @@ public class SocketListener
             // remove the first packet from the received string
             receivedString = receivedString[(packetEnd + 6)..];
 
-            Trace.WriteLine("[Networking] SocketListener:" +
-                " Received data from module: "
-                + packet._moduleOfPacket);
         }
         Trace.WriteLine("[Networking] SocketListener." +
             "ProcessReceivedString() function exited.");
