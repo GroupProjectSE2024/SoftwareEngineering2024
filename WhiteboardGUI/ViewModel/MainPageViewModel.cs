@@ -1450,16 +1450,19 @@ public class MainPageViewModel : INotifyPropertyChanged
     /// <param name="addToUndo">Indicates whether to update the undo history.</param>
     private void OnShapeReceived(IShape shape, bool addToUndo)
     {
+        shape.IsSelected = false;
+
         Application.Current.Dispatcher.Invoke(() =>
         {
             Shapes.Add(shape);
-            IShape newShape = shape.Clone();
-            _networkingService._synchronizedShapes.Add(newShape);
-            if (addToUndo)
-            {
-                _undoRedoService.RemoveLastModified(shape);
-            }
+           
         });
+        IShape newShape = shape.Clone();
+        _networkingService._synchronizedShapes.Add(newShape);
+        if (addToUndo)
+        {
+            _undoRedoService.RemoveLastModified(shape);
+        }
         OnShapeLocked(shape);
     }
 
@@ -1467,19 +1470,22 @@ public class MainPageViewModel : INotifyPropertyChanged
     {
         Application.Current.Dispatcher.Invoke(() => {
             Shapes.Add(shape);
-            IShape newShape = shape.Clone();
-            _networkingService._synchronizedShapes.Add(newShape);
+            
         });
+        IShape newShape = shape.Clone();
+        _networkingService._synchronizedShapes.Add(newShape);
     }
 
 
     private void OnNewClientJoinedShapeReceived(IShape shape)
     {
+        
         Application.Current.Dispatcher.Invoke(() => {
             Shapes.Add(shape);
-            IShape newShape = shape.Clone();
-            _networkingService._synchronizedShapes.Add(newShape);
+            
         });
+        IShape newShape = shape.Clone();
+        _networkingService._synchronizedShapes.Add(newShape);
         if (shape.IsLocked == true)
         {
             OnShapeLocked(shape);
