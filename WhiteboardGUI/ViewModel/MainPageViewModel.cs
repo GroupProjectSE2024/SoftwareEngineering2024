@@ -1171,7 +1171,9 @@ public class MainPageViewModel : INotifyPropertyChanged
                     Text = textShape.Text,
                 };
                 _currentTextboxModel = textboxModel;
-                Shapes.Add(textboxModel);
+                Application.Current.Dispatcher.Invoke(() => {
+                    Shapes.Add(textboxModel);
+                });
                 OnPropertyChanged(nameof(TextBoxVisibility));
             }
         }
@@ -1718,13 +1720,17 @@ public class MainPageViewModel : INotifyPropertyChanged
                         LastModifierID = _userId,
                         ProfilePictureURL = _profilePictureURL
                     };
-                    Shapes.Add(textShape);
+                    Application.Current.Dispatcher.Invoke(() => {
+                        Shapes.Add(textShape);
+                    });
                     RenderingService.RenderShape(textShape, "CREATE");
                 }
             }
             TextInput = string.Empty;
             IsTextBoxActive = false;
-            Shapes.Remove(_currentTextboxModel);
+            Application.Current.Dispatcher.Invoke(() => {
+                Shapes.Remove(_currentTextboxModel);
+            });
             _currentTextboxModel = null;
             _currentTextShape = null;
             OnPropertyChanged(nameof(TextBoxVisibility));
