@@ -9,7 +9,6 @@ using Dashboard;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
-using System.Text.Json;
 
 namespace ViewModel.DashboardViewModel;
 
@@ -20,13 +19,13 @@ public class MainPageViewModel : INotifyPropertyChanged
     private ClientDashboard _clientSessionManager;
     private readonly object _lock = new object();
 
+
     // UserDetailsList is bound to the UI to display the participant list
     private ObservableCollection<UserDetails> _userDetailsList = new ObservableCollection<UserDetails>();
     public ObservableCollection<UserDetails> UserDetailsList
     {
         get => _userDetailsList;
-        set
-        {
+        set {
             if (_userDetailsList != value)
             {
                 lock (_lock)
@@ -44,8 +43,7 @@ public class MainPageViewModel : INotifyPropertyChanged
     public List<string> TimeLabels
     {
         get => _timeLabels;
-        set
-        {
+        set {
             lock (_lock)
             {
                 _timeLabels = value;
@@ -60,8 +58,7 @@ public class MainPageViewModel : INotifyPropertyChanged
     public int CurrentUserCount
     {
         get => _currentUserCount;
-        set
-        {
+        set {
             lock (_lock)
             {
                 if (_currentUserCount != value)
@@ -91,8 +88,7 @@ public class MainPageViewModel : INotifyPropertyChanged
     public string? UserName
     {
         get => _userName;
-        set
-        {
+        set {
             lock (_lock)
             {
                 _userName = value;
@@ -104,8 +100,7 @@ public class MainPageViewModel : INotifyPropertyChanged
     public string? ProfilePicUrl
     {
         get => _profilePicUrl;
-        set
-        {
+        set {
             lock (_lock)
             {
                 _profilePicUrl = value;
@@ -119,8 +114,7 @@ public class MainPageViewModel : INotifyPropertyChanged
     public string? ServerIP
     {
         get => _serverIP;
-        set
-        {
+        set {
             lock (_lock)
             {
                 _serverIP = value;
@@ -132,8 +126,7 @@ public class MainPageViewModel : INotifyPropertyChanged
     public string ServerPort
     {
         get => _serverPort;
-        set
-        {
+        set {
             lock (_lock)
             {
                 if (_serverPort != value)
@@ -194,7 +187,7 @@ public class MainPageViewModel : INotifyPropertyChanged
             UserName = userName;
             ProfilePicUrl = profilePictureUrl ?? string.Empty;
             _communicator = CommunicationFactory.GetCommunicator();
-            _clientSessionManager = new ClientDashboard(_communicator, userName, userEmail, profilePictureUrl);
+            _clientSessionManager = ClientDashboard.GetClientInstance(_communicator, userName, userEmail, profilePictureUrl);
             _clientSessionManager.PropertyChanged += UpdateUserListOnPropertyChanged; // Subscribe to PropertyChanged
             string serverResponse = _clientSessionManager.Initialize(serverIP, serverPort);
 
@@ -214,50 +207,7 @@ public class MainPageViewModel : INotifyPropertyChanged
     /// <returns>Returns true if the session is stopped successfully, otherwise false.</returns>
     public bool ServerStopSession()
     {
-        // Notify clients and stop the server
-        DashboardDetails dashboardMessage = new() {
-            Action = Dashboard.Action.ServerEnd,
-            Msg = "Meeting Ended"
-        };
-        string jsonMessage = JsonSerializer.Serialize(dashboardMessage);
-
-        if (_serverSessionManager != null)
-        {
-            _serverSessionManager.BroadcastMessage(jsonMessage);
-            _serverSessionManager.ServerStop();
-            _serverSessionManager.PropertyChanged -= UpdateUserListOnPropertyChanged;
-            _serverSessionManager = null;  // Clear instance
-        }
-
-        if (_clientSessionManager != null)
-        {
-            _clientSessionManager.PropertyChanged -= UpdateUserListOnPropertyChanged;
-            _clientSessionManager = null;  // Clear instance
-        }
-
-        // Stop communicator
-        if (_communicator != null)
-        {
-            _communicator.Stop();
-            _communicator = null;  // Clear instance
-        }
-
-        // Clear user details
-        UserDetailsList.Clear();
-        IsHost = false;
-        ServerIP = string.Empty;
-        ServerPort = string.Empty;
-        UserName = string.Empty;
-        ProfilePicUrl = string.Empty;
-
-        // Dispose of any running timers
-        if (_timer != null)
-        {
-            _timer.Stop();
-            _timer = null;
-        }
-
-        return true;
+        return _serverSessionManager.ServerStop();
     }
 
     /// <summary>
