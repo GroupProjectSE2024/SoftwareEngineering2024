@@ -194,7 +194,7 @@ public class MainPageViewModel : INotifyPropertyChanged
             UserName = userName;
             ProfilePicUrl = profilePictureUrl ?? string.Empty;
             _communicator = CommunicationFactory.GetCommunicator();
-            _clientSessionManager = ClientDashboard.GetClientInstance(_communicator, userName, userEmail, profilePictureUrl);
+            _clientSessionManager = new ClientDashboard(_communicator, userName, userEmail, profilePictureUrl);
             _clientSessionManager.PropertyChanged += UpdateUserListOnPropertyChanged; // Subscribe to PropertyChanged
             string serverResponse = _clientSessionManager.Initialize(serverIP, serverPort);
 

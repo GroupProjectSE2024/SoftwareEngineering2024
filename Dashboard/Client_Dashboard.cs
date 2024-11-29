@@ -142,7 +142,7 @@ namespace Dashboard
             _updaterClient.GetClientId(UserID);
 
             WhiteboardGUI.Models.ServerOrClient serverOrClient = WhiteboardGUI.Models.ServerOrClient.ServerOrClientInstance;
-            serverOrClient.SetUserDetails(UserName, UserID);
+            serverOrClient.SetUserDetails(UserName, UserID,useremail,UserProfileUrl);
 
             _contentInstance.SetUserDetails_client(UserName, UserID, UserProfileUrl);
             Trace.WriteLine("[DashboardServer] sent info to whiteboard client");
