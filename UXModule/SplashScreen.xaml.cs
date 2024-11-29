@@ -17,7 +17,7 @@ public partial class SplashScreen : Window
     public SplashScreen()
     {
         InitializeComponent();
-        this.Title = "EduLink";
+        this.Title = "Synapse";
         // Initialize and start the timer for 4 minutes
         timer = new DispatcherTimer();
         timer.Interval = TimeSpan.FromSeconds(3); // 4 minutes
@@ -30,9 +30,9 @@ public partial class SplashScreen : Window
 
     private void StartAnimations()
     {
-        // Use FindName to locate the EduLinkStoryboard directly
-        var eduLinkStoryboard = (Storyboard)this.FindName("EduLinkStoryboard");
-        eduLinkStoryboard?.Begin(this, true);
+        // Use FindName to locate the SynapseStoryboard directly
+        var synapseStoryboard = (Storyboard)this.FindName("SynapseStoryboard");
+        synapseStoryboard?.Begin(this, true);
 
         // Start each unique floating circle animation storyboard
         for (int i = 1; i <= 70; i++)
@@ -54,9 +54,9 @@ public partial class SplashScreen : Window
 
     private void StopAnimations()
     {
-        // Stop the main EduLinkStoryboard
-        var eduLinkStoryboard = (Storyboard)this.FindName("EduLinkStoryboard");
-        eduLinkStoryboard?.Stop(this);
+        // Stop the main SynapseStoryboard
+        var synapseStoryboard = (Storyboard)this.FindName("SynapseStoryboard");
+        synapseStoryboard?.Stop(this);
 
         // Stop each unique floating circle animation storyboard
         for (int i = 1; i <= 70; i++)

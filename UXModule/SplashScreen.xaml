@@ -1227,15 +1227,15 @@
         </Canvas>
 
         <!-- Pulsing App Name -->
-        <TextBlock Text="EduLink" FontSize="40" FontWeight="Bold" Foreground="white"
+        <TextBlock Text="Synapse" FontSize="40" FontWeight="Bold" Foreground="white"
                    HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock.RenderTransform>
-                <ScaleTransform x:Name="EduLinkScaleTransform" ScaleX="1" ScaleY="1"/>
+                <ScaleTransform x:Name="SynapseScaleTransform" ScaleX="1" ScaleY="1"/>
             </TextBlock.RenderTransform>
             <TextBlock.Triggers>
                 <EventTrigger RoutedEvent="Loaded">
                     <BeginStoryboard x:Name="BackgroundStoryboard71">
-                        <Storyboard x:Name="EduLinkStoryboard" RepeatBehavior="Forever" AutoReverse="True">
+                        <Storyboard x:Name="SynapseStoryboard" RepeatBehavior="Forever" AutoReverse="True">
                             <DoubleAnimation Storyboard.TargetProperty="(TextBlock.RenderTransform).(ScaleTransform.ScaleX)"
                                              From="1" To="1.1" Duration="0:0:1.5" />
                             <DoubleAnimation Storyboard.TargetProperty="(TextBlock.RenderTransform).(ScaleTransform.ScaleY)"

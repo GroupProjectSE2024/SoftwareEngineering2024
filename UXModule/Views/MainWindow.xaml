@@ -13,7 +13,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" FontFamily="Cascadia Mono" FontSize="15"  
-                           VerticalAlignment="Center" Foreground="#190019"  HorizontalAlignment="Center" FontWeight="Bold" > EduLink
+                           VerticalAlignment="Center" Foreground="#190019"  HorizontalAlignment="Center" FontWeight="Bold" > Synapse
         </TextBlock>
         
 

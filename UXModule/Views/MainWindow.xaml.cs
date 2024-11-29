@@ -13,40 +13,39 @@ using ViewModel.DashboardViewModel;
 using UXModule.Views;
 
 
-namespace UXModule.Views
+namespace UXModule.Views;
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+
+    public event PropertyChangingEventHandler? PropertyChang;  
+
+    private MainPageViewModel _mainPageViewModel;
+    public MainWindow()
     {
+        InitializeComponent();
+        this.Title = "Synapse";
+       
 
-        public event PropertyChangingEventHandler? PropertyChang;  
+ 
 
-        private MainPageViewModel _mainPageViewModel;
-        public MainWindow()
-        {
-            InitializeComponent();
-            this.Title = "EduLink";
-           
+        _mainPageViewModel = new MainPageViewModel();
 
-     
+        this.DataContext = new WindowViewModel(this, _mainPageViewModel);
 
-            _mainPageViewModel = new MainPageViewModel();
+        MainFrame.Content = new LoginPage(_mainPageViewModel);
+        this.Show();
 
-            this.DataContext = new WindowViewModel(this, _mainPageViewModel);
+        //this.Close();
 
-            MainFrame.Content = new LoginPage(_mainPageViewModel);
-            this.Show();
-
-            //this.Close();
-
-        }
-        public void ResetViewModel()
-        {
-            _mainPageViewModel = new MainPageViewModel(); // Reinitialize the ViewModel
-            this.DataContext = new WindowViewModel(this, _mainPageViewModel);
-            MainFrame.Content = new LoginPage(_mainPageViewModel);
-        }
+    }
+    public void ResetViewModel()
+    {
+        _mainPageViewModel = new MainPageViewModel(); // Reinitialize the ViewModel
+        this.DataContext = new WindowViewModel(this, _mainPageViewModel);
+        MainFrame.Content = new LoginPage(_mainPageViewModel);
     }
 }
