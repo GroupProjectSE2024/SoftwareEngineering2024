@@ -10,61 +10,69 @@
       Title="ClientHomePage">
 
     <Page.Resources>
-        <Style x:Key="TextButton" TargetType="{x:Type Button}">
+        <!-- Animations -->
+        <Storyboard x:Key="FadeIn">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                           From="0" To="1" Duration="0:0:0.3"/>
+        </Storyboard>
 
-            <Setter Property="Background" Value="#190019" />
-            <Setter Property="Foreground" Value="#ffffff" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="FontSize" Value="18" />
-            <Setter Property="Padding" Value="50 10" />
-            <Setter Property="Margin" Value="0 10" />
-
-            <Setter Property="Template">
+        <!-- Styles -->
+        <Style x:Key="CardBorder" TargetType="Border">
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="Effect">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ButtonBase}">
-                        <Border x:Name="border"
-                                CornerRadius="10"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}"
-                                SnapsToDevicePixels="True">
-                            <TextBlock Text="{TemplateBinding Content}"
-                                       Focusable="False"
-                                       FontFamily="{TemplateBinding FontFamily}"
-                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                       Margin="{TemplateBinding Padding}"
-                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="Green" />
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="#bdbdbd" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
+                    <DropShadowEffect BlurRadius="10" 
+                                    ShadowDepth="1" 
+                                    Opacity="0.1"/>
                 </Setter.Value>
             </Setter>
         </Style>
 
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="#ffffff"/>
+            <Setter Property="Foreground" Value="#190019"/>
+            <Setter Property="Padding" Value="20,10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="6"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Green"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Page.Resources>
 
-    <Grid Background="#190019">
+    <Grid Background="#ffffff">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="39*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="121*" />
-            <RowDefinition Height="436*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Header with Time and User Info -->
-        <Border Grid.Row="0" Background="#F5F5F5" Margin="0,10,0,0" Padding="15,10">
+        <Border Grid.Row="0" Background="#190019" Margin="0,0,0,0" Padding="0,10,15,10" Grid.ColumnSpan="2">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
@@ -73,146 +81,189 @@
                             <ImageBrush ImageSource="{Binding ProfilePicUrl}"/>
                         </Ellipse.Fill>
                     </Ellipse>
-                    <TextBlock Text="{Binding UserName}"
-               Margin="0,0,0,0"
-               VerticalAlignment="Center"
-               FontWeight="Bold"/>
+                    <TextBlock Text="{Binding UserName}" 
+                       Margin="0,0,0,0" 
+                       VerticalAlignment="Center" 
+                       Foreground="White"
+                       FontWeight="Bold"/>
                 </StackPanel>
             </Grid>
         </Border>
 
         <!-- Main Content -->
-        <Grid Grid.Row="1" Margin="15,15,15,15" Grid.RowSpan="2">
+        <Grid Grid.Row="1" Margin="20,20,0,20">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300" MinWidth="250"/>
-                <ColumnDefinition Width="*" MinWidth="400"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Left Panel - Fixed Width -->
-            <Grid Grid.Column="0" Margin="0,0,15,0">
+            <!-- Left Panel -->
+            <Grid Grid.Column="0" Margin="0,0,20,0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <!-- Participants Header -->
-                <TextBlock Grid.Row="0" Text="Participants" Foreground="#ffffff"
-                        FontSize="18" FontWeight="SemiBold"
-                        Margin="0,0,0,10"/>
+                <!-- Participants Card -->
+                <Border Style="{StaticResource CardBorder}" Grid.Row="0">
+                    <DockPanel>
+                        <TextBlock Text="Participants"
+                                   DockPanel.Dock="Top"
+                                   FontSize="18"
+                                   FontWeight="SemiBold"
+                                   Margin="15,15,15,10"/>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding UserDetailsList}" Margin="10">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Margin="0,0,0,8"
+                                                Background="#F8F9FA"
+                                                CornerRadius="6"
+                                                Padding="12">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
 
-                <!-- Participants List with ScrollViewer -->
-                <Border Grid.Row="1" BorderThickness="1" BorderBrush="#E0E0E0"
-                       CornerRadius="4" Background="#ffffff">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto"
-                               HorizontalScrollBarVisibility="Auto">
-                        <!-- Set max height for scrolling -->
-                        <ItemsControl ItemsSource="{Binding UserDetailsList}"
-                                   Margin="5">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Border Padding="8" Margin="0,2"
-                                           Background="#F8F9FA" CornerRadius="4">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
+                                                <Ellipse Width="32" Height="32" Margin="0,0,10,0">
+                                                    <Ellipse.Fill>
+                                                        <ImageBrush ImageSource="{Binding ProfilePictureUrl}" />
+                                                    </Ellipse.Fill>
+                                                </Ellipse>
 
-                                            <Ellipse Width="32" Height="32" Margin="0,0,10,0">
-                                                <Ellipse.Fill>
-                                                    <ImageBrush ImageSource="{Binding ProfilePictureUrl}"/>
-                                                </Ellipse.Fill>
-                                            </Ellipse>
-
-                                            <TextBlock Grid.Column="1"
-                                                    Text="{Binding UserName}"
-                                                    VerticalAlignment="Center"
-                                                    TextTrimming="CharacterEllipsis"/>
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
+                                                <StackPanel Grid.Column="1" 
+                                                          Margin="12,0,0,0"
+                                                          VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding UserName}"
+                                                             FontSize="14"
+                                                             FontWeight="SemiBold"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </DockPanel>
                 </Border>
-
             </Grid>
 
-            <!-- Right Panel - Charts -->
+            <!-- Right Panel -->
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="20"/>
-                    <!-- Spacing between charts -->
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <!-- First Chart -->
-                <Border Grid.Row="0" BorderThickness="1" BorderBrush="#E0E0E0"
-                       CornerRadius="4" Background="White">
-                    <Grid>
+                <!-- Chart Card -->
+                <Border Style="{StaticResource CardBorder}" Grid.Row="0">
+                    <Grid Margin="15">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Text="Users Over Time"
-                                FontSize="16" FontWeight="SemiBold"
-                                Margin="15,10,0,0"/>
-                        <lvc:CartesianChart
-     Grid.Row="1"
-     Series="{Binding SeriesCollection}"
-     DisableAnimations="True"
-     Hoverable="True"
-     Margin="15">
-                            <!-- X Axis -->
+                        <TextBlock Text="Users Activity"
+                                   FontSize="18"
+                                   FontWeight="SemiBold"/>
+
+                        <lvc:CartesianChart Grid.Row="1"
+                                            Margin="0,15,0,0"
+                                            Series="{Binding SeriesCollection}"
+                                            DisableAnimations="False"
+                                            AnimationsSpeed="0:0:0.5"
+                                            Hoverable="True">
                             <lvc:CartesianChart.AxisX>
-                                <lvc:Axis Title="Time" FontSize="12" ShowLabels="False">
-                                    <!-- Using the TimeLabels from ViewModel -->
-                                    <lvc:Axis.Labels>
-                                        <Binding Path="TimeLabels" />
-                                    </lvc:Axis.Labels>
+                                <lvc:Axis Title="Time" Labels="{Binding TimeLabels}">
                                     <lvc:Axis.Separator>
-                                        <lvc:Separator Step="1" />
+                                        <lvc:Separator StrokeThickness="1" Stroke="#EEEEEE"/>
                                     </lvc:Axis.Separator>
                                 </lvc:Axis>
                             </lvc:CartesianChart.AxisX>
-
-                            <!-- Y Axis -->
                             <lvc:CartesianChart.AxisY>
-                                <lvc:Axis Title="Number of Users" FontSize="12" MinValue="0">
+                                <lvc:Axis Title="Active Users" MinValue="0">
+                                    <lvc:Axis.Separator>
+                                        <lvc:Separator StrokeThickness="1" Stroke="#EEEEEE"/>
+                                    </lvc:Axis.Separator>
                                 </lvc:Axis>
                             </lvc:CartesianChart.AxisY>
                         </lvc:CartesianChart>
                     </Grid>
                 </Border>
 
-                <!-- Second Chart -->
-                <Border Grid.Row="2" BorderThickness="1" BorderBrush="#E0E0E0"
-                       CornerRadius="4" Background="White">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+                <!-- Session Info Card -->
+                <Border Style="{StaticResource CardBorder}" Grid.Row="1" Margin="0,20,0,0">
+                    <Grid Margin="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="Additional Chart"
-                                FontSize="16" FontWeight="SemiBold"
-                                Margin="15,10,0,0"/>
+                        <!-- Session Start -->
+                        <Border Background="#E3F2FD"
+                               CornerRadius="6"
+                               Padding="15">
+                            <StackPanel>
+                                <TextBlock Text="Session Started"
+                                           FontSize="15"
+                                        Opacity="0.7"/>
+                                <TextBlock Text="{Binding SessionStartTime, StringFormat='{}{0:HH:mm:ss}'}"
+                                        FontSize="30"
+                                        FontWeight="SemiBold"
+                                        Margin="0,15,0,0"/>
+                            </StackPanel>
+                        </Border>
 
-                        <!-- Add your second chart here -->
+                        <!-- Current Users -->
+                        <Border Grid.Column="1"
+                               Background="#E8F5E9"
+                               CornerRadius="6"
+                               Margin="10,0"
+                               Padding="15">
+                            <StackPanel>
+                                <TextBlock Text="Current Users"
+                                         FontSize="15"
+                                        Opacity="0.7"/>
+                                <TextBlock Text="{Binding CurrentUserCount}"
+                                        FontSize="30"
+                                        FontWeight="SemiBold"
+                                        Margin="0,15,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Uptime -->
+                        <Border Grid.Column="2"
+                               Background="#FFF3E0"
+                               CornerRadius="6"
+                               Padding="15">
+                            <StackPanel>
+                                <TextBlock Text="Uptime"
+                                           FontSize="15"
+                                        Opacity="0.7"/>
+                                <TextBlock Text="{Binding Uptime}"
+                                        FontSize="30"
+                                        FontWeight="SemiBold"
+                                        Margin="0,15,0,0"/>
+                            </StackPanel>
+                        </Border>
                     </Grid>
                 </Border>
             </Grid>
         </Grid>
 
         <!-- Footer with End Session Button -->
-        <Border Grid.Row="3" Background="#F5F5F5" Padding="15">
-            <Button Content="Leave Session" Click="Button_Click"
-                   HorizontalAlignment="Center"
-                   Padding="20,10"
-                   BorderThickness="0"
-                    Style="{StaticResource TextButton}" >
+        <Border Grid.Row="2" Background="#190019" Padding="15">
+            <Button Content="End Session" 
+             Width="150"
+             FontSize="20"
+             FontWeight="SemiBold"
+            HorizontalAlignment="Center"
+            Padding="20,10"
+            Style="{StaticResource ModernButton}" 
+                Click="Button_Click"
+            BorderThickness="0">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="4"/>
@@ -221,6 +272,4 @@
             </Button>
         </Border>
     </Grid>
-
-
 </Page>
