@@ -17,184 +17,87 @@ using Screenshare;
 using WhiteboardGUI;
 using Content.ChatViewModel;
 
-namespace Dashboard;
-
-/// <summary>
-/// Client dashboard class implementing notification handler and property changed notifier.
-/// </summary>
-public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
+namespace Dashboard
 {
-    private ICommunicator _communicator;
-
-    private readonly object _lock = new object();
-
-    private string _userName;
-    private string _userEmail;
-    private string _userId;
-    private string _profilePictureUrl;
-    private string _serverIp = string.Empty;
-    private string _serverPort = string.Empty;
-    private int _currentUserCount = 1;
-
     /// <summary>
-    /// Gets or sets the user name.
+    /// Client dashboard class implementing notification handler and property changed notifier.
     /// </summary>
-    private string UserName
+    public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
     {
-        get {
-            lock (_lock)
-            {
-                return _userName;
-            }
-        }
-        set {
-            lock (_lock)
-            {
-                _userName = value;
-            }
-        }
-    }
+        private ICommunicator _communicator;
 
-    /// <summary>
-    /// Gets or sets the user email.
-    /// </summary>
-    private string UserEmail
-    {
-        get {
-            lock (_lock)
-            {
-                return _userEmail;
-            }
-        }
-        set {
-            lock (_lock)
-            {
-                _userEmail = value;
-            }
-        }
-    }
+        /// <summary>
+        /// Gets or sets the user name.
+        /// </summary>
+        private string UserName { get; set; }
 
-    /// <summary>
-    /// Gets or sets the user ID.
-    /// </summary>
-    private string UserID
-    {
-        get {
-            lock (_lock)
-            {
-                return _userId;
-            }
-        }
-        set {
-            lock (_lock)
-            {
-                _userId = value;
-            }
-        }
-    }
+        /// <summary>
+        /// Gets or sets the user email.
+        /// </summary>
+        private string UserEmail { get; set; }
 
-    /// <summary>
-    /// Gets or sets the user profile URL.
-    /// </summary>
-    private string UserProfileUrl
-    {
-        get {
-            lock (_lock)
-            {
-                return _profilePictureUrl;
-            }
-        }
-        set {
-            lock (_lock)
-            {
-                _profilePictureUrl = value;
-            }
-        }
-    }
+        /// <summary>
+        /// Gets or sets the user ID.
+        /// </summary>
+        private string UserID { get; set; }
 
-    /// <summary>
-    /// Gets or sets the current user count.
-    /// </summary>
-    public int CurrentUserCount {
-        get {
-            lock (_lock)
-            {
-                return _currentUserCount;
-            }
-        }
-        private set {
-            lock (_lock)
-            {
-                _currentUserCount = value;
-            }
-        }
-    }
+        /// <summary>
+        /// Gets or sets the user profile URL.
+        /// </summary>
+        private string UserProfileUrl { get; set; }
 
-    /// <summary>
-    /// Gets or sets the client user list.
-    /// </summary>
-    public ObservableCollection<UserDetails> ClientUserList { get; set; } = new ObservableCollection<UserDetails>();
+        /// <summary>
+        /// Gets or sets the current user count.
+        /// </summary>
+        public int CurrentUserCount { get; set; }
 
-    private readonly Screenshare.ScreenShareClient.ScreenshareClient _screenShareClient = Screenshare.ScreenShareClient.ScreenshareClient.GetInstance();
+        /// <summary>
+        /// Gets or sets the client user list.
+        /// </summary>
+        public ObservableCollection<UserDetails> ClientUserList { get; set; } = new ObservableCollection<UserDetails>();
 
-    private readonly Updater.Client _updaterClient = Updater.Client.GetClientInstance();
-    private readonly FileCloner.Models.Singleton _fileClonerInstance = FileCloner.Models.Singleton.Instance;
+        private readonly Screenshare.ScreenShareClient.ScreenshareClient _screenShareClient = Screenshare.ScreenShareClient.ScreenshareClient.GetInstance();
 
-    private static ClientDashboard s_dashClientInstance;
+        private readonly Updater.Client _updaterClient = Updater.Client.GetClientInstance();
 
-    /// <summary>
-    /// Initializes a new instance of the Client_Dashboard class.
-    /// </summary>
-    /// <param name="communicator">Communicator instance.</param>
-    /// <param name="username">User name.</param>
-    /// <param name="useremail">User email.</param>
-    /// <param name="pictureURL">User profile picture URL.</param>
-    MainViewModel _contentInstance = MainViewModel.GetInstance;
-    private ClientDashboard(ICommunicator communicator, string username, string useremail, string pictureURL)
-    {
-        _communicator = communicator;
-        _communicator.Subscribe("Dashboard", this, isHighPriority: true);
-        UserName = username;
-        UserEmail = useremail;
-        UserProfileUrl = pictureURL;
-        _fileClonerInstance.UserName = UserName;
-        UserID = string.Empty; // Initialize UserID
-        ClientUserList.CollectionChanged += (s, e) => OnPropertyChanged(nameof(ClientUserList));
-    }
-
-    public static ClientDashboard GetClientInstance(ICommunicator icommunicator,string username , string useremail,string pictureURL)
-    {
-        if(s_dashClientInstance == null)
+        MainViewModel _contentInstance = MainViewModel.GetInstance;
+        /// <summary>
+        /// Initializes a new instance of the Client_Dashboard class.
+        /// </summary>
+        /// <param name="communicator">Communicator instance.</param>
+        /// <param name="username">User name.</param>
+        /// <param name="useremail">User email.</param>
+        /// <param name="pictureURL">User profile picture URL.</param>
+        public ClientDashboard(ICommunicator communicator, string username, string useremail, string pictureURL)
         {
-            s_dashClientInstance = new ClientDashboard(icommunicator, username, useremail, pictureURL);
+            _communicator = communicator;
+            _communicator.Subscribe("Dashboard", this, isHighPriority: true);
+            UserName = username;
+            UserEmail = useremail;
+            UserProfileUrl = pictureURL;
+            UserID = string.Empty; // Initialize UserID
+            ClientUserList.CollectionChanged += (s, e) => OnPropertyChanged(nameof(ClientUserList));
         }
-        return s_dashClientInstance;
-    }
 
-    /// <summary>
-    /// Initializes the dashboard and connects to the server.
-    /// </summary>
-    /// <param name="serverIP">Server IP address.</param>
-    /// <param name="serverPort">Server port number.</param>
-    /// <returns>Server response.</returns>
-    public string Initialize(string serverIP, string serverPort)
-    {
-        lock (_lock)
+        /// <summary>
+        /// Initializes the dashboard and connects to the server.
+        /// </summary>
+        /// <param name="serverIP">Server IP address.</param>
+        /// <param name="serverPort">Server port number.</param>
+        /// <returns>Server response.</returns>
+        public string Initialize(string serverIP, string serverPort)
         {
             string server_response = _communicator.Start(serverIP, serverPort);
             Trace.WriteLine("[DashboardClient] client connected to server");
             return server_response;
         }
-    }
 
-    /// <summary>
-    /// Sends a message to the server.
-    /// </summary>
-    /// <param name="clientIP">Client IP address.</param>
-    /// <param name="message">Message to be sent.</param>
-    public void SendMessage(string clientIP, string message)
-    {
-        lock (_lock)
+        /// <summary>
+        /// Sends a message to the server.
+        /// </summary>
+        /// <param name="clientIP">Client IP address.</param>
+        /// <param name="message">Message to be sent.</param>
+        public void SendMessage(string clientIP, string message)
         {
             string json_message = JsonSerializer.Serialize(message);
             try
@@ -206,16 +109,13 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
                 Console.WriteLine($"Error sending message: {ex.Message}");
             }
         }
-    }
 
-    /// <summary>
-    /// Sends user information to the server.
-    /// </summary>
-    /// <param name="username">User name.</param>
-    /// <param name="useremail">User email.</param>
-    public void SendInfo(string username, string useremail)
-    {
-        lock (_lock)
+        /// <summary>
+        /// Sends user information to the server.
+        /// </summary>
+        /// <param name="username">User name.</param>
+        /// <param name="useremail">User email.</param>
+        public void SendInfo(string username, string useremail)
         {
             DashboardDetails details = new DashboardDetails {
                 User = new UserDetails {
@@ -240,23 +140,19 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
             _screenShareClient.SetUserDetails(username, UserID);
 
             _updaterClient.GetClientId(UserID);
+
             WhiteboardGUI.Models.ServerOrClient serverOrClient = WhiteboardGUI.Models.ServerOrClient.ServerOrClientInstance;
+            serverOrClient.SetUserDetails(UserName, UserID);
 
-            serverOrClient.SetUserDetails(UserName, UserID, UserEmail, UserProfileUrl);
             _contentInstance.SetUserDetails_client(UserName, UserID, UserProfileUrl);
-
-
             Trace.WriteLine("[DashboardServer] sent info to whiteboard client");
         }
-    }
 
-    /// <summary>
-    /// Handles the client leaving the session.
-    /// </summary>
-    /// <returns>True if the client leaves gracefully.</returns>
-    public bool ClientLeft()
-    {
-        lock (_lock)
+        /// <summary>
+        /// Handles the client leaving the session.
+        /// </summary>
+        /// <returns>True if the client leaves gracefully.</returns>
+        public bool ClientLeft()
         {
             DashboardDetails details = new DashboardDetails {
                 User = new UserDetails { UserName = UserName, UserId = UserID },
@@ -267,30 +163,20 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
             try
             {
                 _communicator.Send(json_message, "Dashboard", null);
-                Trace.WriteLine("[DashboardClient] Left session gracefully");
+                Trace.WriteLine("[Dashboardclient] left session gracefully");
             }
             catch (Exception ex)
             {
-                Trace.WriteLine($"Error while sending leave session message: {ex.Message}");
+                Trace.WriteLine($"{ex.Message}");
             }
-
-            // Reset resources
-            ClientUserList.Clear();
-            UserID = string.Empty;
-            CurrentUserCount = 0;
-            _communicator.Stop();
-            _communicator = null; // Ensure a fresh communicator instance for the next session
             return true;
         }
-    }
 
-    /// <summary>
-    /// Handles data received from the server.
-    /// </summary>
-    /// <param name="message">Received message.</param>
-    public void OnDataReceived(string message)
-    {
-        lock (_lock)
+        /// <summary>
+        /// Handles data received from the server.
+        /// </summary>
+        /// <param name="message">Received message.</param>
+        public void OnDataReceived(string message)
         {
             try
             {
@@ -340,15 +226,12 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
                 Console.WriteLine($"Error deserializing message: {ex.Message}");
             }
         }
-    }
 
-    /// <summary>
-    /// Handles received user information.
-    /// </summary>
-    /// <param name="message">Received message.</param>
-    private void HandleRecievedUserInfo(DashboardDetails message)
-    {
-        lock (_lock)
+        /// <summary>
+        /// Handles received user information.
+        /// </summary>
+        /// <param name="message">Received message.</param>
+        private void HandleRecievedUserInfo(DashboardDetails message)
         {
             if (message.User != null && message.User.UserId != null)
             {
@@ -360,15 +243,12 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
                 Console.WriteLine("Error: Received user info is null");
             }
         }
-    }
 
-    /// <summary>
-    /// Handles a user connecting to the server.
-    /// </summary>
-    /// <param name="message">Received message.</param>
-    private void HandleUserConnected(DashboardDetails message)
-    {
-        lock (_lock)
+        /// <summary>
+        /// Handles a user connecting to the server.
+        /// </summary>
+        /// <param name="message">Received message.</param>
+        private void HandleUserConnected(DashboardDetails message)
         {
             if (message.User != null && message.User.UserId != null)
             {
@@ -377,16 +257,13 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
 
                 Trace.WriteLine($"[Dash client] User Connected: {userData.UserName}");
 
-                if (newuserid != UserID)
+                if (ClientUserList.Count >= int.Parse(newuserid))
                 {
-                    if (ClientUserList.Count >= int.Parse(newuserid))
-                    {
-                        ClientUserList[int.Parse(newuserid) - 1] = userData;
-                    }
-                    else
-                    {
-                        ClientUserList.Add(userData);
-                    }
+                    ClientUserList[int.Parse(newuserid) - 1] = userData;
+                }
+                else
+                {
+                    ClientUserList.Add(userData);
                 }
                 CurrentUserCount++;
                 OnPropertyChanged(nameof(ClientUserList));
@@ -396,15 +273,12 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
                 Console.WriteLine("Error: Received user info is null");
             }
         }
-    }
 
-    /// <summary>
-    /// Handles a user leaving the server.
-    /// </summary>
-    /// <param name="message">Received message.</param>
-    private void HandleUserLeft(DashboardDetails message)
-    {
-        lock (_lock)
+        /// <summary>
+        /// Handles a user leaving the server.
+        /// </summary>
+        /// <param name="message">Received message.</param>
+        private void HandleUserLeft(DashboardDetails message)
         {
             if (message.User != null && message.User.UserId != null)
             {
@@ -426,31 +300,28 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
                 Console.WriteLine("Error: Received user info is null");
             }
         }
-    }
 
-    /// <summary>
-    /// Handles the end of the meeting.
-    /// </summary>
-    private void HandleEndOfMeeting()
-    {
-        lock (_lock)
+        /// <summary>
+        /// Handles the end of the meeting.
+        /// </summary>
+        private void HandleEndOfMeeting()
         {
             ClientUserList.Clear();
             _communicator.Stop();
         }
-    }
 
-    /// <summary>
-    /// Event triggered when a property value changes.
-    /// </summary>
-    public event PropertyChangedEventHandler? PropertyChanged;
+        /// <summary>
+        /// Event triggered when a property value changes.
+        /// </summary>
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-    /// <summary>
-    /// Notifies listeners that a property value has changed.
-    /// </summary>
-    /// <param name="property">Property name.</param>
-    protected void OnPropertyChanged(string property)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+        /// <summary>
+        /// Notifies listeners that a property value has changed.
+        /// </summary>
+        /// <param name="property">Property name.</param>
+        protected void OnPropertyChanged(string property)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+        }
     }
 }
