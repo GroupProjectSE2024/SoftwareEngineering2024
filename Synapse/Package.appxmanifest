@@ -9,7 +9,7 @@
   <Identity
     Name="c3ab2db6-0907-491c-9dcb-9f1fdfff08a9"
     Publisher="CN=RKC"
-    Version="2.0.5.0" />
+    Version="3.0.9.0" />
 
   <Properties>
     <DisplayName>Synapse</DisplayName>
@@ -18,8 +18,9 @@
   </Properties>
 
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+    <!--<TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />-->
     <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.14393.0" />
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.19041.0" MaxVersionTested="10.0.22000.0" />
   </Dependencies>
 
   <Resources>
