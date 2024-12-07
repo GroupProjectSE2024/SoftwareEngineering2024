@@ -178,6 +178,8 @@ public class ClientDashboard : INotificationHandler, INotifyPropertyChanged
     /// <returns>Server response.</returns>
     public string Initialize(string serverIP, string serverPort)
     {
+        FileCloner.Models.Constants.UserName = UserName;
+
         lock (_lock)
         {
             string server_response = _communicator.Start(serverIP, serverPort);

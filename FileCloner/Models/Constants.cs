@@ -48,7 +48,7 @@ public class Constants
     public const string Cloning = "cloning";
     public const string Broadcast = "BroadCast";
     public static string IPAddress = GetIP();
-    public static string UserName = Singleton.Instance.UserName;
+    public static string UserName = "Not found";
 
     // Size of FileChunk to be sent over network
     public const int FileChunkSize = 13 * 1024 * 1024;
