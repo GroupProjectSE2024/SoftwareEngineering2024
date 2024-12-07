@@ -116,7 +116,7 @@ public class Node : ViewModelBase
     {
         _isChecked = false;
         _ipAddress = "localhost";
-        _userName = "localhost";
+        _userName = "NOT FOUND";
         _color = "";
         _fullFilePath = "";
         Children = [];
