@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UXModule.Views"
         mc:Ignorable="d"
-        Title="MainWindow" WindowState="Maximized"
-        Icon="\Images\edulinkone-websiteicon.ico">
+        Title="MainWindow" WindowState="Maximized">
     <Grid Background="#190019">
         <Grid.RowDefinitions >
             <RowDefinition Height="20" />

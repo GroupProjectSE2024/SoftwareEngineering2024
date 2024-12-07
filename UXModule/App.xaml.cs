@@ -16,7 +16,7 @@ public partial class App : Application
         string logFilePath = TraceLogger.GetLogFilePath();
 
         // Show the log file path in a MessageBox
-        MessageBox.Show($"Log file location: {logFilePath}", "Log File Path", MessageBoxButton.OK, MessageBoxImage.Information);
+        //MessageBox.Show($"Log file location: {logFilePath}", "Log File Path", MessageBoxButton.OK, MessageBoxImage.Information);
 
         // Log application startup
         Trace.WriteLine("Application started.");

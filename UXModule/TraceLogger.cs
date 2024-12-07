@@ -7,41 +7,63 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace UXModule;
 public static class TraceLogger
 {
 
-        // Define the path for the log file
-        private static readonly string s_logFilePath = Path.Combine(
-            AppDomain.CurrentDomain.BaseDirectory, "Logs", "ApplicationTraceLog.txt");
+        private static readonly string s_logFilePath;
 
         static TraceLogger()
         {
+            // Set the log directory to a common accessible location
+            string commonLogDirectory = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments),
+                "MyAppLogs");
+
             // Ensure the Logs directory exists
-            string logDirectory = Path.GetDirectoryName(s_logFilePath);
-            if (!Directory.Exists(logDirectory))
+            if (!Directory.Exists(commonLogDirectory))
             {
-                Directory.CreateDirectory(logDirectory);
+                Directory.CreateDirectory(commonLogDirectory);
             }
 
-            // Add a text writer listener for tracing
+            // Set the full path for the log file
+            s_logFilePath = Path.Combine(commonLogDirectory, "TraceLog.txt");
+
+            // Configure the trace listener
             Trace.Listeners.Add(new TextWriterTraceListener(s_logFilePath));
             Trace.AutoFlush = true;
-
-            // Initial log entry to confirm logger setup
-            Trace.WriteLine($"[{DateTime.Now}] TraceLogger initialized. Logs are being written to {s_logFilePath}");
         }
 
-        /// <summary>
-        /// Method to retrieve the log file path.
-        /// </summary>
-        /// <returns>Path of the log file.</returns>
+        public static void Log(string message,
+            [CallerMemberName] string memberName = "",
+            [CallerFilePath] string filePath = "",
+            [CallerLineNumber] int lineNumber = 0,
+            bool isErrorMessage = false)
+        {
+            // Add a timestamp to the log message
+            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            string logToBeWritten = $"{timestamp} | {Path.GetFileName(filePath)}->{memberName}->{lineNumber} :: {message}";
+
+            if (isErrorMessage)
+            {
+                logToBeWritten = $"ERROR : {logToBeWritten}";
+            }
+
+            Trace.WriteLine(logToBeWritten);
+        }
+
         public static string GetLogFilePath()
         {
+            // Display the log file path in a message box
+            MessageBox.Show("Log file location: " + s_logFilePath, "Log File Path", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return s_logFilePath;
         }
     }
+
+
 
