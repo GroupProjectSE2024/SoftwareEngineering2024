@@ -226,17 +226,6 @@
                         </Style>
                     </Button.Resources>
                 </Button>
-                <!-- Cloud Upload button -->
-                <Button Name="Upload" Grid.Column="15" Grid.Row="0" Click="UploadClick" Background="#522B5B"
-                        Height="27" VerticalAlignment="Center" BorderThickness="0"
-                        FontFamily="Cascadia Mono" FontSize="12"
-                        Content="Upload" Foreground="WhiteSmoke">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="15,15,15,15"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
             </Grid>
 
             <!-- Grid for main content area -->
