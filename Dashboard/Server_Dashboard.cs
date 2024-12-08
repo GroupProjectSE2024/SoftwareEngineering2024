@@ -265,6 +265,7 @@ public class ServerDashboard : INotificationHandler
 
             Trace.WriteLine("[DashboardServer] started server");
             _contentInstance.SetUserDetails_server(UserName, ProfilePictureUrl);
+            FileCloner.Models.Constants.UserName = UserName;
             WhiteboardGUI.Models.ServerOrClient serverOrClient = WhiteboardGUI.Models.ServerOrClient.ServerOrClientInstance;
 
             serverOrClient.SetUserDetails(UserName, "1", UserEmail, ProfilePictureUrl);

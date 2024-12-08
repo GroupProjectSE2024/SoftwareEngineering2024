@@ -14,10 +14,10 @@
 using Networking.Communication;
 using Networking;
 using Networking.Serialization;
-using System.IO;
 using System.Text;
 using System.Diagnostics.CodeAnalysis;
 using FileCloner.FileClonerLogging;
+using System.Timers;
 
 namespace FileCloner.Models.NetworkService;
 
@@ -37,6 +37,12 @@ public class Client : INotificationHandler
     private readonly List<string> _responders = [];
 
     private FileClonerLogger _logger = new("Client");
+    private int _numberOfFilesRequested = 0;
+    private int _numberOfFilesReceived = 0;
+    private readonly System.Timers.Timer _timeoutTimer; // Timer for handling timeout
+    private readonly int _timeoutInterval = 30000; // 30 seconds (adjust as needed)
+    private readonly object _lock = new(); // For thread-safety
+
 
     /// <summary>
     /// Constructor initializes the client, sets up communication, and subscribes to the server.
@@ -48,9 +54,53 @@ public class Client : INotificationHandler
     {
         this._logAction = logAction;
         _serializer = new Serializer();
+        _timeoutTimer = new System.Timers.Timer(_timeoutInterval);
+        _timeoutTimer.Elapsed += OnTimeoutElapsed;
+        _timeoutTimer.AutoReset = false; // Ensure it triggers once per activation
+
         logAction?.Invoke("[Client] Connected to server!");
         _logger.Log("[Client] Connected to server!");
         s_client.Subscribe(Constants.ModuleName, this, false); // Subscribe to receive notifications
+    }
+
+    /// <summary>
+    /// Starts the timeout timer when cloning begins.
+    /// </summary>
+    private void StartTimeoutTimer()
+    {
+        lock (_lock)
+        {
+            if (!_timeoutTimer.Enabled)
+            {
+                _timeoutTimer.Start();
+                _logAction?.Invoke("[Client] Timeout timer started.");
+            }
+        }
+    }
+
+    /// <summary>
+    /// Stops the timeout timer when cloning ends.
+    /// </summary>
+    private void StopTimeoutTimer()
+    {
+        lock (_lock)
+        {
+            if (_timeoutTimer.Enabled)
+            {
+                _timeoutTimer.Stop();
+                _logAction?.Invoke("[Client] Timeout timer stopped.");
+            }
+        }
+    }
+
+    /// <summary>
+    /// Event handler for when the timeout timer elapses.
+    /// Logs a timeout message.
+    /// </summary>
+    private void OnTimeoutElapsed(object sender, ElapsedEventArgs e)
+    {
+        _logAction?.Invoke($"[Client] Request Timed Out _numberOfFilesRequested = {_numberOfFilesRequested}  _numberOfFilesReceived = {_numberOfFilesReceived}");
+        _logger.Log($"[Client] Request Timed Out _numberOfFilesRequested = {_numberOfFilesRequested}  _numberOfFilesReceived = {_numberOfFilesReceived}", isErrorMessage: true);
     }
 
     /// <summary>
@@ -83,6 +133,7 @@ public class Client : INotificationHandler
                 Directory.CreateDirectory(Constants.ReceivedFilesFolderPath);
             }
 
+            StartTimeoutTimer(); // Start timeout tracking
             _logAction?.Invoke("[Client] Request Sent");
         }
         catch (Exception ex)
@@ -104,6 +155,7 @@ public class Client : INotificationHandler
         {
             try
             {
+                _numberOfFilesRequested++;
                 // Generate path for the summary file specific to each responder
                 string filePath = Path.Combine(Constants.SenderFilesFolderPath, $"{responder}.txt");
 
@@ -173,8 +225,9 @@ public class Client : INotificationHandler
         {
             Thread senderThread = new Thread(() => {
                 SendFilesInChunks(from, path, requesterPath);
-            });
-            senderThread.IsBackground = true;
+            }) {
+                IsBackground = true
+            };
             _logger.Log($"Starting to send file: {path} in chunks");
             senderThread.Start();
 
@@ -255,6 +308,9 @@ public class Client : INotificationHandler
     public void StopCloning()
     {
         s_requestID++;
+        _numberOfFilesReceived = 0;
+        _numberOfFilesRequested = 0;
+        StopTimeoutTimer(); // Stop timeout tracking
         _responders.Clear();
         _logger.Log($"Stopping Cloning, Increased s_requestID to {s_requestID}");
     }
@@ -357,6 +413,7 @@ public class Client : INotificationHandler
     {
         try
         {
+            _numberOfFilesReceived++;
             // Extract the save path from message metadata
             string requesterPath = data.MetaData;
             _logger.Log($"File for cloning received : meta data : {data.MetaData}");
