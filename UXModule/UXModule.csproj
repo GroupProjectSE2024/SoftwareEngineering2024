@@ -10,7 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\edulinkone-websiteicon.ico" />
     <None Remove="Views\Resources\bg2.jpeg" />
   </ItemGroup>
 
@@ -62,7 +61,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\edulinkone-websiteicon.ico" />
     <Resource Include="Views\Resources\Backround.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
